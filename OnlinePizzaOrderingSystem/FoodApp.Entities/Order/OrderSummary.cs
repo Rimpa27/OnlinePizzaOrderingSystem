@@ -26,19 +26,12 @@ namespace FoodApp.Entities.Order
         public OrderStatus OrderStatus { get; set; }
 
         [Required(ErrorMessage = "Order total is required")]
-        [Range(0, double.MaxValue, ErrorMessage = "Order total must be greater than or equal to 0")]
+        [Range(1, double.MaxValue, ErrorMessage = "Order total must be greater than or equal to 1")]
         [DataType(DataType.Currency)]
         public decimal OrderTotal { get; set; }
 
-        [Required(ErrorMessage = "Customer ID is required")]
-        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
 
-
-        // 
-        [Display(Name = "Customer")]
-        public virtual Customer Customer { get; set; }
-
-        [ForeignKey("CustomerId")]
-        public virtual ICollection<Cart> Items { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
     }
 }

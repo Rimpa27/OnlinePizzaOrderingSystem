@@ -5,54 +5,27 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-using FoodApp.Entities.Menu;
+    using FoodApp.Entities.Menu;
 
 namespace FoodApp.Entities.Order
-    {
+{
         public class OrderItem
         {
-    // A property for the order item ID
+            // A property for the order item ID
+            [Key]
+             public int OrderItemId { get; set; }
 
-    [Key]
-
-    public int OrderItemId { get; set; }
-
-            // A property for the order ID
-
-            [ForeignKey("Order")]
-
-            public int OrderId { get; set; }
-
-            // A property for the pizza ID
-
-            [ForeignKey("FoodItem")]
-
-            public int FoodItemId { get; set; }
+             public MenuItem MenuItem { get; set; }
 
             // A property for the quantity
-
             [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 0.")]
-
             public int Quantity { get; set; }
 
             // A property for the unit price
-
+            [Required(ErrorMessage = "Price required")]
+            [Range(1, 1000, ErrorMessage = "Price must be between 1 and 1000")]
             [DataType(DataType.Currency)]
-
-            [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 0.")]
-
             public decimal Price { get; set; }
-
-            // A navigation property for the order
-
-            [Required]
-
-            public OrderSummary Order { get; set; }
-
-            // A navigation property for the pizza
-
-            [Required]
-
-            public MenuItem FoodItem { get; set; }
+           
         }
     }

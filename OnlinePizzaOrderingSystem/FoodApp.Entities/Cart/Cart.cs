@@ -11,10 +11,10 @@ namespace FoodApp.Entities.Cart
     {
         [Key]
         [Required(ErrorMessage = "Name is required")]
-        public int FoodItemName { get; set; }// represents the name of the food item
+        public int CartItemName { get; set; }// represents the name of the food item
  
         [Display(Name = "Items")]
-        public virtual List<CartItem> Items { get; set; }//collection of items
+        public List<CartItem> CartItems { get; set; } //collection of items
                                                                 //CartItem represents an individual item in the cart with its name,quantity,price
  
  
@@ -24,7 +24,7 @@ namespace FoodApp.Entities.Cart
         {
             get
             {
-                return Items.Sum(d => d.Price);
+                return CartItems.Sum(d => d.Price);
             }
         }
     }

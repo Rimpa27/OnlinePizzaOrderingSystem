@@ -13,9 +13,7 @@ namespace FoodApp.Entities.Order
         PaymentCompleted,
         PaymentFailed,
         InProgress,
-        ReadyForDelivery,
         OutForDelivery,
-        Delivered,
-        Completed
+        Delivered
     }
 }

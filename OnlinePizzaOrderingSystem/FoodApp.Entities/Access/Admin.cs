@@ -11,5 +11,6 @@ namespace FoodApp.Entities.Access
     {
         [Key]
         public int adminId { get; set; }  
+
     }
 }

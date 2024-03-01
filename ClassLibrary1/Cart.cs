@@ -14,24 +14,9 @@ namespace ClassLibrary1
         public int FoodItemName { get; set; }// represents the name of the food item
 
         [Display(Name = "Items")]
-        public virtual ICollection<CartItem> Items { get; set; }//collection of items
+        public virtual List<CartItem> Items { get; set; }//collection of items
                                                                 //CartItem represents an individual item in the cart with its name,quantity,price
 
-
-        [Display(Name = "Total Items")]
-
-        public int TotalItems//calculates the total number of items in the cart
-        {
-            get
-            {
-                int total = 0;
-                foreach (var item in Items)
-                {
-                    total += item.Quantity;//we have created Quantity Property in CartItem class
-                }
-                return total;
-            }
-        }
 
 
         [Display(Name = "Total Price")]
@@ -40,28 +25,11 @@ namespace ClassLibrary1
         {
             get
             {
-                decimal totalPrice = 0;
-                foreach (var item in Items)
-                {
-                    totalPrice += item.Quantity * item.Price;//we have created Price Property in CartItem class
-                }
-                return totalPrice;
+                return Items.Sum(d => d.Price);
             }
         }
 
-        [Display(Name = "Total Amount")]
-        [DataType(DataType.Currency)]
-        [DisplayFormat(DataFormatString = "{0:C}")]
-        public decimal TotalAmount => TotalPrice;//represents the total amount,formatted as currency using[DisplayFormat]
+       
 
-
-        [Display(Name = "Checkout")]
-        public bool CheckoutsButton
-        {
-            get
-            {
-                return Items != null && Items.Count > 0;//cart should not be empty to enable checkout
-            }
-        }
     }
 }
