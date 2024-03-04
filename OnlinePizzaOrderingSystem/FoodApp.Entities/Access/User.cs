@@ -1,4 +1,4 @@
-﻿using FoodApp.Entities.Common;
+﻿using FoodApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Entities.Access
+namespace FoodApp.Entities
 {
     public abstract class User 
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Entities.Access
+namespace FoodApp.Entities
 {
     public class Admin :User
     {

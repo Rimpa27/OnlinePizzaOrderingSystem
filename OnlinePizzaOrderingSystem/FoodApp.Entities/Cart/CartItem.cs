@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FoodApp.Entities.Menu;
+using FoodApp.Entities;
+using System.Security.Claims;
 
-namespace FoodApp.Entities.Cart
+namespace FoodApp.Entities
 {
     public class CartItem
     {
@@ -24,5 +25,10 @@ namespace FoodApp.Entities.Cart
         [Required(ErrorMessage = "Price is required")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero")]
         public decimal Price { get; set; }
+
+        public static List<Claim> Remove(CartItem pizzaToRemove)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

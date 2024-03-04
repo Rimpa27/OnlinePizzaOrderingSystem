@@ -1,4 +1,4 @@
-﻿using FoodApp.Entities.Cart;
+﻿using FoodApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +10,8 @@ namespace FoodApp.Services.Customer
     public class DeletePizzaFromCart
     {
         public int CustomerId { get; set; }
-         public Cart CartId { get; set; } 
         //public CartItem CartItemId { get; set; }
+        public int FoodItemId {  get; set; }
         public int CartItemId { get; set; }
     }
 }

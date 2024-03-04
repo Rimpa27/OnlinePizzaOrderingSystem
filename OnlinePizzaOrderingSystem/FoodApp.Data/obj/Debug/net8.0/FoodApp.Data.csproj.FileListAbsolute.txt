@@ -4,3 +4,21 @@ C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\Fo
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.AssemblyInfo.cs
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.csproj.CoreCompileInputs.cache
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.sourcelink.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.csproj.AssemblyReference.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.AssemblyInfoInputs.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.AssemblyInfo.cs
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.csproj.CoreCompileInputs.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.sourcelink.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\bin\Debug\net8.0\FoodApp.Data.deps.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\bin\Debug\net8.0\FoodApp.Data.runtimeconfig.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\bin\Debug\net8.0\FoodApp.Data.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\bin\Debug\net8.0\FoodApp.Data.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\bin\Debug\net8.0\FoodApp.Entities.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\bin\Debug\net8.0\FoodApp.Entities.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.csproj.CopyComplete
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\refint\FoodApp.Data.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\FoodApp.Data.genruntimeconfig.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Data\obj\Debug\net8.0\ref\FoodApp.Data.dll

@@ -5,10 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FoodApp.Entities.Access;
-using FoodApp.Entities.Payment;
+using FoodApp.Entities;
 
-namespace FoodApp.Entities.Order
+namespace FoodApp.Entities
 {
     public class OrderSummary
     {

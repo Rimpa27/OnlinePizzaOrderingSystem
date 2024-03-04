@@ -1,4 +1,4 @@
-﻿using FoodApp.Entities.Order;
+﻿using FoodApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Entities.Payment
+namespace FoodApp.Entities
 {
     public class OrderPayment
     {

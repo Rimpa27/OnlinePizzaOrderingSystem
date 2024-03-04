@@ -10,3 +10,15 @@ C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\Fo
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\refint\FoodApp.Entities.dll
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.pdb
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\ref\FoodApp.Entities.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.AssemblyInfoInputs.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.AssemblyInfo.cs
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.csproj.CoreCompileInputs.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.sourcelink.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\refint\FoodApp.Entities.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\bin\Debug\net8.0\FoodApp.Entities.deps.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\bin\Debug\net8.0\FoodApp.Entities.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\bin\Debug\net8.0\FoodApp.Entities.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\ref\FoodApp.Entities.dll

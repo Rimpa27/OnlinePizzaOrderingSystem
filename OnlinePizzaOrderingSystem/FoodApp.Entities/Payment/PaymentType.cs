@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Entities.Payment
+namespace FoodApp.Entities
 {
         public enum PaymentType
         {

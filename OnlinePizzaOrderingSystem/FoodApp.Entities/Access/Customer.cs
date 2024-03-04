@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Entities.Access
+namespace FoodApp.Entities
 {
     public class Customer : User
     {
@@ -25,5 +25,7 @@ namespace FoodApp.Entities.Access
         //Suggested by Mam
         //[ForeignKey("CustomerID")]
         //public User? user { get; set; }
+
+
     }
 }

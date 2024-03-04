@@ -1,6 +1,6 @@
 ﻿
-using FoodApp.Entities.Order;
-using FoodApp.Entities.Payment;
+
+using FoodApp.Entities;
 using FoodApp.Services.Customer;
 using System;
 using System.Collections.Generic;

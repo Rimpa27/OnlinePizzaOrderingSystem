@@ -1,7 +1,5 @@
 ﻿using FoodApp.Data;
-using FoodApp.Entities.Access;
-using FoodApp.Entities.Order;
-using FoodApp.Entities.Payment;
+using FoodApp.Entities;
 using FoodApp.Service.Customer;
 using FoodApp.Services.Customer;
 using Microsoft.EntityFrameworkCore;
@@ -67,14 +65,16 @@ namespace FoodApp.Service.Customers
             }
 
         }
+        
+
+
         public List<Claim> DeletePizzaCart(DeletePizzaFromCart request)
         {
-
-            var pizzaToRemove = context.Customers.Find(p => p.CartItems == request.CartItemId);
-                //.Customers.Carts.Find(p => p.CartItemId == request.PizzaId);
+            
+            var pizzaToRemove = context.CartItems.Find(p => p.FoodItemId == request.CartItemId);
             if (pizzaToRemove != null)
             {
-                return context.Customers.Carts.Remove(pizzaToRemove);
+                return CartItem.Remove(pizzaToRemove);
             }
             else
             {
@@ -82,8 +82,6 @@ namespace FoodApp.Service.Customers
             }
 
 
-
         }
-
     }
 }

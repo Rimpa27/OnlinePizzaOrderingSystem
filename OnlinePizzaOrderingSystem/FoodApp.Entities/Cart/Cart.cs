@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Entities.Cart
+namespace FoodApp.Entities
 {
     public class Cart
     {
@@ -27,5 +27,6 @@ namespace FoodApp.Entities.Cart
                 return CartItems.Sum(d => d.Price);
             }
         }
+        public Customer Customers { get; set; }
     }
 }

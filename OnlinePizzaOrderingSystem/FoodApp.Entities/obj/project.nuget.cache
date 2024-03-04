@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i+c7zAQd286fcmHfGweqrlHQonfshrZBCPchQJvwdSIJrdfkkpQkBBjFDemH66Mqbs01Oi32Ndvq4TErYPHa4A==",
+  "dgSpecHash": "9oCndogJPHBpQca5riRWp31Gdp9W775nbzul/UEYzX2KP9u5ifRjSBhq/6EByiMnAesoi9+adOsyd2qxHIu//w==",
   "success": true,
-  "projectFilePath": "C:\\C#. notes\\pizza\\github\\OnlinePizzaOrderingSystem\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj",
+  "projectFilePath": "C:\\Users\\risatpat\\OneDrive - Capgemini\\Desktop\\OnlinePizzaOrderingSystem\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

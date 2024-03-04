@@ -1,8 +1,4 @@
-﻿using FoodApp.Entities.Access;
-using FoodApp.Entities.Cart;
-using FoodApp.Entities.Menu;
-using FoodApp.Entities.Order;
-using FoodApp.Entities.Payment;
+﻿using FoodApp.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

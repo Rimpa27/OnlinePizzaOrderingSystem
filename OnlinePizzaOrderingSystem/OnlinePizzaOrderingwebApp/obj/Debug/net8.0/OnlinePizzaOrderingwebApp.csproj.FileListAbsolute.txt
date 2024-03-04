@@ -9,3 +9,38 @@ C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\On
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.dll
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\refint\OnlinePizzaOrderingwebApp.dll
 C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\appsettings.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\OnlinePizzaOrderingwebApp.exe
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\OnlinePizzaOrderingwebApp.deps.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\OnlinePizzaOrderingwebApp.runtimeconfig.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\OnlinePizzaOrderingwebApp.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\OnlinePizzaOrderingwebApp.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\FoodApp.Entities.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\bin\Debug\net8.0\FoodApp.Entities.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.csproj.AssemblyReference.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.AssemblyInfoInputs.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.AssemblyInfo.cs
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.csproj.CoreCompileInputs.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.sourcelink.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\staticwebassets\msbuild.OnlinePizzaOrderingwebApp.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\staticwebassets\msbuild.build.OnlinePizzaOrderingwebApp.props
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.OnlinePizzaOrderingwebApp.props
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.OnlinePizzaOrderingwebApp.props
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\scopedcss\bundle\OnlinePizzaOrderingwebApp.styles.css
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.csproj.CopyComplete
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\refint\OnlinePizzaOrderingwebApp.dll
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.pdb
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\OnlinePizzaOrderingwebApp.genruntimeconfig.cache
+C:\Users\risatpat\OneDrive - Capgemini\Desktop\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\OnlinePizzaOrderingwebApp\obj\Debug\net8.0\ref\OnlinePizzaOrderingwebApp.dll

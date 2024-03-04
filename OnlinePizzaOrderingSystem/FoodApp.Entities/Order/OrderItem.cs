@@ -5,9 +5,9 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using FoodApp.Entities.Menu;
+    using FoodApp.Entities;
 
-namespace FoodApp.Entities.Order
+namespace FoodApp.Entities
 {
         public class OrderItem
         {
