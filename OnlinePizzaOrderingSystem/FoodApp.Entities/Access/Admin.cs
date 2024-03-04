@@ -9,8 +9,8 @@ namespace FoodApp.Entities.Access
 {
     public class Admin :User
     {
-        [Key]
-        public int adminId { get; set; }  
+        //[Key]
+        //public int adminId { get; set; }  
 
     }
 }

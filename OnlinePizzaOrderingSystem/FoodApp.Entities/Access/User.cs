@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Entities.Access
 {
-    public class User 
+    public abstract class User 
     {
         [Key]
-        public int userID { get; set; }
+        public int UserID { get; set; }
 
         [Required(ErrorMessage = "Name field is required")]
         [RegularExpression("^[a-zA-Z ]{2,50}$")]

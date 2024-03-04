@@ -10,8 +10,8 @@ namespace FoodApp.Entities.Access
 {
     public class Customer : User
     {
-        [Key]
-        public int CustomerID { get; set; }
+        //[Key]
+        //public int CustomerID { get; set; }
 
         [Required(ErrorMessage = "Address is required")]
         [MaxLength(200, ErrorMessage = "address cannot be longer than 200 characters")]

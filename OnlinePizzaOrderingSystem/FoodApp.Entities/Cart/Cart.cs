@@ -10,8 +10,8 @@ namespace FoodApp.Entities.Cart
     public class Cart
     {
         [Key]
-        [Required(ErrorMessage = "Name is required")]
-        public int CartItemName { get; set; }// represents the name of the food item
+        [Required(ErrorMessage = "CartId is required")]
+        public int CartId { get; set; }// represents the name of the food item
  
         [Display(Name = "Items")]
         public List<CartItem> CartItems { get; set; } //collection of items

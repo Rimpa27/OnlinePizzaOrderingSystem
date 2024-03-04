@@ -47,6 +47,7 @@ namespace ClassLibrary1
 
     public enum FoodCategory
     {
-        Pizza,Pasta,Sides,Salad,Dessert,Beverage
+        Pizza = 1
+            ,Pasta,Sides,Salad,Dessert,Beverage
     }
 }
