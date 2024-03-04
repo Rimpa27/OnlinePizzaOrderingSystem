@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FoodApp.Entities.Access;
+using FoodApp.Entities.Payment;
 
 namespace FoodApp.Entities.Order
 {
@@ -32,6 +33,11 @@ namespace FoodApp.Entities.Order
 
         public Customer Customer { get; set; }
 
+        public OrderPayment Payment { get; set; }
+
         public List<OrderItem> OrderItems { get; set; }
+
+       
+
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sbandeji\\Documents\\Project\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj": {}
+    "C:\\C#. notes\\pizza\\github\\OnlinePizzaOrderingSystem\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sbandeji\\Documents\\Project\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj": {
+    "C:\\C#. notes\\pizza\\github\\OnlinePizzaOrderingSystem\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sbandeji\\Documents\\Project\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj",
+        "projectUniqueName": "C:\\C#. notes\\pizza\\github\\OnlinePizzaOrderingSystem\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj",
         "projectName": "FoodApp.Entities",
-        "projectPath": "C:\\Users\\sbandeji\\Documents\\Project\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj",
-        "packagesPath": "C:\\Users\\sbandeji\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sbandeji\\Documents\\Project\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\obj\\",
+        "projectPath": "C:\\C#. notes\\pizza\\github\\OnlinePizzaOrderingSystem\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\FoodApp.Entities.csproj",
+        "packagesPath": "C:\\Users\\PRISAGAR\\.nuget\\packages\\",
+        "outputPath": "C:\\C#. notes\\pizza\\github\\OnlinePizzaOrderingSystem\\OnlinePizzaOrderingSystem\\FoodApp.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sbandeji\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PRISAGAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

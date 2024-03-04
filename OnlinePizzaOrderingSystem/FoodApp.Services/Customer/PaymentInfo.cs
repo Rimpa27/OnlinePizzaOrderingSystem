@@ -1,4 +1,5 @@
-﻿using FoodApp.Entities.Payment;
+﻿using FoodApp.Entities.Order;
+using FoodApp.Entities.Payment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace FoodApp.Services.Customer
 {
     public class PaymentInfo
     {
+        public OrderSummary OrderSummary { get; set; }  
         public PaymentStatus Status { get; set; }
         public string TransactionId { get; set; }
 

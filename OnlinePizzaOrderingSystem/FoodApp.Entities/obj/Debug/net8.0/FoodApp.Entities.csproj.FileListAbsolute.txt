@@ -1,0 +1,12 @@
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\bin\Debug\net8.0\FoodApp.Entities.deps.json
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\bin\Debug\net8.0\FoodApp.Entities.dll
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\bin\Debug\net8.0\FoodApp.Entities.pdb
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.AssemblyInfoInputs.cache
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.AssemblyInfo.cs
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.csproj.CoreCompileInputs.cache
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.sourcelink.json
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.dll
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\refint\FoodApp.Entities.dll
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\FoodApp.Entities.pdb
+C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Entities\obj\Debug\net8.0\ref\FoodApp.Entities.dll

@@ -13,12 +13,11 @@ namespace FoodApp.Service.Customer
 {
     public interface ICustomerAccessService
     {
-        bool Payment(OrderPayment orderPayment);
+        PaymentInfo GetPaymentInfoByOrderId(int orderId);
 
         OrderStatus GetOrderStatusByOrderID(int orderID);
 
 
-        
         List<Claim> DeletePizzaCart(DeletePizzaFromCart request);
     }
 }

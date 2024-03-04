@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodApp.Entities.Order;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace FoodApp.Entities.Payment
         [EnumDataType(typeof(PaymentStatus), ErrorMessage = "Invalid payment Status")]
         public PaymentStatus PaymentStatus { get; set; } 
 
-        public string TrancationId { get; set; }
+        public string TransactionId { get; set; }
+
+        public OrderSummary OrderSummary { get; set; }
     }
 }
