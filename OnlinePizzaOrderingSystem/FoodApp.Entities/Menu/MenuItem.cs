@@ -19,23 +19,12 @@ namespace FoodApp.Entities
         [Required(ErrorMessage = "Description is required")]
         [StringLength(500, MinimumLength = 10, ErrorMessage = "Description must be between 10 and 500 characters")]
 
-        public string ItemDescription { get; set; }
+        public string MenuItemDescription { get; set; }
 
         [Required(ErrorMessage = "Price required")]
         [Range(1, 1000, ErrorMessage = "Price must be between 1 and 1000")]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
-
-
-        //VegorNorVeg - Enum
-        [Required(ErrorMessage = "Category is required")]
-        [EnumDataType(typeof(VegOrNonVeg), ErrorMessage = "Invalid Category")]
-        public VegOrNonVeg VegOrNonVeg { get; set; }
-
-        //Pizza, pasta, Dessert
-        [Required(ErrorMessage = "Category is required")]
-        [EnumDataType(typeof(MenuItemCategory), ErrorMessage = "Invalid Category")]
-        public MenuItemCategory MenuItemCategory { get; set; }
 
         [Required(ErrorMessage = "Calories are required")]
         [Range(0, 5000, ErrorMessage = "Calories must be between 0 and 5000")]
@@ -51,7 +40,16 @@ namespace FoodApp.Entities
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
         public int PreparationTime { get; set; }
-      
+
+        //VegorNorVeg - Enum
+        [Required(ErrorMessage = "Category is required")]
+        [EnumDataType(typeof(VegOrNonVeg), ErrorMessage = "Invalid Category")]
+        public VegOrNonVeg VegOrNonVeg { get; set; }
+        //Pizza, pasta, Dessert
+        [Required(ErrorMessage = "Category is required")]
+        [EnumDataType(typeof(MenuItemCategory), ErrorMessage = "Invalid Category")]
+        public MenuItemCategory MenuItemCategory { get; set; }
+
 
     }
 

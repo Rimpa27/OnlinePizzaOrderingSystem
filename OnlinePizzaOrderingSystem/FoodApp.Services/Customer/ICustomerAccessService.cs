@@ -1,13 +1,5 @@
-﻿
+﻿using FoodApp.Entities;
 
-using FoodApp.Entities;
-using FoodApp.Services.Customer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodApp.Services.Customer
 {
@@ -18,8 +10,10 @@ namespace FoodApp.Services.Customer
         OrderStatus GetOrderStatusByOrderID(int orderID);
 
 
-        List<Claim> DeletePizzaCart(DeletePizzaFromCart request);
+        Task<bool> DeleteCartItemByIdAsync(int cartItemId);
+        Task<bool> AddMenuItemToCartAsync(int cartId, int menuItemId, int quantity);
 
-         DateTime ChooseDeliveryDateAndTime(ChooseDeliveryDateAndTime request);
+        
+        
     }
 }

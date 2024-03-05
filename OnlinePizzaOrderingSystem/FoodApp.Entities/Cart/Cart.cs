@@ -12,19 +12,18 @@ namespace FoodApp.Entities
         [Key]
         [Required(ErrorMessage = "CartId is required")]
         public int CartId { get; set; }// represents the name of the food item
+
+        public List<CartItem> CartItemList { get; set; } // List to store cart items
+
  
-        [Display(Name = "Items")]
-        public List<CartItem> CartItems { get; set; } //collection of items
-                                                                //CartItem represents an individual item in the cart with its name,quantity,price
- 
- 
+
         [Display(Name = "Total Price")]
         [DataType(DataType.Currency)]
         public decimal TotalPrice//calculates the total price of each type of food in the cart 
         {
             get
             {
-                return CartItems.Sum(d => d.Price);
+                return CartItemList.Sum(d => d.CartItemPrice);
             }
         }
         public Customer Customers { get; set; }

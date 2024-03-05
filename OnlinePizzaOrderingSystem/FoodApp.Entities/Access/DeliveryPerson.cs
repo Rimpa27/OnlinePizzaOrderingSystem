@@ -10,6 +10,8 @@ namespace FoodApp.Entities
     public class DeliveryPerson: User
     {
         //public int DeliveryPersonId { get; set; }
+        [Required]
+        public string DeliveryPersonName {  get; set; }
 
         [Required]
         [RegularExpression("^[0-9]{10}$")]

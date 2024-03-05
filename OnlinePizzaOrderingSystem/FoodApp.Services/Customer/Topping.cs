@@ -1,4 +1,4 @@
-﻿using FoodApp.Entities.Cart;
+﻿using FoodApp.Entities;
 
 namespace FoodApp.Service.Customers
 {

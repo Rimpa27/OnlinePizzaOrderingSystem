@@ -2,13 +2,7 @@
 using FoodApp.Entities;
 using FoodApp.Services.Customer;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace FoodApp.Service.Customers
 {
@@ -49,8 +43,8 @@ namespace FoodApp.Service.Customers
                
             }
         }
-
         
+
 
         public OrderStatus GetOrderStatusByOrderID(int orderId)
         {
@@ -67,41 +61,82 @@ namespace FoodApp.Service.Customers
             }
 
         }
-        
-
-
-        public List<Claim> DeletePizzaCart(DeletePizzaFromCart request)
+        public async Task<bool> AddMenuItemToCartAsync(int cartId, int menuItemId, int quantity)
         {
-            
-           var pizzaToRemove = context.CartItems.FirstOrDefault(p => p.CartItemId == request.CartItemId);
-            if (pizzaToRemove != null)
+            try
             {
-                return CartItem.Remove(pizzaToRemove);
+                var cart = await context.Carts.Include(c => c.CartItemList).FirstOrDefaultAsync(c => c.CartId == cartId);
+                var menuItem = await context.MenuItems.FindAsync(menuItemId);
+
+                if (cart == null || menuItem == null)
+                {
+                    throw new Exception("Cart or MenuItem not found.");
+                }
+
+                var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.MenuItem.MenuItemId == menuItemId);
+
+                if (cartItem != null)
+                {
+                    cartItem.CartItemQuantity += quantity;
+                }
+                else
+                {
+                    cart.CartItemList.Add(new CartItem
+                    {
+                        CartItemQuantity = quantity,
+                        CartItemPrice = menuItem.Price * quantity,
+                        MenuItem = menuItem
+                    });
+                }
+
+                await context.SaveChangesAsync();
+                return true;
             }
-            else
+            catch (Exception ex)
             {
-                throw new InvalidOperationException("Pizza not deleted");
+                // Handle exception, log error, etc.
+                throw new Exception("An error occurred while adding the MenuItem to the Cart.", ex);
             }
-
-
         }
 
-        public DateTime ChooseDeliveryDateAndTime(ChooseDeliveryDateAndTime request)
-        {
-            
-            var chooseDateAndTime = context.Carts.FirstOrDefault(p => p.CartId == request.CartId);
 
-            if (CartId != null)
+        public async Task<bool> DeleteCartItemByIdAsync(int cartItemId)
             {
-                DateTime deliveryDateTime = request.date + request.time;
-                return deliveryDateTime;
-            }
-            else
-            {
-                throw new InvalidOperationException("Cannot choose date and time");
-            }
+                try
+                {
+                    var cartItem = await context.CartItems.FindAsync(cartItemId);
 
+                    if (cartItem == null)
+                    {
+                        throw new NotFoundException("CartItem not found.");
+                    }
+
+                    context.CartItems.Remove(cartItem);
+                    await context.SaveChangesAsync();
+                    return true;
+                }
+                catch (NotFoundException ex)
+                {
+                    // Log the exception, etc.
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception, etc.
+                    throw new Exception("An error occurred while deleting the cart item.", ex);
+                }
         }
     }
+
+
+
+       
+
+
+
+        
+
+        
 }
+
 
