@@ -19,5 +19,6 @@ namespace FoodApp.Service.Customer
 
 
         List<Claim> DeletePizzaCart(DeletePizzaFromCart request);
+        List<Claim> AssignDeliveryPerson(AssignDeliveryPersonRequest request);
     }
 }

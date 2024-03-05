@@ -28,11 +28,7 @@ namespace FoodApp.Data
 
         public DbSet<DeliveryPerson> DeliveryPeople { get; set; }
         
-        public DbSet<Address> Addresses { get; set; }   
-
-
-
-
-
+        public DbSet<Address> Addresses { get; set; }
+        public object OrderItems { get; set; }
     }
 }

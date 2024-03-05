@@ -6,13 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FoodApp.Service.Customers
 {
-    public class CustomerAccessService:ICustomerAccessService
+    public class CustomerAccessService : ICustomerAccessService
     {
         private readonly PizzaOrderingAppContext context;
 
@@ -21,9 +22,11 @@ namespace FoodApp.Service.Customers
             this.context = context;
         }
 
+
+
         public PaymentInfo GetPaymentInfoByOrderId(int orderId)
         {
-         
+
             var orderPayment = context.OrderPayments.FirstOrDefault(p => p.OrderSummary.OrderId == orderId);
 
             if (orderPayment != null)
@@ -44,11 +47,11 @@ namespace FoodApp.Service.Customers
             else
             {
                 throw new Exception("No payment found for this order.");
-               
+
             }
         }
 
-        
+
 
         public OrderStatus GetOrderStatusByOrderID(int orderId)
         {
@@ -65,13 +68,13 @@ namespace FoodApp.Service.Customers
             }
 
         }
-        
+
 
 
         public List<Claim> DeletePizzaCart(DeletePizzaFromCart request)
         {
-            
-            var pizzaToRemove = context.CartItems.Find(p => p.FoodItemId == request.CartItemId);
+
+            var pizzaToRemove = context.CartItems.FirstOrDefault(p => p.CartItemId == request.CartItemId);
             if (pizzaToRemove != null)
             {
                 return CartItem.Remove(pizzaToRemove);
@@ -83,5 +86,37 @@ namespace FoodApp.Service.Customers
 
 
         }
+
+        public List<Claim> AssignDeliveryPerson(AssignDeliveryPersonRequest request)
+        {
+            var person = context.DeliveryPeople.FirstOrDefault(d => d.DeliveryPerson == request.DeliveryPerson);
+            if (person != null)
+            {
+                return person.AssignDeliveryPerson(request);
+                
+            }
+            else
+            {
+                throw new AuthenticationException("Person is not assigned");
+
+            }
+
+        }
+
+        public List<Claim> ConfirmOrder(ConfirmOrderRequest request)
+        {
+            var order = context.OrderItems.FirstOrDefault(d => d.OrderId == request.OrderId);
+            if (order == null)
+            {
+                throw new AuthenticationException("Order is not valid");
+            }
+            else
+            {
+                return order.ConfirmOrder(request);
+            }
+        }
     }
 }
+
+
+
