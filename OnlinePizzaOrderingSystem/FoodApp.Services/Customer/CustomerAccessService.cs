@@ -2,6 +2,7 @@
 using FoodApp.Entities;
 using FoodApp.Services.Customer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 
 namespace FoodApp.Service.Customers
@@ -125,8 +126,81 @@ namespace FoodApp.Service.Customers
                     // Log the exception, etc.
                     throw new Exception("An error occurred while deleting the cart item.", ex);
                 }
+
+
+
+            public void CreateOrder(int cartId, string customerName, string customerAddress)
+            {
+                // Get the cart with the specified ID
+                var cart = context.Carts
+                    .FirstOrDefault(c => c.CartId == cartId);
+
+                if (cart == null)
+                {
+                    throw new ArgumentException("Cart not found.");
+                }
+
+                // Create a new order
+                var order = new OrderSummary
+                {
+                    OrderId = cartId,
+                    OrderDate = DateTime.Now // Assuming current date and time for the order date
+                };
+
+                // Add the order to the database
+                context.OrderSummaries.Add(order);
+                context.SaveChanges();
+            }
+
+           public  void CustomizePizza(int cartItemId, string[] toppings)
+            {
+                var cartItem = context.CartItems
+                    .FirstOrDefault(ci => ci.CartItemId == cartItemId);
+
+                if (cartItem == null)
+                {
+                    throw new ArgumentException("Cart item not found.");
+                }
+
+                // Add or update toppings for the pizza
+                cartItem.ToppingType = toppings;
+
+                // Save changes to the database
+                context.SaveChanges();
+            }
+
+            public DeliveryPerson AssignDeliveryPerson(string DeliveryPersonName)
+            {
+                var person = context.DeliveryPeople.FirstOrDefault(d => d.DeliveryPersonName == DeliveryPersonName);
+                if (person != null)
+                {
+                    return person.DeliveryPerson;
+                }
+                else
+                {
+                    throw new Exception($"Person with Name {DeliveryPersonName}is not assigned");
+
+                }
+
+            }
+
+            public OrderItem ConfirmOrder(int OrderItemId)
+            {
+                var order = context.OrderItems.FirstOrDefault(d => d.orderId == OrderItemId);
+                if (order != null)
+                {
+                    return order.ConfirmOrder;
+                }
+
+                else
+                {
+                    throw new Exception($"Order with {OrderItemId} is not valid");
+                }
+            }
         }
     }
+    }
+    
 
 
 
@@ -137,6 +211,6 @@ namespace FoodApp.Service.Customers
         
 
         
-}
+
 
 
