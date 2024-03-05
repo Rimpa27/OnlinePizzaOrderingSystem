@@ -1,6 +1,0 @@
-C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Services\obj\Debug\net8.0\FoodApp.Services.csproj.AssemblyReference.cache
-C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Services\obj\Debug\net8.0\FoodApp.Services.GeneratedMSBuildEditorConfig.editorconfig
-C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Services\obj\Debug\net8.0\FoodApp.Services.AssemblyInfoInputs.cache
-C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Services\obj\Debug\net8.0\FoodApp.Services.AssemblyInfo.cs
-C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Services\obj\Debug\net8.0\FoodApp.Services.csproj.CoreCompileInputs.cache
-C:\C#. notes\pizza\github\OnlinePizzaOrderingSystem\OnlinePizzaOrderingSystem\FoodApp.Services\obj\Debug\net8.0\FoodApp.Services.sourcelink.json
