@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A91EB17A-414
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Entities", "FoodApp.Entities\FoodApp.Entities.csproj", "{ED731DED-149A-429D-B475-AE2261E457D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinePizzaOrderingwebApp", "OnlinePizzaOrderingwebApp\OnlinePizzaOrderingwebApp.csproj", "{9E003071-84F0-4C4B-A6D0-4245DECB1EAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlinePizzaOrderingwebApp", "OnlinePizzaOrderingwebApp\OnlinePizzaOrderingwebApp.csproj", "{9E003071-84F0-4C4B-A6D0-4245DECB1EAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Data", "FoodApp.Data\FoodApp.Data.csproj", "{E0C41027-E085-498E-9890-7683ED61363C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Data", "FoodApp.Data\FoodApp.Data.csproj", "{E0C41027-E085-498E-9890-7683ED61363C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Services", "FoodApp.Services\FoodApp.Services.csproj", "{C974E5E4-9913-45D3-9D9E-01D9CE20BB71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Services", "FoodApp.Services\FoodApp.Services.csproj", "{C974E5E4-9913-45D3-9D9E-01D9CE20BB71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
