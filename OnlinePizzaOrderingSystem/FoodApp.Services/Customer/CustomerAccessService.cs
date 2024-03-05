@@ -1,6 +1,5 @@
 ﻿using FoodApp.Data;
 using FoodApp.Entities;
-using FoodApp.Service.Customer;
 using FoodApp.Services.Customer;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,12 +8,15 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FoodApp.Service.Customers
 {
     public class CustomerAccessService:ICustomerAccessService
     {
         private readonly PizzaOrderingAppContext context;
+
+        public object CartId { get; private set; }
 
         public CustomerAccessService(PizzaOrderingAppContext context)
         {
@@ -71,7 +73,7 @@ namespace FoodApp.Service.Customers
         public List<Claim> DeletePizzaCart(DeletePizzaFromCart request)
         {
             
-            var pizzaToRemove = context.CartItems.Find(p => p.FoodItemId == request.CartItemId);
+           var pizzaToRemove = context.CartItems.FirstOrDefault(p => p.CartItemId == request.CartItemId);
             if (pizzaToRemove != null)
             {
                 return CartItem.Remove(pizzaToRemove);
@@ -83,5 +85,23 @@ namespace FoodApp.Service.Customers
 
 
         }
+
+        public DateTime ChooseDeliveryDateAndTime(ChooseDeliveryDateAndTime request)
+        {
+            
+            var chooseDateAndTime = context.Carts.FirstOrDefault(p => p.CartId == request.CartId);
+
+            if (CartId != null)
+            {
+                DateTime deliveryDateTime = request.date + request.time;
+                return deliveryDateTime;
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot choose date and time");
+            }
+
+        }
     }
 }
+

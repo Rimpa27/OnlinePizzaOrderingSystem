@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Service.Customer
+namespace FoodApp.Services.Customer
 {
     public interface ICustomerAccessService
     {
@@ -19,5 +19,7 @@ namespace FoodApp.Service.Customer
 
 
         List<Claim> DeletePizzaCart(DeletePizzaFromCart request);
+
+         DateTime ChooseDeliveryDateAndTime(ChooseDeliveryDateAndTime request);
     }
 }
