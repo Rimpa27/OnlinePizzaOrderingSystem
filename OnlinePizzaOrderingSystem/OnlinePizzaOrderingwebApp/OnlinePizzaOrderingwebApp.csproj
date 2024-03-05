@@ -12,7 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FoodApp.Data\FoodApp.Data.csproj" />
     <ProjectReference Include="..\FoodApp.Entities\FoodApp.Entities.csproj" />
+    <ProjectReference Include="..\FoodApp.Services\FoodApp.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
