@@ -13,7 +13,7 @@ namespace FoodApp.Services
         Task<bool> DeleteCartItemByIdAsync(int cartItemId);
         Task<bool> AddMenuItemToCartAsync(int cartId, int menuItemId, int quantity);
 
-        Task<DateTime?> ChooseDeliveryDateAndTimeAsync(int orderId, DateTime selectedDateTime);
+        Task<OrderSummary> ChooseDeliveryDateAndTimeAsync(int orderId, DateTime selectedDateTime);
 
 
     }
