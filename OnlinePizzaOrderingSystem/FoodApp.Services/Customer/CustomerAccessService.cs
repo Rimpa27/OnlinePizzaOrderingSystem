@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
         
 
 
-            namespace FoodApp.Service
+            namespace FoodApp.Services
             {
                 public class CustomerAccessService:ICustomerAccessService
                 {
@@ -21,8 +21,36 @@ using Microsoft.EntityFrameworkCore;
                     }
 
 
-        
-           public List<Claim> SignIn(SignInRequest request)
+
+
+        public Customer SignUp(SignUpRequest request)
+
+        {
+
+            //Check if the email is already in use
+
+            if (context.Customers.Any(d => d.Email == request.Email))
+
+                throw new DuplicateEmailException("Email already exist");
+
+            var customer = new Customer();
+            customer.Name = request.Name;
+
+            customer.Email = request.Email;
+            customer.Password = request.Password;
+            customer.Phone = request.Phone;
+            customer.Address = request.City;
+
+            context.Customers.Add(customer);
+
+            context.SaveChanges();
+
+            return customer;
+
+
+        }
+
+        public List<Claim> SignIn(SignInRequest request)
 
             {
 
@@ -46,32 +74,7 @@ using Microsoft.EntityFrameworkCore;
 
             }
 
-            public Customer SignUp(SignUpRequest request)
-
-            {
-
-                //Check if the email is already in use
-
-                if (context.Customers.Any(d => d.Email == request.Email))
-
-                    throw new DuplicateEmailException("Email already exist");
-
-                var customer = new Customer();
-            customer.Name = request.Name;
-
-            customer.Email = request.Email;
-            customer.Password = request.Password;
-            customer.Phone = request.Phone;
-            customer.Address = request.City;
-
-            context.Customers.Add(customer);
-
-            context.SaveChanges();
-
-            return customer;
-
-
-            }
+            
 
 
 

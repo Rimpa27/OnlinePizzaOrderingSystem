@@ -5,7 +5,7 @@ using System.IdentityModel.Tokens.Jwt; // install this package
 using Microsoft.IdentityModel.Tokens;
 
 
-namespace FoodApp.Services
+namespace OnlinePizzaOrderingwebApp.Services
 {
 
     public static class JwtTokenGenerator
