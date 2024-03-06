@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Azure.Core;
 using FoodApp.Data;
 using FoodApp.Entities;
+using FoodApp.Services.Customer;
 
 namespace FoodApp.Services.Admin
 {
@@ -13,6 +16,8 @@ namespace FoodApp.Services.Admin
         private readonly PizzaOrderingAppContext context;
         private readonly List<OrderSummary> OrderSummaries;
         private readonly List<MenuItem> menuItems = new List<MenuItem>();
+        private int OrderId;
+
         public AdminAcessServices(PizzaOrderingAppContext context)
         {
             this.context = context;
@@ -32,42 +37,65 @@ namespace FoodApp.Services.Admin
             }
             return adminOrderSummaries;
         }
-        public MenuItem AddMenuItem(int menuItemId, string name, string itemDescription, int calories, bool isAvailable, VegOrNonVeg vegOrNonVeg, MenuItemCategory category, string imageUrl, int preparationTime, decimal price)
+        public MenuItem AddMenuItem(AddingMenuItem addingMenuItem)
         {
             var newMenuItem = new MenuItem
             {
-                MenuItemId = menuItemId,
-                MenuItemName = name,
-                ItemDescription = itemDescription,
-                calories = calories,
-                IsAvailable = isAvailable,
-                VegOrNonVeg = vegOrNonVeg,
-                MenuItemCategory = category,
-                ImageUrl = imageUrl,
-                PreparationTime = preparationTime,
-                Price = price
+                MenuItemId = addingMenuItem.menuItemId,
+                MenuItemName = addingMenuItem.name,
+                ItemDescription = addingMenuItem.itemDescription,
+                calories = addingMenuItem.calories,
+                IsAvailable = addingMenuItem.isAvailable,
+                VegOrNonVeg = addingMenuItem.vegOrNonVeg,
+                MenuItemCategory = addingMenuItem.category,
+                ImageUrl = addingMenuItem.imageUrl,
+                PreparationTime = addingMenuItem.preparationTime,
+                Price = addingMenuItem.price
             };
 
             menuItems.Add(newMenuItem);
             Console.WriteLine($"Menu item '{newMenuItem.MenuItemName}' added successfully!");
             return newMenuItem;
         }
-        public void DeleteItem(MenuItem menuItem)
+        public void DeleteMenuItem(DeleteMenuItem request)
         {
-            menuItems.Remove(menuItem);
+            var MenuItemToRemove = context.MenuItem.FirstOrDefault(p => p.MenuItemId == request.MenuItemId);
+            if (MenuItemToRemove==null)
+            {
+                throw new InvalidOperationException("Item not Found");
+            }
+            else
+            {
+                context.MenuItem.Remove(MenuItemToRemove);
+            }
+            
         }
-        public MenuItem EditItem(MenuItem menuItem, int newMenuItemId, string newName, string newItemDescription, int newCalories, bool newIsAvailable, VegOrNonVeg newVegOrNonVeg, MenuItemCategory newCategory, string newImageUrl, int newPreparationTime, decimal newPrice)
+        public MenuItem EditItem(MenuItem menuItem,EditingMenuItem editingMenuItem)
         {   
-            menuItem.MenuItemName = newName;
-            menuItem.ItemDescription = newItemDescription;
-            menuItem.calories = newCalories;
-            menuItem.IsAvailable = newIsAvailable;
-            menuItem.VegOrNonVeg = newVegOrNonVeg;
-            menuItem.MenuItemCategory = newCategory;
-            menuItem.ImageUrl = newImageUrl;
-            menuItem.PreparationTime = newPreparationTime;
-            menuItem.Price = newPrice;
+            menuItem.MenuItemName = editingMenuItem.newName;
+            menuItem.ItemDescription = editingMenuItem.newItemDescription;
+            menuItem.calories = editingMenuItem.newCalories;
+            menuItem.IsAvailable = editingMenuItem.newIsAvailable;
+            menuItem.VegOrNonVeg = editingMenuItem.newVegOrNonVeg;
+            menuItem.MenuItemCategory = editingMenuItem.newCategory;
+            menuItem.ImageUrl = editingMenuItem.newImageUrl;
+            menuItem.PreparationTime = editingMenuItem.newPreparationTime;
+            menuItem.Price = editingMenuItem.newPrice;
             return menuItem;
+        }
+        public void AdminDeleteOrder(AdminDeleteOrder request)
+        {
+            // Find the order to delete
+            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == OrderId);
+
+            if (order == null)
+            {
+                throw new InvalidOperationException("Order Not Found");
+            }
+            else
+            { 
+                context.OrderSummaries.Remove(order);
+            }
         }
     }
 }
