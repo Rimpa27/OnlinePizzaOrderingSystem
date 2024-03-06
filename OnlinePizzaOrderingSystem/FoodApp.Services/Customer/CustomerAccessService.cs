@@ -81,7 +81,7 @@ using Microsoft.EntityFrameworkCore;
             public PaymentInfo GetPaymentInfoByOrderId(int orderId)
                     {
          
-                        var orderPayment = context.OrderPayments.FirstOrDefault(p => p.OrderSummary.OrderId == orderId);
+                        var orderPayment = context.OrderSummaries.FirstOrDefault(p => p.OrderId == orderId).Payment;
 
                         if (orderPayment != null)
                         {

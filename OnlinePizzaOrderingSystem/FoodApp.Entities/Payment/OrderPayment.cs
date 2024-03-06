@@ -23,6 +23,6 @@ namespace FoodApp.Entities
 
         public string TransactionId { get; set; }
 
-        public OrderSummary OrderSummary { get; set; }
+  
     }
 }
