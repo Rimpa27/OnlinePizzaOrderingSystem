@@ -129,7 +129,7 @@
 
                 }
 
-            public async Task<DateTime?> ChooseDeliveryDateAndTimeAsync(int OrderId, DateTime selectedDateTime)
+            public async Task<OrderSummary?> ChooseDeliveryDateAndTimeAsync(int OrderId, DateTime selectedDateTime)
              {
                 // Logic to validate and save selected date and time for delivery
 
@@ -148,7 +148,7 @@
 
                 await context.SaveChangesAsync();
 
-                return selectedDateTime;
+                return order;
              }
         }
             }
