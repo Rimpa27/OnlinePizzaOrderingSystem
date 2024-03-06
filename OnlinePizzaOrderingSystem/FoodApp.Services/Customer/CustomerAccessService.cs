@@ -5,7 +5,7 @@
         
 
 
-        namespace FoodApp.Service.Customers
+        namespace FoodApp.Service
         {
             public class CustomerAccessService:ICustomerAccessService
             {

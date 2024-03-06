@@ -11,8 +11,4 @@
     <ProjectReference Include="..\FoodApp.Entities\FoodApp.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Admin\" />
-  </ItemGroup>
-
 </Project>
