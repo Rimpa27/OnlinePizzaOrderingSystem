@@ -1,7 +1,7 @@
 ﻿using FoodApp.Entities;
 
 
-namespace FoodApp.Services.Customer
+namespace FoodApp.Services
 {
     public interface ICustomerAccessService
     {
@@ -13,14 +13,7 @@ namespace FoodApp.Services.Customer
         Task<bool> DeleteCartItemByIdAsync(int cartItemId);
         Task<bool> AddMenuItemToCartAsync(int cartId, int menuItemId, int quantity);
 
-        void CreateOrder(int cartId, string customerName, string customerAddress);
-
-        void CustomizePizza(int cartItemId, string[] toppings);
-        DeliveryPerson AssignDeliveryPerson(string DeliveryPersonName);
-        OrderItem ConfirmOrder(int OrderItemId);
-
-
-
+        Task<DateTime?> ChooseDeliveryDateAndTimeAsync(int orderId, DateTime selectedDateTime);
 
 
     }
