@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Services.Customer
+namespace FoodApp.Services
 {
     public class PaymentInfo
     {

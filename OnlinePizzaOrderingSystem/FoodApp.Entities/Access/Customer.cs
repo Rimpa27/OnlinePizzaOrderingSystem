@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FoodApp.Entities;
 
 namespace FoodApp.Entities
 {
@@ -21,7 +22,7 @@ namespace FoodApp.Entities
         [RegularExpression("^[0-9]{10}$")]
         public long Phone { get; set; }
 
-
+       
         //Suggested by Mam
         //[ForeignKey("CustomerID")]
         //public User? user { get; set; }

@@ -15,9 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Services", "FoodApp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1DACE429-AB57-4019-8EC2-290A106702A5}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{AF04B49C-E1D0-4198-A5C5-9F94B1F84A31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +48,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{ED731DED-149A-429D-B475-AE2261E457D2} = {A91EB17A-414B-4359-9762-A774FDAC581D}
+		{9E003071-84F0-4C4B-A6D0-4245DECB1EAC} = {AF04B49C-E1D0-4198-A5C5-9F94B1F84A31}
 		{E0C41027-E085-498E-9890-7683ED61363C} = {A91EB17A-414B-4359-9762-A774FDAC581D}
 		{C974E5E4-9913-45D3-9D9E-01D9CE20BB71} = {A91EB17A-414B-4359-9762-A774FDAC581D}
 	EndGlobalSection

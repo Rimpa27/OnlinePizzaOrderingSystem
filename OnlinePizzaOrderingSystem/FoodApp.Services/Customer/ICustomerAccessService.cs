@@ -1,15 +1,4 @@
-﻿
-
-using FoodApp.Entities;
-//using FoodApp.Entities.Cart;
-using FoodApp.Service.Customers;
-using FoodApp.Services.Customer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FoodApp.Entities;
 
 
 namespace FoodApp.Services
@@ -21,11 +10,11 @@ namespace FoodApp.Services
         OrderStatus GetOrderStatusByOrderID(int orderID);
 
 
-        List<Claim> DeletePizzaCart(DeletePizzaFromCart request);
+        Task<bool> DeleteCartItemByIdAsync(int cartItemId);
+        Task<bool> AddMenuItemToCartAsync(int cartId, int menuItemId, int quantity);
 
-         DateTime ChooseDeliveryDateAndTime(ChooseDeliveryDateAndTime request);
+        Task<OrderSummary> ChooseDeliveryDateAndTimeAsync(int orderId, DateTime selectedDateTime);
 
-        void CreateOrder(int cartId);
-        void CustomizePizza(int cartItemId, ToppingType[] Topping);
+
     }
 }

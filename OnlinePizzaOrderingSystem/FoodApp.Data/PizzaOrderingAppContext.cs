@@ -16,7 +16,7 @@ namespace FoodApp.Data
 
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
-        public DbSet<MenuItem> MenuItem { get; set; }   
+        public DbSet<MenuItem> MenuItems { get; set; }   
 
         public DbSet<OrderSummary> OrderSummaries { get; set; }
 
@@ -26,7 +26,7 @@ namespace FoodApp.Data
 
         public DbSet<Admin> Admins { get; set; }
 
-        public DbSet<DeliveryPerson> DeliveryPeople { get; set; }
+        public DbSet<DeliveryPerson> DeliveryPersons { get; set; }
         
         public DbSet<Address> Addresses { get; set; }   
 
