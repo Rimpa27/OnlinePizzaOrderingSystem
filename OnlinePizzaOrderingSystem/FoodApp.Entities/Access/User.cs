@@ -11,7 +11,7 @@ namespace FoodApp.Entities
     public abstract class User 
     {
         [Key]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         [Required(ErrorMessage = "Name field is required")]
         [RegularExpression("^[a-zA-Z ]{2,50}$")]
