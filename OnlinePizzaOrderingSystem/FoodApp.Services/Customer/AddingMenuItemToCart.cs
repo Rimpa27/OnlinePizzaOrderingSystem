@@ -8,8 +8,8 @@ namespace FoodApp.Services
 {
     public class AddingMenuItemToCart
     {
-        int cartId;
-        int menuItemId;
-        int quantity;
+        public int cartId { get; set; }
+        public int menuItemId { get; set; }
+       public int quantity { get; set; }
     }
 }

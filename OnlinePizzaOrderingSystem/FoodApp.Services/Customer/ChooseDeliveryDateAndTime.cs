@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Services
 {
-    public interface IAdminAccessServices
+    public class ChooseDeliveryDateAndTime
     {
-        Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
+       public int OrderId { get; set; }
+       public DateTime selectedDateTime { get; set; }
     }
 }

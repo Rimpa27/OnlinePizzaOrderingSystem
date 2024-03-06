@@ -11,10 +11,10 @@ namespace FoodApp.Services
 
 
         Task<bool> DeleteCartItemByIdAsync(int cartItemId);
-        Task<bool> AddMenuItemToCartAsync(int cartId, int menuItemId, int quantity);
+        Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request);
 
-        Task<OrderSummary> ChooseDeliveryDateAndTimeAsync(int orderId, DateTime selectedDateTime);
-
+        Task<OrderSummary> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req);
+        void CustomizePizza(CustomizedPizza cp);
 
     }
 }

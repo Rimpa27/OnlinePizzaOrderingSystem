@@ -11,7 +11,7 @@
             {
                 private readonly PizzaOrderingAppContext context;
 
-                public object CartId { get; private set; }
+                //public object CartId { get; private set; }
 
                 public CustomerAccessService(PizzaOrderingAppContext context)
                 {
@@ -62,30 +62,30 @@
                     }
 
                 }
-                public async Task<bool> AddMenuItemToCartAsync(int cartId, int menuItemId, int quantity)
+                public async Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request)
                 {
                     try
                     {
-                        var cart = await context.Carts.Include(c => c.CartItemList).FirstOrDefaultAsync(c => c.CartId == cartId);
-                        var menuItem = await context.MenuItems.FindAsync(menuItemId);
+                        var cart = await context.Carts.Include(c => c.CartItemList).FirstOrDefaultAsync(c => c.CartId == request.cartId);
+                        var menuItem = await context.MenuItems.FindAsync(request.menuItemId);
 
                         if (cart == null || menuItem == null)
                         {
                             throw new Exception("Cart or MenuItem not found.");
                         }
 
-                        var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.MenuItem.MenuItemId == menuItemId);
+                        var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.MenuItem.MenuItemId == request.menuItemId);
 
                         if (cartItem != null)
                         {
-                            cartItem.CartItemQuantity += quantity;
+                            cartItem.CartItemQuantity += request.quantity;
                         }
                         else
                         {
                             cart.CartItemList.Add(new CartItem
                             {
-                                CartItemQuantity = quantity,
-                                CartItemPrice = menuItem.Price * quantity,
+                                CartItemQuantity = request.quantity,
+                                CartItemPrice = menuItem.Price * request.quantity,
                                 MenuItem = menuItem
                             });
                         }
@@ -129,11 +129,11 @@
 
                 }
 
-            public async Task<OrderSummary?> ChooseDeliveryDateAndTimeAsync(int OrderId, DateTime selectedDateTime)
+            public async Task<OrderSummary?> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req)
              {
                 // Logic to validate and save selected date and time for delivery
 
-                var order = await context.OrderSummaries.FirstOrDefaultAsync(c => c.OrderId == OrderId);
+                var order = await context.OrderSummaries.FirstOrDefaultAsync(c => c.OrderId == req.OrderId);
                 if (order == null)
                 {
                     // Order not found
@@ -143,15 +143,60 @@
                 // Assuming you have a DeliveryDetails table or property in Order table to store delivery info
                 order.DeliveryDetails = new DeliveryDetails
                 {
-                    DeliveryDateTime = selectedDateTime
+                    DeliveryDateTime =req. selectedDateTime
                 };
 
                 await context.SaveChangesAsync();
 
                 return order;
              }
-        }
+
+        public void CustomizePizza(CustomizedPizza cp)
+        {
+            var cartItem = context.CartItems
+                .FirstOrDefault(ci => ci.CartItemId == cp.cartItemId);
+
+            if (cartItem == null)
+            {
+                throw new ArgumentException("Cart item not found.");
             }
+
+            // Add or update toppings for the pizza
+            cartItem.ToppingType = cp.Topping;
+
+            // Save changes to the database
+            context.SaveChanges();
+        }
+
+
+        public void CreateOrder(int cartId)
+        {
+            // Get the cart with the specified ID
+            var cart = context.Carts
+                .FirstOrDefault(c => c.CartId == cartId);
+
+            if (cart == null)
+            {
+                throw new ArgumentException("Cart not found.");
+            }
+
+            // Create a new order
+            var order = new OrderSummary
+            {
+                OrderId = cartId,
+
+
+                OrderDate = DateTime.Now // Assuming current date and time for the order date
+            };
+
+            // Add the order to the database
+            context.OrderSummaries.Add(order);
+            context.SaveChanges();
+        }
+
+
+    }
+}
     
 
 

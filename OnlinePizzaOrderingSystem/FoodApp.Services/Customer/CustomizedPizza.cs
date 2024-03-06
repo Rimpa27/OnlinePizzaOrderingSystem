@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FoodApp.Entities;
 
 namespace FoodApp.Services
 {
-    public interface IAdminAccessServices
+    public class CustomizedPizza
     {
-        Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
+       public int cartItemId {  get; set; }
+       public ToppingType[] Topping { get; set; } 
     }
 }
