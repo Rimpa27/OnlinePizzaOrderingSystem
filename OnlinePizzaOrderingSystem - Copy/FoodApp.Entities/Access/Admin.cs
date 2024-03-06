@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FoodApp.Entities
 {
-    public enum ToppingType
+    public class Admin :User
     {
-       
-        Pepperoni,
-        Mushrooms,
-        Onions,
-        Sausage,
-        Bacon,
-        ExtraCheese,
-       
-   
-}
+        //[Key]
+        //public int adminId { get; set; }  
+
+    }
 }

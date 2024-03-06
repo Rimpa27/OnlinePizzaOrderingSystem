@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Entities
 {
-    public enum ToppingType
+    public enum PickupStatus
     {
-       
-        Pepperoni,
-        Mushrooms,
-        Onions,
-        Sausage,
-        Bacon,
-        ExtraCheese,
-       
-   
-}
+        Pending=1,
+        Assigned,
+        InProgress,
+        Completed
+    }
 }

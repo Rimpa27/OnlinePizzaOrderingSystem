@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Entities
 {
-    public enum ToppingType
+    public enum  RoleType
     {
-       
-        Pepperoni,
-        Mushrooms,
-        Onions,
-        Sausage,
-        Bacon,
-        ExtraCheese,
-       
-   
-}
+        Admin = 1,
+        NonAdmin
+    }
 }

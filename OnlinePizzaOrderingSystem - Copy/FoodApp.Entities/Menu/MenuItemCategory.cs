@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Entities
 {
-    public enum ToppingType
+    public enum MenuItemCategory
     {
-       
-        Pepperoni,
-        Mushrooms,
-        Onions,
-        Sausage,
-        Bacon,
-        ExtraCheese,
-       
-   
-}
+        Pizza = 1,
+        Pasta, 
+        Sides, 
+        Salad, 
+        Dessert, 
+        Beverage
+    }
 }

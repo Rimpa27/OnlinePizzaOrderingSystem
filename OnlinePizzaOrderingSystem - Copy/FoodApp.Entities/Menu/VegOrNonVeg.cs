@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Entities
 {
-    public enum ToppingType
+    public enum VegOrNonVeg
     {
-       
-        Pepperoni,
-        Mushrooms,
-        Onions,
-        Sausage,
-        Bacon,
-        ExtraCheese,
-       
-   
-}
+        Veg=1,
+        Non_Veg
+    }
 }

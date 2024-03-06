@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FoodApp.Entities;
 using System.Security.Claims;
-//using FoodApp.Entities.Cart;
+using FoodApp.Entities.Cart;
 
 namespace FoodApp.Entities
 {
@@ -26,7 +26,7 @@ namespace FoodApp.Entities
         [Required(ErrorMessage = "Price is required")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero")]
         public decimal Price { get; set; }
-         
+        public Entities.Cart.ToppingType[] Topping { get; set; }
         public ToppingType[] ToppingType { get; set; }
 
         public static List<Claim> Remove(CartItem pizzaToRemove)
