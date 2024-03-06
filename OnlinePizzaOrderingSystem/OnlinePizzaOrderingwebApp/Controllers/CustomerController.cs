@@ -5,8 +5,10 @@ namespace OnlinePizzaOrderingwebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OneController : ControllerBase
+    public class CustomerController : ControllerBase
     {
+
+        
 
     }
 }
