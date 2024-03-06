@@ -14,9 +14,7 @@ namespace FoodApp.Services.Admin
     public class AdminAcessServices:IAdminAcessService
     { 
         private readonly PizzaOrderingAppContext context;
-        private readonly List<OrderSummary> OrderSummaries;
-        private readonly List<MenuItem> menuItems = new List<MenuItem>();
-        private int OrderId;
+        
 
         public AdminAcessServices(PizzaOrderingAppContext context)
         {
@@ -25,7 +23,7 @@ namespace FoodApp.Services.Admin
         public void AddOrderSummary(OrderSummary orderSummary)
         {
             // Add an order summary to the log
-            OrderSummaries.Add(orderSummary);
+            context.OrderSummaries.Add(orderSummary);
         }
         public List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries)
         {
@@ -38,8 +36,8 @@ namespace FoodApp.Services.Admin
             return adminOrderSummaries;
         }
         public MenuItem AddMenuItem(AddingMenuItem addingMenuItem)
-        {
-            var newMenuItem = new MenuItem
+        {  
+        var newMenuItem = new MenuItem
             {
                 MenuItemId = addingMenuItem.menuItemId,
                 MenuItemName = addingMenuItem.name,
@@ -53,7 +51,7 @@ namespace FoodApp.Services.Admin
                 Price = addingMenuItem.price
             };
 
-            menuItems.Add(newMenuItem);
+             context.MenuItem.Add(newMenuItem);
             Console.WriteLine($"Menu item '{newMenuItem.MenuItemName}' added successfully!");
             return newMenuItem;
         }
@@ -86,7 +84,7 @@ namespace FoodApp.Services.Admin
         public void AdminDeleteOrder(AdminDeleteOrder request)
         {
             // Find the order to delete
-            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == OrderId);
+            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == request.orderId);
 
             if (order == null)
             {
