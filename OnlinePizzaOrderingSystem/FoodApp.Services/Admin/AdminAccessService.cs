@@ -19,19 +19,19 @@ namespace FoodApp.Services
 
         {
 
-            var customer = context.Customers.FirstOrDefault(d => d.Email == request.Email
+            var admin = context.Admins.FirstOrDefault(d => d.Email == request.Email
 
                                         && d.Password == request.Password);
 
-            if (customer == null)
+            if (admin == null)
 
                 throw new AuthenticationException("Login Failed");
 
             var result = new List<Claim> {
 
-            new Claim("Email",customer.Email),
+            new Claim("Email",admin.Email),
 
-            new Claim(ClaimTypes.NameIdentifier,customer.Name),
+            new Claim(ClaimTypes.NameIdentifier,admin.Name),
 
         };
 
@@ -79,10 +79,11 @@ namespace FoodApp.Services
         }
         public MenuItem AddMenuItem(AddingMenuItem addingMenuItem)
         {
-            var newMenuItem = new MenuItem
-            {
-                MenuItemId = addingMenuItem.menuItemId,
-                MenuItemName = addingMenuItem.name,
+            
+            var newMenuItem = new MenuItem { 
+
+            MenuItemId = addingMenuItem.menuItemId,
+            MenuItemName = addingMenuItem.name,
                 MenuItemDescription = addingMenuItem.itemDescription,
                 calories = addingMenuItem.calories,
                 IsAvailable = addingMenuItem.isAvailable,
@@ -91,11 +92,14 @@ namespace FoodApp.Services
                 ImageUrl = addingMenuItem.imageUrl,
                 PreparationTime = addingMenuItem.preparationTime,
                 Price = addingMenuItem.price
-            };
 
+
+};
              context.MenuItems.Add(newMenuItem);
-            Console.WriteLine($"Menu item '{newMenuItem.MenuItemName}' added successfully!");
+            context.SaveChanges();
             return newMenuItem;
+            
+          
         }
         public void DeleteMenuItem(DeleteMenuItem request)
         {
@@ -107,9 +111,10 @@ namespace FoodApp.Services
             else
             {
                 context.MenuItems.Remove(MenuItemToRemove);
+                context.SaveChanges();
             }
         }
-        public MenuItem EditItem(MenuItem menuItem, EditingMenuItem editingMenuItem)
+        public MenuItem EditMenuItem(MenuItem menuItem, EditingMenuItem editingMenuItem)
         {
             menuItem.MenuItemName = editingMenuItem.newName;
             menuItem.MenuItemDescription = editingMenuItem.newItemDescription;
@@ -134,6 +139,7 @@ namespace FoodApp.Services
             else
             {
                 context.OrderSummaries.Remove(order);
+                context.SaveChanges();
             }
         }
 

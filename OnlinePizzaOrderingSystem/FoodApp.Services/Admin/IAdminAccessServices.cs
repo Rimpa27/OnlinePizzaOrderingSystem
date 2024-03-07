@@ -15,7 +15,7 @@ namespace FoodApp.Services
         List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries);
         MenuItem AddMenuItem(AddingMenuItem addingMenuItem);
         void DeleteMenuItem(DeleteMenuItem request);
-        MenuItem EditItem(MenuItem menuItem, EditingMenuItem editingMenuItem);
+        MenuItem EditMenuItem(MenuItem menuItem, EditingMenuItem editingMenuItem);
         void AdminDeleteOrder(AdminDeleteOrder request);
 
         /// <summary>
