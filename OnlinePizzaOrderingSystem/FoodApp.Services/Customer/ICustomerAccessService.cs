@@ -1,4 +1,5 @@
-﻿using FoodApp.Entities;
+﻿using System.Security.Claims;
+using FoodApp.Entities;
 
 
 namespace FoodApp.Services
@@ -11,10 +12,27 @@ namespace FoodApp.Services
 
 
         Task<bool> DeleteCartItemByIdAsync(int cartItemId);
-        Task<bool> AddMenuItemToCartAsync(int cartId, int menuItemId, int quantity);
+        Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request);
 
-        Task<OrderSummary> ChooseDeliveryDateAndTimeAsync(int orderId, DateTime selectedDateTime);
+        Task<OrderSummary> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req);
+        void CustomizePizza(CustomizedPizza cp);
 
+        /// <summary>
+        /// Signup Request for a new user
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Customer</returns>
+        /// <exception cref="ArgumentNullException">When the request is null</exception>
+        Customer SignUp(SignUpRequest request);
+
+
+        /// <summary>
+        /// Try to sign in a customer
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>list of claims</returns>
+        /// <exception cref="AuthenticationException"></exception>
+        List<Claim> SignIn(SignInRequest request);
 
     }
 }

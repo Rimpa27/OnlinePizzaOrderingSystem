@@ -36,6 +36,8 @@ namespace FoodApp.Entities
 
         public List<OrderItem> OrderItems { get; set; }
         public DeliveryDetails DeliveryDetails { get; set; }
+        public int? DeliveryPersonId { get; set; }
+        public DeliveryPerson DeliveryPerson { get; set; }
 
 
 
