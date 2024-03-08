@@ -29,7 +29,10 @@ namespace FoodApp.Entities
 
         [Required(ErrorMessage = "Role is mandatory")]
         public RoleType RoleType { get; set; }
-       
+
+        [DataType(DataType.Url)]
+        public string? ProfileImage {  get; set; }
+
 
     }
 }

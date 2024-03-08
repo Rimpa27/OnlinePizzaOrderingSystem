@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodApp.Data.Migrations
 {
     [DbContext(typeof(PizzaOrderingAppContext))]
-    [Migration("20240306104714_first")]
-    partial class first
+    [Migration("20240307231208_Migrations")]
+    partial class Migrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,8 @@ namespace FoodApp.Data.Migrations
 
                     b.Property<string>("Line2")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PinCode")
                         .IsRequired()
@@ -300,6 +301,9 @@ namespace FoodApp.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RoleType")
                         .HasColumnType("int");
 
@@ -331,6 +335,12 @@ namespace FoodApp.Data.Migrations
 
                     b.HasIndex("AddressID");
 
+                    b.ToTable("Users", t =>
+                        {
+                            t.Property("Phone")
+                                .HasColumnName("Customer_Phone");
+                        });
+
                     b.HasDiscriminator().HasValue("Customer");
                 });
 
@@ -338,11 +348,7 @@ namespace FoodApp.Data.Migrations
                 {
                     b.HasBaseType("FoodApp.Entities.User");
 
-                    b.Property<string>("DeliveryPersonName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("DeliveryPersonPhone")
+                    b.Property<long>("Phone")
                         .HasColumnType("bigint");
 
                     b.HasDiscriminator().HasValue("DeliveryPerson");

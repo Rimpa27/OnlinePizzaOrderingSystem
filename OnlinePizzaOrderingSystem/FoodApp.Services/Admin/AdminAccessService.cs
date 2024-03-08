@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FoodApp.Data;
 using FoodApp.Entities;
+using FoodApp.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodApp.Services
@@ -14,6 +15,11 @@ namespace FoodApp.Services
     public class AdminAccessService : IAdminAccessServices
     {
         private readonly PizzaOrderingAppContext context;
+
+        public AdminAccessService(PizzaOrderingAppContext context)
+        {
+            this.context = context;
+        }
 
         public List<Claim> SignIn(SignInRequest request)
 
@@ -39,7 +45,6 @@ namespace FoodApp.Services
 
         }
 
-
         public async Task<bool> AddOrderAsync(OrderSummary order)
         {
             try
@@ -55,18 +60,12 @@ namespace FoodApp.Services
             }
         }
 
-
-
-
-
-
         public void AddOrderSummary(OrderSummary orderSummary)
         {
             // Add an order summary to the log
             context.OrderSummaries.Add(orderSummary);
         }
 
-       
         public List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries)
         {
             // Retrieve order summaries associated with the given admin username
@@ -94,12 +93,11 @@ namespace FoodApp.Services
                 Price = addingMenuItem.price
 
 
-};
+            };
              context.MenuItems.Add(newMenuItem);
             context.SaveChanges();
             return newMenuItem;
             
-          
         }
         public void DeleteMenuItem(DeleteMenuItem request)
         {
@@ -114,19 +112,32 @@ namespace FoodApp.Services
                 context.SaveChanges();
             }
         }
-        public MenuItem EditMenuItem(MenuItem menuItem, EditingMenuItem editingMenuItem)
+
+        public async Task<bool> EditMenuItem(MenuItem menuItem)
         {
-            menuItem.MenuItemName = editingMenuItem.newName;
-            menuItem.MenuItemDescription = editingMenuItem.newItemDescription;
-            menuItem.calories = editingMenuItem.newCalories;
-            menuItem.IsAvailable = editingMenuItem.newIsAvailable;
-            menuItem.VegOrNonVeg = editingMenuItem.newVegOrNonVeg;
-            menuItem.MenuItemCategory = editingMenuItem.newCategory;
-            menuItem.ImageUrl = editingMenuItem.newImageUrl;
-            menuItem.PreparationTime = editingMenuItem.newPreparationTime;
-            menuItem.Price = editingMenuItem.newPrice;
-            return menuItem;
+            var existingMenuItem = await context.MenuItems.FindAsync(menuItem.MenuItemId);
+
+            if (existingMenuItem == null)
+            {
+                return false; // Item not found
+            }
+
+            existingMenuItem.MenuItemName = menuItem.MenuItemName;
+            existingMenuItem.MenuItemDescription = menuItem.MenuItemDescription;
+            existingMenuItem.Price = menuItem.Price;
+            existingMenuItem.calories = menuItem.calories;
+            existingMenuItem.IsAvailable = menuItem.IsAvailable;
+            existingMenuItem.ImageUrl = menuItem.ImageUrl;
+            existingMenuItem.PreparationTime = menuItem.PreparationTime;
+            existingMenuItem.VegOrNonVeg = menuItem.VegOrNonVeg;
+            existingMenuItem.MenuItemCategory = menuItem.MenuItemCategory;
+
+            await context.SaveChangesAsync();
+
+            return true; // Item edited successfully
         }
+
+
         public void AdminDeleteOrder(AdminDeleteOrder request)
         {
             // Find the order to delete
@@ -143,11 +154,7 @@ namespace FoodApp.Services
             }
         }
 
-        public AdminAccessService(PizzaOrderingAppContext context)
-        {
-            this.context = context;
-        }
-
+      
         public async Task<bool> EditOrderAsync(OrderUpdateModel updateModel)
         {
             try
@@ -229,12 +236,70 @@ namespace FoodApp.Services
             }
         }
 
-        public async Task AddUserAsync(User newUser)
+        public async Task<bool> AddUserAsync(AllUser allUser)
         {
-            // Assuming you have a User DbSet in your context
-            await context.Users.AddAsync(newUser);
-            await context.SaveChangesAsync();
+            try
+            {
+                // Logic to save the user to the database based on RoleType
+                switch (allUser.RoleType)
+                {
+                    case RoleType.Admin:
+                        var admin = new Admin
+                        {
+                            Name = allUser.Name,
+                            Email = allUser.Email,
+                            Password = allUser.Password,
+                            RoleType = allUser.RoleType,
+                            ProfileImage= allUser.ProfileImage
+                           
+                        };
+                        context.Add(admin);
+                        break;
+
+                    case RoleType.Customer:
+                        var customer = new Customer
+                        {
+                            Name = allUser.Name,
+                            Email = allUser.Email,
+                            Password = allUser.Password,
+                            Address = allUser.Address,
+                            Phone = allUser.Phone,
+                            RoleType = allUser.RoleType,
+                            ProfileImage= allUser.ProfileImage
+                         
+                            
+                        };
+                       context.Add(customer);
+                        break;
+
+                    case RoleType.DeliveryPerson:
+                        var deliveryPerson = new DeliveryPerson
+                        {
+                            Name = allUser.Name,
+                            Email = allUser.Email,
+                            Password = allUser.Password,
+                            RoleType = allUser.RoleType,
+                            Phone = allUser.Phone,
+                            ProfileImage= allUser.ProfileImage
+                            
+                        };
+                        context.Add(deliveryPerson);
+                        break;
+
+                    default:
+                        return false; // Unsupported role type
+                }
+
+                await context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                // Log the exception or handle it as required
+                return false;
+            }
         }
+        
 
         public async Task<bool> EditUserDetailsAsync(AccessOrder req)
         {
@@ -254,20 +319,20 @@ namespace FoodApp.Services
             return true;
         }
 
-        public async Task<bool> DeleteUserAsync(int userId)
-        {
-            var user = await context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
-            if (user == null)
-            {
-                // User not found
-                return false;
-            }
+        //public async Task<bool> DeleteUserAsync(AdminDeleteUser adminDeleteUser)
+        //{
+        //    var user = await context.Users.FirstOrDefault(u => u.UserID == adminDeleteUser.UserId);
+        //    if (user == null)
+        //    {
+        //        // User not found
+        //        return false;
+        //    }
 
-            context.Users.Remove(user);
-            await context.SaveChangesAsync();
+        //    context.Users.Remove(user);
+        //    await context.SaveChangesAsync();
 
-            return true;
-        }
+        //    return true;
+        //}
         
 
 

@@ -5,19 +5,13 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using FoodApp.Entities;
+using FoodApp.Services;
+using FoodApp.Services.Admin;
 
 namespace FoodApp.Services
 {
     public interface IAdminAccessServices
     {
-        Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
-
-        List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries);
-        MenuItem AddMenuItem(AddingMenuItem addingMenuItem);
-        void DeleteMenuItem(DeleteMenuItem request);
-        MenuItem EditMenuItem(MenuItem menuItem, EditingMenuItem editingMenuItem);
-        void AdminDeleteOrder(AdminDeleteOrder request);
-
         /// <summary>
         /// Try to sign in a customer
         /// </summary>
@@ -26,8 +20,31 @@ namespace FoodApp.Services
         /// <exception cref="AuthenticationException"></exception>
         List<Claim> SignIn(SignInRequest request);
 
+        MenuItem AddMenuItem(AddingMenuItem addingMenuItem);
+
+        void DeleteMenuItem(DeleteMenuItem request);
+
+        Task<bool> EditMenuItem(MenuItem menuItem);
+
+        //Task AddUserAsync(User newUser);
+        Task<bool> AddUserAsync(AllUser allUser);
+
+        Task<bool> DeleteUserAsync(AdminDeleteUser deleteUser);
+
+        Task<bool> EditUserDetailsAsync(AccessOrder req);
+
+        Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
+
+        List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries);
+ 
+        void AdminDeleteOrder(AdminDeleteOrder request);
+
         Task<bool> AddOrderAsync(OrderSummary order);
+
         void ConfirmOrder(int cartId);
+
         void AssignDeliveryPerson(AssignDeliveryPerson req);
+
+        
     }
 }

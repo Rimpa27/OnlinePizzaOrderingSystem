@@ -5,6 +5,8 @@ using FoodApp.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnlinePizzaOrderingwebApp;
 using OnlinePizzaOrderingwebApp.Services;
 
 namespace OnlinePizzaOrderingwebApp.Controllers
@@ -66,33 +68,35 @@ public IActionResult Post(SignInRequest request)
             }
             catch (Exception ex)
             {
+
                 // Log the exception and return a generic error message
                 return StatusCode(StatusCodes.Status500InternalServerError, "Failed to Add menu item. Please contact support.");
+
+            }
+        }
+        [HttpPut("EditMenuItem")]
+        public async Task<IActionResult> EditMenuItem(MenuItem menuItem)
+        {
+            try
+            {
+                var result = await adminAccessService.EditMenuItem(menuItem);
+                if (result)
+                {
+                    return Ok("Menu item edited successfully.");
+                }
+                else
+                {
+                    return NotFound("Menu item not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
 
 
-
-
-        //[HttpPut("EditMenuItem")]
-        //public ActionResult<MenuItem> EditMenuItem(MenuItem menuItem, EditingMenuItem editingMenuItem)
-        //{
-        //    try
-        //    {
-        //        // Call the EditItem method from the service
-        //        var updatedMenuItem = adminAccessService.EditMenuItem(menuItem, editingMenuItem);
-
-        //        // Return a success response with the updated menu item
-        //        return Ok(updatedMenuItem);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        return StatusCode(StatusCodes.Status500InternalServerError, "Failed to update menu item. Please contact support.");
-        //    }
-        //}
-
-        [HttpDelete("DeleteMenuItem")]
+    [HttpDelete("DeleteMenuItem")]
         public IActionResult DeleteMenuItem(DeleteMenuItem request)
         {
             try
@@ -105,6 +109,56 @@ public IActionResult Post(SignInRequest request)
 
                 // Attempt to delete the menu item
                 adminAccessService.DeleteMenuItem(request);
+
+                // Return success message
+                return Ok("Item deleted successfully");
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Handle invalid operation exception (e.g., item not found)
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Handle other unexpected exceptions
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpPost("addUser")]
+        public async Task<IActionResult> AddUserAsync(AllUser alluser)
+        {
+            try
+            {
+                var result = await adminAccessService.AddUserAsync(alluser);
+                if (result)
+                {
+                    return Ok("User added successfully.");
+                }
+                else
+                {
+                    return StatusCode(500, "Failed to add user.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+        
+        [HttpDelete("DeleteUser")]
+        public IActionResult DeleteUser(User )
+        {
+            try
+            {
+                // Check if adminAccessService is initialized
+                if (adminAccessService == null)
+                {
+                    return StatusCode(500, "adminAccessService is not initialized");
+                }
+
+                // Attempt to delete the menu item
+                adminAccessService.
 
                 // Return success message
                 return Ok("Item deleted successfully");

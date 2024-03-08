@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodApp.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class Migrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace FoodApp.Data.Migrations
                     AddressID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Line1 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Line2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Line2 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     State = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -88,11 +88,11 @@ namespace FoodApp.Data.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     RoleType = table.Column<int>(type: "int", nullable: false),
+                    ProfileImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
                     AddressID = table.Column<int>(type: "int", nullable: true),
-                    Phone = table.Column<long>(type: "bigint", nullable: true),
-                    DeliveryPersonName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeliveryPersonPhone = table.Column<long>(type: "bigint", nullable: true)
+                    Customer_Phone = table.Column<long>(type: "bigint", nullable: true),
+                    Phone = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
