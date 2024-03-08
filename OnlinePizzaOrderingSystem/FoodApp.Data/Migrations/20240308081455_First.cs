@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodApp.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Migrations : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -111,11 +111,18 @@ namespace FoodApp.Data.Migrations
                 {
                     CartId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomersUserID = table.Column<int>(type: "int", nullable: false)
+                    CustomersUserID = table.Column<int>(type: "int", nullable: false),
+                    DeliveryDetailsDeliveryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Carts", x => x.CartId);
+                    table.ForeignKey(
+                        name: "FK_Carts_DeliveryDetails_DeliveryDetailsDeliveryId",
+                        column: x => x.DeliveryDetailsDeliveryId,
+                        principalTable: "DeliveryDetails",
+                        principalColumn: "DeliveryId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Carts_Users_CustomersUserID",
                         column: x => x.CustomersUserID,
@@ -175,7 +182,7 @@ namespace FoodApp.Data.Migrations
                     CartItemQuantity = table.Column<int>(type: "int", nullable: false),
                     CartItemPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MenuItemId = table.Column<int>(type: "int", nullable: false),
-                    ToppingType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ToppingType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CartId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -235,6 +242,11 @@ namespace FoodApp.Data.Migrations
                 name: "IX_Carts_CustomersUserID",
                 table: "Carts",
                 column: "CustomersUserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Carts_DeliveryDetailsDeliveryId",
+                table: "Carts",
+                column: "DeliveryDetailsDeliveryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_MenuItemId",

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodApp.Data.Migrations
 {
     [DbContext(typeof(PizzaOrderingAppContext))]
-    [Migration("20240307231208_Migrations")]
-    partial class Migrations
+    [Migration("20240308081455_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,9 +79,14 @@ namespace FoodApp.Data.Migrations
                     b.Property<int>("CustomersUserID")
                         .HasColumnType("int");
 
+                    b.Property<int>("DeliveryDetailsDeliveryId")
+                        .HasColumnType("int");
+
                     b.HasKey("CartId");
 
                     b.HasIndex("CustomersUserID");
+
+                    b.HasIndex("DeliveryDetailsDeliveryId");
 
                     b.ToTable("Carts");
                 });
@@ -107,7 +112,6 @@ namespace FoodApp.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ToppingType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CartItemId");
@@ -362,7 +366,15 @@ namespace FoodApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FoodApp.Entities.DeliveryDetails", "DeliveryDetails")
+                        .WithMany()
+                        .HasForeignKey("DeliveryDetailsDeliveryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Customers");
+
+                    b.Navigation("DeliveryDetails");
                 });
 
             modelBuilder.Entity("FoodApp.Entities.CartItem", b =>

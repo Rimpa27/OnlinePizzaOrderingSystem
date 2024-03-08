@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FoodApp.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace FoodApp.Services
 {
@@ -19,5 +20,6 @@ namespace FoodApp.Services
         public string imageUrl { get; set; }
         public int preparationTime { get; set; }
         public decimal price { get; set; }
+       public IFormFile photo {  get; set; }
     }
 }

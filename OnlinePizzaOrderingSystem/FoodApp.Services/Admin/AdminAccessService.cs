@@ -5,6 +5,7 @@ using System.Security.Authentication;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
 using FoodApp.Data;
 using FoodApp.Entities;
 using FoodApp.Services;
@@ -15,11 +16,14 @@ namespace FoodApp.Services
     public class AdminAccessService : IAdminAccessServices
     {
         private readonly PizzaOrderingAppContext context;
-
+        private const string conStr = "BlobEndpoint=https://onlinepizza.blob.core.windows.net/;QueueEndpoint=https://onlinepizza.queue.core.windows.net/;FileEndpoint=https://onlinepizza.file.core.windows.net/;TableEndpoint=https://onlinepizza.table.core.windows.net/;SharedAccessSignature=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2024-03-08T16:27:52Z&st=2024-03-08T08:27:52Z&spr=https,http&sig=MSoatF%2BmT7D6p2FD9hWBN2clxm1IienIGaDDqSXqqII%3D";
+        private BlobContainerClient containerClient;
         public AdminAccessService(PizzaOrderingAppContext context)
         {
             this.context = context;
+            containerClient = new BlobContainerClient(conStr, "images");
         }
+
 
         public List<Claim> SignIn(SignInRequest request)
 
@@ -94,7 +98,14 @@ namespace FoodApp.Services
 
 
             };
-             context.MenuItems.Add(newMenuItem);
+            if (addingMenuItem.photo != null)
+            {
+                string fileName = Guid.NewGuid() + ".png";
+                containerClient.UploadBlob(fileName, addingMenuItem.photo.OpenReadStream());
+                newMenuItem.ProductPhoto = "https://onlinepizza.blob.core.windows.net/images" + fileName;
+
+            }
+            context.MenuItems.Add(newMenuItem);
             context.SaveChanges();
             return newMenuItem;
             

@@ -8,7 +8,8 @@ namespace FoodApp.Services
 {
     public class ChooseDeliveryDateAndTime
     {
-       public int OrderId { get; set; }
-       public DateTime selectedDateTime { get; set; }
+       public int CartId { get; set; }
+       // public int DeliveryId {  get; set; }
+       public DateTime SelectedDateTime { get; set; }
     }
 }

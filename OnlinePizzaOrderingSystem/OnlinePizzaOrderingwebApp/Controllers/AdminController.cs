@@ -1,5 +1,6 @@
 ﻿
 
+using System.Text.Json;
 using FoodApp.Entities;
 using FoodApp.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -51,28 +52,42 @@ public IActionResult Post(SignInRequest request)
             }
 
         }
-        [Authorize]
-        [HttpPost("AddMenuItem")]
-        public ActionResult<MenuItem> AddMenuItem(AddingMenuItem addingMenuItem)
+        //[Authorize]
+        //[HttpPost("AddMenuItem")]
+        //public ActionResult<MenuItem> AddMenuItem(AddingMenuItem addingMenuItem)
+        //{
+        //    try
+        //    {
+        //        // Call the EditItem method from the service
+        //        var updatedMenuItem = adminAccessService.AddMenuItem(addingMenuItem);
+        //        // Return a success response with the updated menu item
+        //        return Ok(updatedMenuItem);
+        //    }
+        //    catch (DuplicateItemException ex)
+        //    {
+        //        return Conflict(ex.Message);
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        // Log the exception and return a generic error message
+        //        return StatusCode(StatusCodes.Status500InternalServerError, "Failed to Add menu item. Please contact support.");
+
+        //    }
+        //}
+
+        [HttpPost("AddMenuItem")]  //Done
+        public IActionResult Post()
         {
-            try
+            AddingMenuItem request = JsonSerializer.Deserialize<AddingMenuItem>(HttpContext.Request.Form["data"]);
+            if (HttpContext.Request.Form.Files.Count > 0)
             {
-                // Call the EditItem method from the service
-                var updatedMenuItem = adminAccessService.AddMenuItem(addingMenuItem);
-                // Return a success response with the updated menu item
-                return Ok(updatedMenuItem);
+                request.photo = HttpContext.Request.Form.Files[0];
             }
-            catch (DuplicateItemException ex)
-            {
-                return Conflict(ex.Message);
-            }
-            catch (Exception ex)
-            {
 
-                // Log the exception and return a generic error message
-                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to Add menu item. Please contact support.");
+            adminAccessService.AddMenuItem(request);
 
-            }
+            return Ok("Product added successfully.");
         }
         [HttpPut("EditMenuItem")]
         public async Task<IActionResult> EditMenuItem(MenuItem menuItem)
@@ -146,34 +161,34 @@ public IActionResult Post(SignInRequest request)
             }
         }
         
-        [HttpDelete("DeleteUser")]
-        public IActionResult DeleteUser(User )
-        {
-            try
-            {
-                // Check if adminAccessService is initialized
-                if (adminAccessService == null)
-                {
-                    return StatusCode(500, "adminAccessService is not initialized");
-                }
+        //[HttpDelete("DeleteUser")]
+        //public IActionResult DeleteUser(User )
+        //{
+        //    try
+        //    {
+        //        // Check if adminAccessService is initialized
+        //        if (adminAccessService == null)
+        //        {
+        //            return StatusCode(500, "adminAccessService is not initialized");
+        //        }
 
-                // Attempt to delete the menu item
-                adminAccessService.
+        //        // Attempt to delete the menu item
+        //        adminAccessService.
 
-                // Return success message
-                return Ok("Item deleted successfully");
-            }
-            catch (InvalidOperationException ex)
-            {
-                // Handle invalid operation exception (e.g., item not found)
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                // Handle other unexpected exceptions
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-        }
+        //        // Return success message
+        //        return Ok("Item deleted successfully");
+        //    }
+        //    catch (InvalidOperationException ex)
+        //    {
+        //        // Handle invalid operation exception (e.g., item not found)
+        //        return NotFound(ex.Message);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle other unexpected exceptions
+        //        return StatusCode(500, $"An error occurred: {ex.Message}");
+        //    }
+        //}
 
     }
 

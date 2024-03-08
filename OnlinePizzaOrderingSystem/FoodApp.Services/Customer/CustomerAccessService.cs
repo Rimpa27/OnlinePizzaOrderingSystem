@@ -23,7 +23,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 
-        public Customer SignUp(SignUpRequest request)
+        public Customer SignUp(SignUpRequest request)//cdone
 
         {
 
@@ -50,7 +50,7 @@ using Microsoft.EntityFrameworkCore;
 
         }
 
-        public List<Claim> SignIn(SignInRequest request)
+        public List<Claim> SignIn(SignInRequest request)//cdone
 
             {
 
@@ -125,11 +125,11 @@ using Microsoft.EntityFrameworkCore;
                         }
 
                     }
-                    public async Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request)
+                    public async Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request)//cdone
                     {
                         try
                         {
-                            var cart = await context.Carts.Include(c => c.CartItemList).FirstOrDefaultAsync(c => c.CartId == request.cartId);
+                            var cart = await context.Carts.Include(c => c.CartItemList).ThenInclude( d=> d.MenuItem).FirstOrDefaultAsync(c => c.CartId == request.cartId);
                             var menuItem = await context.MenuItems.FindAsync(request.menuItemId);
 
                             if (cart == null || menuItem == null)
@@ -164,57 +164,76 @@ using Microsoft.EntityFrameworkCore;
                     }
 
 
-                    public async Task<bool> DeleteCartItemByIdAsync(int cartItemId)
-                    {
-                        try
-                        {
-                            var cartItem = await context.CartItems.FindAsync(cartItemId);
+        public async Task<bool> DeleteCartItemByIdAsync(DeleteCartItemById req)//cdone
+        {
+            try
+            {
+                var cart = await context.Carts
+                                .Include(c => c.CartItemList)
+                                .FirstOrDefaultAsync(c => c.CartId == req.cartId);
 
-                            if (cartItem == null)
-                            {
-                                throw new NotFoundException("CartItem not found.");
-                            }
+                if (cart == null)
+                {
+                    throw new NotFoundException("Cart not found.");
+                }
 
-                            context.CartItems.Remove(cartItem);
-                            await context.SaveChangesAsync();
-                            return true;
-                        }
-                        catch (NotFoundException ex)
-                        {
-                            // Log the exception, etc.
-                            throw;
-                        }
-                        catch (Exception ex)
-                        {
-                            // Log the exception, etc.
-                            throw new Exception("An error occurred while deleting the cart item.", ex);
-                        }
+                var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.CartItemId == req.cartItemId);
 
-                    }
+                if (cartItem == null)
+                {
+                    throw new NotFoundException("CartItem not found.");
+                }
 
-                public async Task<OrderSummary?> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req)
-                 {
-                    // Logic to validate and save selected date and time for delivery
+                context.CartItems.Remove(cartItem);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            catch (NotFoundException ex)
+            {
+                // Log the exception, etc.
+                throw;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception, etc.
+                throw new Exception("An error occurred while deleting the cart item.", ex);
+            }
+        }
 
-                    var order = await context.OrderSummaries.FirstOrDefaultAsync(c => c.OrderId == req.OrderId);
-                    if (order == null)
-                    {
-                        // Order not found
-                        return null;
-                    }
 
-                    // Assuming you have a DeliveryDetails table or property in Order table to store delivery info
-                    order.DeliveryDetails = new DeliveryDetails
-                    {
-                        DeliveryDateTime =req. selectedDateTime
-                    };
+        public async Task<DeliveryDetails?> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req)//cdone
+        {
+            try
+            {
+                var cart = await context.Carts.FirstOrDefaultAsync(c => c.CartId == req.CartId);
 
-                    await context.SaveChangesAsync();
+                if (cart == null)
+                {
+                    // Cart not found
+                    return null;
+                }
 
-                    return order;
-                 }
+                // Assuming you have a DeliveryDetails table or property in Order table to store delivery info
+                cart.DeliveryDetails = new DeliveryDetails
+                {
+                  
+                    DeliveryDateTime = req.SelectedDateTime
+                };
 
-            public void CustomizePizza(CustomizedPizza cp)
+                context.Carts.Update(cart);
+                await context.SaveChangesAsync();
+
+                return cart.DeliveryDetails;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception, etc.
+                throw new Exception("An error occurred while choosing delivery date and time.", ex);
+            }
+        }
+
+
+        public void CustomizePizza(CustomizedPizza cp)
             {
                 var cartItem = context.CartItems
                     .FirstOrDefault(ci => ci.CartItemId == cp.cartItemId);
@@ -232,12 +251,44 @@ using Microsoft.EntityFrameworkCore;
             }
 
 
-            public void CreateOrder(int cartId)
-            {
-                // Get the cart with the specified ID
-                var cart = context.Carts
-                    .FirstOrDefault(c => c.CartId == cartId);
+        //public void CreateOrder(int cartId)
+        //{
+        //    // Get the cart with the specified ID
+        //    var cart = context.Carts
+        //        .FirstOrDefault(c => c.CartId == cartId);
 
+        //    if (cart == null)
+        //    {
+        //        throw new ArgumentException("Cart not found.");
+        //    }
+
+        //    // Create a new order
+        //    var order = new OrderSummary
+        //    {
+        //        OrderId = cartId,
+
+
+        //        OrderDate = DateTime.Now // Assuming current date and time for the order date
+        //    };
+
+        //    // Add the order to the database
+        //    context.OrderSummaries.Add(order);
+        //    context.SaveChanges();
+        //}
+
+        public async Task CreateOrderForCustomerAsync(CreateOrderForCustomer req)
+        {
+            try
+            {
+                // Get the customer with the specified ID
+                var customer = await context.Customers.FindAsync(req.customerId);
+                if (customer == null)
+                {
+                    throw new ArgumentException("Customer not found.");
+                }
+
+                // Get the cart with the specified ID
+                var cart = await context.Carts.FindAsync(req.cartId);
                 if (cart == null)
                 {
                     throw new ArgumentException("Cart not found.");
@@ -246,19 +297,25 @@ using Microsoft.EntityFrameworkCore;
                 // Create a new order
                 var order = new OrderSummary
                 {
-                    OrderId = cartId,
-
-
+                    CustomerId = req.customerId,
+                    CartId = req.cartId,
                     OrderDate = DateTime.Now // Assuming current date and time for the order date
+                                             // You may want to add more properties to the order based on your requirements
                 };
 
                 // Add the order to the database
                 context.OrderSummaries.Add(order);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
-
-
+            catch (Exception ex)
+            {
+                // Log the exception, etc.
+                throw new Exception("An error occurred while creating the order.", ex);
+            }
         }
+
+
+    }
     }
     
 

@@ -11,10 +11,10 @@ namespace FoodApp.Services
         OrderStatus GetOrderStatusByOrderID(int orderID);
 
 
-        Task<bool> DeleteCartItemByIdAsync(int cartItemId);
+        Task<bool> DeleteCartItemByIdAsync(DeleteCartItemById req);
         Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request);
 
-        Task<OrderSummary> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req);
+        Task<DeliveryDetails?> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req);
         void CustomizePizza(CustomizedPizza cp);
 
         /// <summary>
@@ -24,6 +24,8 @@ namespace FoodApp.Services
         /// <returns>Customer</returns>
         /// <exception cref="ArgumentNullException">When the request is null</exception>
         Customer SignUp(SignUpRequest request);
+
+         Task CreateOrderForCustomerAsync(CreateOrderForCustomer req);
 
 
         /// <summary>

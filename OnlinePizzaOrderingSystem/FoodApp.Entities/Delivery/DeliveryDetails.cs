@@ -10,7 +10,7 @@ namespace FoodApp.Entities
     public class DeliveryDetails
     {
         [Key]
-        public int DeliveryId { get; set; }
+       public int DeliveryId { get; set; }
         public DateTime DeliveryDateTime { get; set; }
     }
 }

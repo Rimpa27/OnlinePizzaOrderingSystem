@@ -50,6 +50,7 @@ namespace FoodApp.Entities
         [EnumDataType(typeof(MenuItemCategory), ErrorMessage = "Invalid Category")]
         public MenuItemCategory MenuItemCategory { get; set; }
 
+        public string ProductPhoto {  get; set; }
 
     }
 

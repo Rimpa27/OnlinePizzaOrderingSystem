@@ -4,6 +4,7 @@ using FoodApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodApp.Data.Migrations
 {
     [DbContext(typeof(PizzaOrderingAppContext))]
-    partial class PizzaOrderingAppContextModelSnapshot : ModelSnapshot
+    [Migration("20240308092109_Added")]
+    partial class Added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,7 +79,7 @@ namespace FoodApp.Data.Migrations
                     b.Property<int>("CustomersUserID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DeliveryDetailsDeliveryId")
+                    b.Property<int>("DeliveryDetailsDeliveryId")
                         .HasColumnType("int");
 
                     b.HasKey("CartId");
@@ -369,7 +372,9 @@ namespace FoodApp.Data.Migrations
 
                     b.HasOne("FoodApp.Entities.DeliveryDetails", "DeliveryDetails")
                         .WithMany()
-                        .HasForeignKey("DeliveryDetailsDeliveryId");
+                        .HasForeignKey("DeliveryDetailsDeliveryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customers");
 

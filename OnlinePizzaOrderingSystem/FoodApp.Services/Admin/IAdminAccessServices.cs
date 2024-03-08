@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using FoodApp.Entities;
 using FoodApp.Services;
-using FoodApp.Services.Admin;
 
 namespace FoodApp.Services
 {
@@ -29,7 +28,7 @@ namespace FoodApp.Services
         //Task AddUserAsync(User newUser);
         Task<bool> AddUserAsync(AllUser allUser);
 
-        Task<bool> DeleteUserAsync(AdminDeleteUser deleteUser);
+        //Task<bool> DeleteUserAsync(AdminDeleteUser deleteUser);
 
         Task<bool> EditUserDetailsAsync(AccessOrder req);
 

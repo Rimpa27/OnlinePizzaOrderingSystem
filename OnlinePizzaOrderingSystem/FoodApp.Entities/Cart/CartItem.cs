@@ -28,7 +28,7 @@ namespace FoodApp.Entities
        
        [ Required]
         public MenuItem MenuItem { get; set; }
-         public ToppingType[] ToppingType { get; set; }   
+         public ToppingType[]? ToppingType { get; set; }   
         
     }
 }
