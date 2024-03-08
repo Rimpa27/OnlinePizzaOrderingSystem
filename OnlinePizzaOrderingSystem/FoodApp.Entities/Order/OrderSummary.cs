@@ -29,13 +29,17 @@ namespace FoodApp.Entities
         [Range(1, double.MaxValue, ErrorMessage = "Order total must be greater than or equal to 1")]
         [DataType(DataType.Currency)]
         public decimal OrderTotal { get; set; }
-
+        public int CustomerId { get; set; }
+        public int CartId { get; set; }
         public Customer Customer { get; set; }
 
         public OrderPayment Payment { get; set; }
 
         public List<OrderItem> OrderItems { get; set; }
         public DeliveryDetails DeliveryDetails { get; set; }
+        public int? DeliveryPersonId { get; set; }
+        public DeliveryPerson DeliveryPerson { get; set; }
+        public Cart Cart { get; set; }
 
 
 

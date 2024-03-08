@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Services
 {
-    public class AddingMenuItemToCart
+    public class DeleteCartItemById
     {
+        public int cartItemId { get; set; }
         public int cartId { get; set; }
-        public int menuItemId { get; set; }
-       public int quantity { get; set; }
     }
 }

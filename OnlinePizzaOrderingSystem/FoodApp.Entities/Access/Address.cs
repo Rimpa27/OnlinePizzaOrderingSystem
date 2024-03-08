@@ -17,7 +17,9 @@ namespace FoodApp.Entities
         [StringLength(100, ErrorMessage = "Street cannot be longer than 100 characters.")]
         public string Line1 { get; set; }
 
-        public string Line2 { get; set; }// line2 is optional 
+        [Required(ErrorMessage = "Line1 is required.")]//line1 is required for delivery
+        [StringLength(100, ErrorMessage = "Street cannot be longer than 100 characters.")]
+        public string Line2 { get; set; }
 
 
         [Required(ErrorMessage = "City is required.")]

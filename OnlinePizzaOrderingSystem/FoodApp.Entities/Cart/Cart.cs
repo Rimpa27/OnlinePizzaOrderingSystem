@@ -27,5 +27,6 @@ namespace FoodApp.Entities
             }
         }
         public Customer Customers { get; set; }
+        public DeliveryDetails? DeliveryDetails { get; set; }
     }
 }

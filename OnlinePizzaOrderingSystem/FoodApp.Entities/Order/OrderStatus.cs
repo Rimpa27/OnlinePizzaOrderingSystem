@@ -12,6 +12,7 @@ namespace FoodApp.Entities
         //PaymentPending,
         //PaymentCompleted,
         PaymentFailed =1,
+        ConfirmOrder,
         InProgress,
         OutForDelivery,
         Delivered

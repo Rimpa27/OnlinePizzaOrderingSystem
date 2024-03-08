@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodApp.Entities
+namespace FoodApp.Services
 {
-    public enum  RoleType
+    public class AdminDeleteUser
     {
-        Admin = 1,
-        Customer,
-        DeliveryPerson
+        public int UserId
+        {
+            get; set;
+        }
     }
 }

@@ -20,6 +20,8 @@ namespace FoodApp.Data
 
         public DbSet<OrderSummary> OrderSummaries { get; set; }
 
+        public DbSet<OrderItem> OrderItems {  get; set; }
+
         public DbSet<User> Users { get; set; }  
 
         public DbSet<Customer> Customers { get; set; }

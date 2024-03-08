@@ -23,9 +23,7 @@ namespace FoodApp.Entities
         public long Phone { get; set; }
 
        
-        //Suggested by Mam
-        //[ForeignKey("CustomerID")]
-        //public User? user { get; set; }
+       
 
 
     }
