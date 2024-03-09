@@ -1,0 +1,67 @@
+.Service-section {
+    padding: em 0;
+    position: relative; }
+    @media (max-width: 767.98px) {
+      .Service-section {
+        padding: 6em 0; } }
+.services .icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0; }
+.services .icon:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    bordeR: 1px solid #bf7e06;
+    z-index: -1;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+
+    .services .icon span {
+        font-size: 60px;
+        color: #5c3d03;
+        z-index: 1; }
+    
+
+.services h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: black;
+    text-transform: uppercase; }
+  
+  .services .media-body {
+    color: #5c3d03;
+    font-weight: 500;
+ }
+ 
+  
+  .services:hover .icon span {
+    color: #fff; }
+
+.services:hover .icon:after {
+    border: none;
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    transform: rotate(135deg);
+    background: #f84a00; }
+
+.Service-section .heading-section h2 {
+    color: black;
+    font-size:34px;
+    text-transform: uppercase;
+    font-family:'Overpass', sans-serif;
+    font-weight: 800;
+    }
+.Service-section .heading-section p{
+    font-weight: 500;
+    
+}
+ 

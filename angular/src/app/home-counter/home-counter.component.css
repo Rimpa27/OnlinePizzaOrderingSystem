@@ -1,0 +1,40 @@
+.Service-section {
+  padding: em 0;
+  position: relative; }
+  @media (max-width: 767.98px) {
+    .Service-section {
+      padding: 6em 0; } }
+.services .icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 0; }
+
+
+  .services .icon span {
+      font-size: 60px;
+      color: #ffffff;
+      z-index: 1; }
+  
+
+.services h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: white;
+  text-transform: uppercase; }
+
+.services strong{
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.services .media-body {
+  color: #ffffff;
+  
+}
+
+.services:hover .icon span {
+  color: #e06907; }
+
+

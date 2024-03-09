@@ -1,0 +1,66 @@
+
+<div class="bg-orange-200 z-[1200px] h-screen w-full pt-[200px]">
+    <div class="signup-container">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signupform">
+        <div>
+          <input type="text" id="username" formControlName="username" placeholder="UserName" minlength="3">
+          
+        </div>  
+        <div>
+          <input type="email" id="email" formControlName="email" placeholder="Email">
+          
+        </div>
+        <div>
+          <input type="password" type="password"  id="password"  formControlName="password" placeholder="Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$">
+          
+            
+        </div>  
+        <!-- <div><label for="gender">Select Gender:</label>
+          <select id="gender" formControlName="gender">
+            <option value="" disabled>Select an option</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <div *ngIf="signupForm.get('gender')?.invalid && signupForm.get('gender')?.touched">
+          Please select a gender.</div>
+        </div> -->
+        <div>
+         
+        <div>
+          <input type="text" id="line1" formControlName="line1" placeholder="Address Line1">
+         
+        </div>
+        <div>
+          <input type="text" id="line2" formControlName="line2" placeholder="Address Line2">
+          
+        </div>
+          <div>
+          <input type="text" id="City" formControlName="City" placeholder="City">
+          <div *ngIf="signupForm.get('City')?.invalid && signupForm.get('City')?.touched" class="text-red-700" >
+            <span *ngIf="signupForm.get('City')?.errors?.['required']" class="text-red-700">
+                City is required.
+            </span>
+            
+          </div>
+        </div>
+          <div>
+            <input type="text" id="pincode" formControlName="pincode" placeholder="Pin Code">
+            <div *ngIf="signupForm.get('pincode')?.invalid && signupForm.get('pincode')?.touched" class="text-red-700">
+                <span *ngIf="signupForm.get('pincode')?.errors?.['required']" class="text-red-700">
+                    Pincode is required.
+                </span>
+              </div>
+          </div>
+          <div>
+            <input type="text" id="phone" name="phone" formControlName="phone" placeholder="Phone Number" >
+            <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-red-700">
+                <span *ngIf="signupForm.get('phone')?.errors?.['required']" class="text-red-700">
+                    Phone is required.
+                </span>
+              </div>
+          </div>  
+        </div>
+        <div><button type="Submit"  class="btn btn-primary btn-submit">Submit</button></div>
+      </form>
+    </div>
+</div>
