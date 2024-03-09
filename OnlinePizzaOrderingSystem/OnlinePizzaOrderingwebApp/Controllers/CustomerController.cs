@@ -146,24 +146,61 @@ namespace OnlinePizzaOrderingwebApp.Controllers
             }
         }
 
+        //[HttpPost("create")]
+        //public async Task<IActionResult> CreateOrderForCustomerAsync(CreateOrderForCustomer req)
+        //{
+        //    try
+        //    {
+        //        await _customerAccessServices.CreateOrderForCustomerAsync(req);
+        //        return Ok("Order created successfully.");
+        //    }
+        //    catch (ArgumentException ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception
+        //        return StatusCode(500, "An error occurred while processing the request.");
+        //    }
+        //}
+
+
         [HttpPost("create")]
-        public async Task<IActionResult> CreateOrderForCustomerAsync(CreateOrderForCustomer req)
+        public async Task<IActionResult> CreateOrderAsync(CreateOrderForCustomer req)
         {
             try
             {
-                await _customerAccessServices.CreateOrderForCustomerAsync(req);
-                return Ok("Order created successfully.");
+                var order = await _customerAccessServices.CreateOrderAsync(req);
+                return Ok(order);
             }
-            catch (ArgumentException ex)
+            catch (CustomerNotFoundException ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
+            }
+            catch (CartNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
-                // Log the exception
-                return StatusCode(500, "An error occurred while processing the request.");
+                return StatusCode(500, ex.Message);
             }
         }
+        [HttpGet("OrderStatus/{orderId}")]
+        public ActionResult<OrderStatus> GetOrderStatusByOrderId(int orderId)
+        {
+            try
+            {
+                var orderStatus = _customerAccessServices.GetOrderStatusByOrderID(orderId);
+                return Ok(orderStatus);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
     }
 }
 

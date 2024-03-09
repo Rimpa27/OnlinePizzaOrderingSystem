@@ -4,6 +4,7 @@ using FoodApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodApp.Data.Migrations
 {
     [DbContext(typeof(PizzaOrderingAppContext))]
-    partial class PizzaOrderingAppContextModelSnapshot : ModelSnapshot
+    [Migration("20240308144337_Adds")]
+    partial class Adds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,15 +195,6 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
 
-                    b.Property<int>("CartItemId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("CartItemPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CartItemQuantity")
-                        .HasColumnType("int");
-
                     b.Property<int>("MenuItemId")
                         .HasColumnType("int");
 
@@ -214,8 +208,6 @@ namespace FoodApp.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderItemId");
-
-                    b.HasIndex("CartItemId");
 
                     b.HasIndex("MenuItemId");
 
@@ -258,7 +250,7 @@ namespace FoodApp.Data.Migrations
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerUserID")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("DeliveryDetailsDeliveryId")
@@ -284,7 +276,7 @@ namespace FoodApp.Data.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.HasIndex("CustomerUserID");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("DeliveryDetailsDeliveryId");
 
@@ -409,12 +401,6 @@ namespace FoodApp.Data.Migrations
 
             modelBuilder.Entity("FoodApp.Entities.OrderItem", b =>
                 {
-                    b.HasOne("FoodApp.Entities.CartItem", "CartItem")
-                        .WithMany()
-                        .HasForeignKey("CartItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FoodApp.Entities.MenuItem", "MenuItem")
                         .WithMany()
                         .HasForeignKey("MenuItemId")
@@ -424,8 +410,6 @@ namespace FoodApp.Data.Migrations
                     b.HasOne("FoodApp.Entities.OrderSummary", null)
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderSummaryOrderId");
-
-                    b.Navigation("CartItem");
 
                     b.Navigation("MenuItem");
                 });
@@ -440,7 +424,7 @@ namespace FoodApp.Data.Migrations
 
                     b.HasOne("FoodApp.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerUserID")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

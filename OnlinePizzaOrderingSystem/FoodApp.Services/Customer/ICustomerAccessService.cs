@@ -25,7 +25,7 @@ namespace FoodApp.Services
         /// <exception cref="ArgumentNullException">When the request is null</exception>
         Customer SignUp(SignUpRequest request);
 
-         Task CreateOrderForCustomerAsync(CreateOrderForCustomer req);
+        Task<OrderSummary> CreateOrderAsync(CreateOrderForCustomer req);
 
 
         /// <summary>
