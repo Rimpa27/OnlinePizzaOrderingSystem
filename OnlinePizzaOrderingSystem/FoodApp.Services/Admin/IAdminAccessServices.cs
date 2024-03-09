@@ -24,6 +24,8 @@ namespace FoodApp.Services
         void DeleteMenuItem(DeleteMenuItem request);
 
         Task<bool> EditMenuItem(MenuItem menuItem);
+        List<User> GetAllUsers();
+        List<OrderSummary> GetAllOrders();
 
         //Task AddUserAsync(User newUser);
         Task<bool> AddUserAsync(AllUser allUser);

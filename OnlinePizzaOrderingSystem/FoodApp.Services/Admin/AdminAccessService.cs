@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Authentication;
 using System.Security.Claims;
@@ -49,6 +50,16 @@ namespace FoodApp.Services
 
         }
 
+        public List<User> GetAllUsers()
+        {
+            var users = context.Users.ToList();
+            return users;
+        }
+        public List<OrderSummary> GetAllOrders()
+        {
+            var orders=context.OrderSummaries.ToList();
+            return orders;
+        }
         public async Task<bool> AddOrderAsync(OrderSummary order)
         {
             try

@@ -76,6 +76,20 @@ public IActionResult Post(SignInRequest request)
         //    }
         //}
 
+        [HttpGet("AllUser")]
+        public IActionResult GetAllUsers()
+        {
+            List<User> users = adminAccessService.GetAllUsers();
+            return Ok(users);
+        }
+
+        [HttpGet("AllOrders")]
+        public IActionResult GetAllOrders()
+        {
+            List<OrderSummary> orders = adminAccessService.GetAllOrders();
+            return Ok(orders);
+        }
+
         [HttpPost("AddMenuItem")]  //Done
         public IActionResult Post()
         {
