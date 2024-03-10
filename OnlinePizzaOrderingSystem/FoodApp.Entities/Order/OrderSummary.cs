@@ -40,9 +40,7 @@ namespace FoodApp.Entities
         public DeliveryDetails DeliveryDetails { get; set; }
         public int? DeliveryPersonId { get; set; }
         public DeliveryPerson DeliveryPerson { get; set; }
-        [ForeignKey("CartId")]
-        [JsonIgnore]
-        public Cart Cart { get; set; }
+        
 
 
 

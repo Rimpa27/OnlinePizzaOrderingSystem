@@ -271,7 +271,7 @@ using Microsoft.EntityFrameworkCore;
                 OrderStatus = OrderStatus.Pending,
                 OrderTotal = cart.TotalPrice,
                 Customer = customer,
-                Cart = cart
+                //Cart = cart
             };
 
             foreach (var cartItem in cart.CartItemList)

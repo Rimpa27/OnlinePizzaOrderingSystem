@@ -192,9 +192,6 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
 
-                    b.Property<int>("CartItemId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("CartItemPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -214,8 +211,6 @@ namespace FoodApp.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderItemId");
-
-                    b.HasIndex("CartItemId");
 
                     b.HasIndex("MenuItemId");
 
@@ -255,10 +250,7 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomerUserID")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("DeliveryDetailsDeliveryId")
@@ -282,9 +274,7 @@ namespace FoodApp.Data.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("CustomerUserID");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("DeliveryDetailsDeliveryId");
 
@@ -409,12 +399,6 @@ namespace FoodApp.Data.Migrations
 
             modelBuilder.Entity("FoodApp.Entities.OrderItem", b =>
                 {
-                    b.HasOne("FoodApp.Entities.CartItem", "CartItem")
-                        .WithMany()
-                        .HasForeignKey("CartItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FoodApp.Entities.MenuItem", "MenuItem")
                         .WithMany()
                         .HasForeignKey("MenuItemId")
@@ -425,22 +409,14 @@ namespace FoodApp.Data.Migrations
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderSummaryOrderId");
 
-                    b.Navigation("CartItem");
-
                     b.Navigation("MenuItem");
                 });
 
             modelBuilder.Entity("FoodApp.Entities.OrderSummary", b =>
                 {
-                    b.HasOne("FoodApp.Entities.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FoodApp.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerUserID")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -459,8 +435,6 @@ namespace FoodApp.Data.Migrations
                         .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cart");
 
                     b.Navigation("Customer");
 

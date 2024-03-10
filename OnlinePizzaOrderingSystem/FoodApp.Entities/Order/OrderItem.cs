@@ -26,7 +26,6 @@ namespace FoodApp.Entities
             [Range(1, 1000, ErrorMessage = "Price must be between 1 and 1000")]
             [DataType(DataType.Currency)]
             public decimal Price { get; set; }
-            public CartItem CartItem { get; set; }
 
             
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodApp.Data.Migrations
 {
     [DbContext(typeof(PizzaOrderingAppContext))]
-    [Migration("20240308144337_Adds")]
-    partial class Adds
+    [Migration("20240310052623_Adding")]
+    partial class Adding
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,6 +195,12 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
 
+                    b.Property<decimal>("CartItemPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CartItemQuantity")
+                        .HasColumnType("int");
+
                     b.Property<int>("MenuItemId")
                         .HasColumnType("int");
 
@@ -247,9 +253,6 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
@@ -273,8 +276,6 @@ namespace FoodApp.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("CartId");
 
                     b.HasIndex("CustomerId");
 
@@ -416,12 +417,6 @@ namespace FoodApp.Data.Migrations
 
             modelBuilder.Entity("FoodApp.Entities.OrderSummary", b =>
                 {
-                    b.HasOne("FoodApp.Entities.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FoodApp.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
@@ -443,8 +438,6 @@ namespace FoodApp.Data.Migrations
                         .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cart");
 
                     b.Navigation("Customer");
 
