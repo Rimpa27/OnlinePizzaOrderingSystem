@@ -8,7 +8,7 @@ namespace FoodApp.Services
 {
     public class CreateOrderForCustomer
     {
-        public int customerId { get; set; }
-       public int cartId { get; set; }
+        public int CustomerId { get; set; }
+       public int CartId { get; set; }
     }
 }

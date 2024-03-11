@@ -89,11 +89,14 @@ public IActionResult Post(SignInRequest request)
             List<OrderSummary> orders = adminAccessService.GetAllOrders();
             return Ok(orders);
         }
-
+        
         [HttpPost("AddMenuItem")]  //Done
         public IActionResult Post()
         {
-            AddingMenuItem request = JsonSerializer.Deserialize<AddingMenuItem>(HttpContext.Request.Form["data"]);
+            AddingMenuItem request = JsonSerializer
+                                            .Deserialize<AddingMenuItem>(
+                                                        HttpContext.Request.Form["data"]);
+
             if (HttpContext.Request.Form.Files.Count > 0)
             {
                 request.photo = HttpContext.Request.Form.Files[0];

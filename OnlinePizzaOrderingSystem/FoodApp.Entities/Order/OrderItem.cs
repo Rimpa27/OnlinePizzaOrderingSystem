@@ -15,8 +15,6 @@ namespace FoodApp.Entities
             [Key]
              public int OrderItemId { get; set; }
 
-             public MenuItem MenuItem { get; set; }
-
             // A property for the quantity
             [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 0.")]
             public int Quantity { get; set; }
@@ -32,7 +30,9 @@ namespace FoodApp.Entities
             // Additional properties for cart item details
             public decimal CartItemPrice { get; set; }
             public int CartItemQuantity { get; set; }
-        }
+
+             public MenuItem MenuItem { get; set; }
+    }
 
 
     }

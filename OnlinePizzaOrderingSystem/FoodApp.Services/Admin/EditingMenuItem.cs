@@ -9,14 +9,14 @@ namespace FoodApp.Services
 {
     public class EditingMenuItem
     {
-        public string newName { get; set; }
-        public string newItemDescription { get; set; }
-        public int newCalories { get; set; }
-        public bool newIsAvailable { get; set; }
-        public VegOrNonVeg newVegOrNonVeg { get; set; }
-        public MenuItemCategory newCategory { get; set; }
-        public string newImageUrl { get; set; }
-        public int newPreparationTime { get; set; }
-        public decimal newPrice { get; set; }
+        public string NewName { get; set; }
+        public string NewItemDescription { get; set; }
+        public int NewCalories { get; set; }
+        public bool NewIsAvailable { get; set; }
+        public VegOrNonVeg NewVegOrNonVeg { get; set; }
+        public MenuItemCategory NewCategory { get; set; }
+        public string NewImageUrl { get; set; }
+        public int NewPreparationTime { get; set; }
+        public decimal NewPrice { get; set; }
     }
 }

@@ -130,26 +130,26 @@ using Microsoft.EntityFrameworkCore;
                     {
                         try
                         {
-                            var cart = await context.Carts.Include(c => c.CartItemList).ThenInclude( d=> d.MenuItem).FirstOrDefaultAsync(c => c.CartId == request.cartId);
-                            var menuItem = await context.MenuItems.FindAsync(request.menuItemId);
+                            var cart = await context.Carts.Include(c => c.CartItemList).ThenInclude( d=> d.MenuItem).FirstOrDefaultAsync(c => c.CartId == request.CartId);
+                            var menuItem = await context.MenuItems.FindAsync(request.MenuItemId);
 
                             if (cart == null || menuItem == null)
                             {
                                 throw new Exception("Cart or MenuItem not found.");
                             }
 
-                            var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.MenuItem.MenuItemId == request.menuItemId);
+                            var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.MenuItem.MenuItemId == request.MenuItemId);
 
                             if (cartItem != null)
                             {
-                                cartItem.CartItemQuantity += request.quantity;
+                                cartItem.CartItemQuantity += request.Quantity;
                             }
                             else
                             {
                                 cart.CartItemList.Add(new CartItem
                                 {
-                                    CartItemQuantity = request.quantity,
-                                    CartItemPrice = menuItem.Price * request.quantity,
+                                    CartItemQuantity = request.Quantity,
+                                    CartItemPrice = menuItem.Price * request.Quantity,
                                     MenuItem = menuItem
                                 });
                             }
@@ -171,14 +171,14 @@ using Microsoft.EntityFrameworkCore;
             {
                 var cart = await context.Carts
                                 .Include(c => c.CartItemList)
-                                .FirstOrDefaultAsync(c => c.CartId == req.cartId);
+                                .FirstOrDefaultAsync(c => c.CartId == req.CartId);
 
                 if (cart == null)
                 {
                     throw new NotFoundException("Cart not found.");
                 }
 
-                var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.CartItemId == req.cartItemId);
+                var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.CartItemId == req.CartItemId);
 
                 if (cartItem == null)
                 {
@@ -237,7 +237,7 @@ using Microsoft.EntityFrameworkCore;
         public void CustomizePizza(CustomizedPizza cp)
             {
                 var cartItem = context.CartItems
-                    .FirstOrDefault(ci => ci.CartItemId == cp.cartItemId);
+                    .FirstOrDefault(ci => ci.CartItemId == cp.CartItemId);
 
                 if (cartItem == null)
                 {
@@ -256,8 +256,8 @@ using Microsoft.EntityFrameworkCore;
 
         public async Task<OrderSummary> CreateOrderAsync(CreateOrderForCustomer req)
         {
-            var customer = await context.Customers.FindAsync(req.customerId);
-            var cart = await context.Carts.FindAsync(req.cartId);
+            var customer = await context.Customers.FindAsync(req.CustomerId);
+            var cart = await context.Carts.FindAsync(req.CartId);
 
             if (customer == null)
                 throw new CustomerNotFoundException("Customer not found");

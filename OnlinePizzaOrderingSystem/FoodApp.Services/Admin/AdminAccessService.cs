@@ -17,7 +17,7 @@ namespace FoodApp.Services
     public class AdminAccessService : IAdminAccessServices
     {
         private readonly PizzaOrderingAppContext context;
-        private const string conStr = "BlobEndpoint=https://onlinepizza.blob.core.windows.net/;QueueEndpoint=https://onlinepizza.queue.core.windows.net/;FileEndpoint=https://onlinepizza.file.core.windows.net/;TableEndpoint=https://onlinepizza.table.core.windows.net/;SharedAccessSignature=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2024-03-08T16:27:52Z&st=2024-03-08T08:27:52Z&spr=https,http&sig=MSoatF%2BmT7D6p2FD9hWBN2clxm1IienIGaDDqSXqqII%3D";
+        private const string conStr = "BlobEndpoint=https://onlinepizaa.blob.core.windows.net/;QueueEndpoint=https://onlinepizaa.queue.core.windows.net/;FileEndpoint=https://onlinepizaa.file.core.windows.net/;TableEndpoint=https://onlinepizaa.table.core.windows.net/;SharedAccessSignature=sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2024-03-30T13:41:26Z&st=2024-03-11T05:41:26Z&spr=https,http&sig=Xv3z%2B8%2FyUp3975oM1pGePH7S4rPqyynv%2F3HwMicnXkE%3D";
         private BlobContainerClient containerClient;
         public AdminAccessService(PizzaOrderingAppContext context)
         {
@@ -96,24 +96,23 @@ namespace FoodApp.Services
             
             var newMenuItem = new MenuItem { 
 
-            MenuItemId = addingMenuItem.menuItemId,
-            MenuItemName = addingMenuItem.name,
-                MenuItemDescription = addingMenuItem.itemDescription,
-                calories = addingMenuItem.calories,
-                IsAvailable = addingMenuItem.isAvailable,
-                VegOrNonVeg = addingMenuItem.vegOrNonVeg,
-                MenuItemCategory = addingMenuItem.category,
-                ImageUrl = addingMenuItem.imageUrl,
-                PreparationTime = addingMenuItem.preparationTime,
-                Price = addingMenuItem.price
+            MenuItemId = addingMenuItem.MenuItemId,
+            MenuItemName = addingMenuItem.ItemName,
+                MenuItemDescription = addingMenuItem.ItemDescription,
+                Calories = addingMenuItem.Calories,
+                IsAvailable = addingMenuItem.IsAvailable,
+                VegOrNonVeg = addingMenuItem.VegOrNonVeg,
+                MenuItemCategory = addingMenuItem.Category,
+                PreparationTime = addingMenuItem.PreparationTime,
+                Price = addingMenuItem.Price
 
 
             };
-            if (addingMenuItem.photo != null)
+            if (addingMenuItem.Photo != null)
             {
                 string fileName = Guid.NewGuid() + ".png";
-                containerClient.UploadBlob(fileName, addingMenuItem.photo.OpenReadStream());
-                newMenuItem.ProductPhoto = "https://onlinepizza.blob.core.windows.net/images" + fileName;
+                containerClient.UploadBlob(fileName, addingMenuItem.Photo.OpenReadStream());
+                newMenuItem.ProductPhoto = "https://onlinepizaa.blob.core.windows.net/images/garlic_bread.png" + fileName;
 
             }
             context.MenuItems.Add(newMenuItem);
@@ -147,9 +146,8 @@ namespace FoodApp.Services
             existingMenuItem.MenuItemName = menuItem.MenuItemName;
             existingMenuItem.MenuItemDescription = menuItem.MenuItemDescription;
             existingMenuItem.Price = menuItem.Price;
-            existingMenuItem.calories = menuItem.calories;
+            existingMenuItem.Calories = menuItem.Calories;
             existingMenuItem.IsAvailable = menuItem.IsAvailable;
-            existingMenuItem.ImageUrl = menuItem.ImageUrl;
             existingMenuItem.PreparationTime = menuItem.PreparationTime;
             existingMenuItem.VegOrNonVeg = menuItem.VegOrNonVeg;
             existingMenuItem.MenuItemCategory = menuItem.MenuItemCategory;
@@ -163,7 +161,7 @@ namespace FoodApp.Services
         public void AdminDeleteOrder(AdminDeleteOrder request)
         {
             // Find the order to delete
-            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == request.orderId);
+            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == request.OrderId);
 
             if (order == null)
             {
@@ -216,8 +214,8 @@ namespace FoodApp.Services
 
         public void AssignDeliveryPerson(AssignDeliveryPerson req)
         {
-            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == req.orderId);
-            var deliveryPerson = context.DeliveryPersons.FirstOrDefault(dp => dp.UserID == req.deliveryPersonId);
+            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == req.OrderId);
+            var deliveryPerson = context.DeliveryPersons.FirstOrDefault(dp => dp.UserID == req.DeliveryPersonId);
 
             if (order != null && deliveryPerson != null)
             {
@@ -325,7 +323,7 @@ namespace FoodApp.Services
 
         public async Task<bool> EditUserDetailsAsync(AccessOrder req)
         {
-            var user = await context.Users.FirstOrDefaultAsync(u => u.UserID == req.userId);
+            var user = await context.Users.FirstOrDefaultAsync(u => u.UserID == req.UserId);
             if (user == null)
             {
                 // User not found
@@ -333,8 +331,8 @@ namespace FoodApp.Services
             }
 
             // Update user details
-            user.Name = req.newName;
-            user.Email = req.newEmailAddress;
+            user.Name = req.NewName;
+            user.Email = req.NewEmailAddress;
 
             await context.SaveChangesAsync();
 

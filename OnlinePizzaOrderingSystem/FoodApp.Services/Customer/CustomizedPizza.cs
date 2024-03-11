@@ -9,7 +9,7 @@ namespace FoodApp.Services
 {
     public class CustomizedPizza
     {
-       public int cartItemId {  get; set; }
+       public int CartItemId {  get; set; }
        public ToppingType[] Topping { get; set; } 
     }
 }

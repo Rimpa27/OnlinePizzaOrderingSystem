@@ -10,16 +10,16 @@ namespace FoodApp.Services
 {
     public class AddingMenuItem
     {
-        public int menuItemId { get; set; }
-        public string name { get; set; }
-        public string itemDescription { get; set; }
-        public int calories { get; set; }
-        public bool isAvailable { get; set; }
-        public VegOrNonVeg vegOrNonVeg { get; set; }
-        public MenuItemCategory category { get; set; }
-        public string imageUrl { get; set; }
-        public int preparationTime { get; set; }
-        public decimal price { get; set; }
-       public IFormFile photo {  get; set; }
+        public int MenuItemId { get; set; }
+        public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
+        public int Calories { get; set; }
+        public bool IsAvailable { get; set; }
+        public VegOrNonVeg VegOrNonVeg { get; set; }
+        public MenuItemCategory Category { get; set; }
+     
+        public int PreparationTime { get; set; }
+        public decimal Price { get; set; }
+       public IFormFile Photo {  get; set; }
     }
 }
