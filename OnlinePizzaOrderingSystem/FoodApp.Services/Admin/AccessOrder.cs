@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Services
 {
-    public class AccessOrder
+    public class EditUser
     {
         public int UserId { get; set; }
         public string NewName { get; set; }

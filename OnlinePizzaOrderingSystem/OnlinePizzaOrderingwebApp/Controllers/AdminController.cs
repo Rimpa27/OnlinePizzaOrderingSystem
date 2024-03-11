@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.Text.Json;
 using FoodApp.Entities;
 using FoodApp.Services;
@@ -25,7 +26,7 @@ namespace OnlinePizzaOrderingwebApp.Controllers
         }
 
        
-[HttpPost("Login")]
+[HttpPost("Login")]//done
 
 public IActionResult Post(SignInRequest request)
 
@@ -52,38 +53,16 @@ public IActionResult Post(SignInRequest request)
             }
 
         }
-        //[Authorize]
-        //[HttpPost("AddMenuItem")]
-        //public ActionResult<MenuItem> AddMenuItem(AddingMenuItem addingMenuItem)
-        //{
-        //    try
-        //    {
-        //        // Call the EditItem method from the service
-        //        var updatedMenuItem = adminAccessService.AddMenuItem(addingMenuItem);
-        //        // Return a success response with the updated menu item
-        //        return Ok(updatedMenuItem);
-        //    }
-        //    catch (DuplicateItemException ex)
-        //    {
-        //        return Conflict(ex.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
+       
 
-        //        // Log the exception and return a generic error message
-        //        return StatusCode(StatusCodes.Status500InternalServerError, "Failed to Add menu item. Please contact support.");
-
-        //    }
-        //}
-
-        [HttpGet("AllUser")]
+        [HttpGet("AllUser")]//done
         public IActionResult GetAllUsers()
         {
             List<User> users = adminAccessService.GetAllUsers();
             return Ok(users);
         }
 
-        [HttpGet("AllOrders")]
+        [HttpGet("AllOrders")]//done
         public IActionResult GetAllOrders()
         {
             List<OrderSummary> orders = adminAccessService.GetAllOrders();
@@ -93,20 +72,18 @@ public IActionResult Post(SignInRequest request)
         [HttpPost("AddMenuItem")]  //Done
         public IActionResult Post()
         {
-            AddingMenuItem request = JsonSerializer
-                                            .Deserialize<AddingMenuItem>(
-                                                        HttpContext.Request.Form["data"]);
+            AddingMenuItem request = JsonSerializer.Deserialize<AddingMenuItem>( HttpContext.Request.Form["data"]);
 
             if (HttpContext.Request.Form.Files.Count > 0)
             {
-                request.photo = HttpContext.Request.Form.Files[0];
+                request.Photo = HttpContext.Request.Form.Files[0];
             }
 
             adminAccessService.AddMenuItem(request);
 
             return Ok("Product added successfully.");
         }
-        [HttpPut("EditMenuItem")]
+        [HttpPut("EditMenuItem")]//done
         public async Task<IActionResult> EditMenuItem(MenuItem menuItem)
         {
             try
@@ -128,7 +105,7 @@ public IActionResult Post(SignInRequest request)
         }
 
 
-    [HttpDelete("DeleteMenuItem")]
+    [HttpDelete("DeleteMenuItem")]//done
         public IActionResult DeleteMenuItem(DeleteMenuItem request)
         {
             try
@@ -156,6 +133,64 @@ public IActionResult Post(SignInRequest request)
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+        [HttpPost("AddOrder")]
+        public async Task<IActionResult> AddOrder(OrderSummary order)
+        {
+            try
+            {
+                bool result = await adminAccessService.AddOrderAsync(order);
+                if (result)
+                {
+                    return Ok("Order added successfully.");
+                }
+                else
+                {
+                    return BadRequest("Failed to add order.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, "An error occurred while adding the order.");
+            }
+        }
+        [HttpPost("EditOrder")]
+        public async Task<IActionResult> EditOrder(OrderUpdateModel updateModel)
+        {
+            try
+            {
+                bool result = await adminAccessService.EditOrderAsync(updateModel);
+                if (result)
+                {
+                    return Ok("Order added successfully.");
+                }
+                else
+                {
+                    return BadRequest("Failed to add order.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, "An error occurred while adding the order.");
+            }
+        }
+        [HttpDelete("AdminDeleteOrder")]
+        public IActionResult AdminDeleteOrder(AdminDeleteOrder orderId)
+        {
+            try
+            {
+                // Call your service method to delete the order
+                adminAccessService.AdminDeleteOrder(orderId);
+                return NoContent(); // 204 No Content response
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions (e.g., order not found, database error)
+                return BadRequest(ex.Message); // 400 Bad Request response
+            }
+        }
+
 
         [HttpPost("addUser")]
         public async Task<IActionResult> AddUserAsync(AllUser alluser)
@@ -177,36 +212,93 @@ public IActionResult Post(SignInRequest request)
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
-        
-        //[HttpDelete("DeleteUser")]
-        //public IActionResult DeleteUser(User )
-        //{
-        //    try
-        //    {
-        //        // Check if adminAccessService is initialized
-        //        if (adminAccessService == null)
-        //        {
-        //            return StatusCode(500, "adminAccessService is not initialized");
-        //        }
+        [HttpPost("EditUser")]
+        public async Task<IActionResult> EditUserAsync(EditUser req)
+        {
+            try
+            {
+                var result = await adminAccessService.EditUserDetailsAsync(req);
+                if (result)
+                {
+                    return Ok("User edited successfully.");
+                }
+                else
+                {
+                    return StatusCode(500, "Failed to edit user.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
 
-        //        // Attempt to delete the menu item
-        //        adminAccessService.
 
-        //        // Return success message
-        //        return Ok("Item deleted successfully");
-        //    }
-        //    catch (InvalidOperationException ex)
-        //    {
-        //        // Handle invalid operation exception (e.g., item not found)
-        //        return NotFound(ex.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle other unexpected exceptions
-        //        return StatusCode(500, $"An error occurred: {ex.Message}");
-        //    }
-        //}
+        [HttpDelete("DeleteUser")]
 
+        public async Task<IActionResult> DeleteUserAsync(AdminDeleteUser adminDeleteUser)
+        {
+            try
+            {
+                var result = await adminAccessService.DeleteUserAsync(adminDeleteUser);
+                if (result)
+                {
+                    return Ok("User edited successfully.");
+                }
+                else
+                {
+                    return StatusCode(500, "Failed to edit user.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpPost("ConfirmOrder/{cartId}")]
+        public IActionResult ConfirmOrder(int cartId)
+        {
+            try
+            {
+                adminAccessService.ConfirmOrder(cartId);
+                return Ok("Order confirmed successfully.");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, "An error occurred while confirming the order.");
+            }
+        }
+        [HttpPost("AssignDeliveryPerson")]
+        public IActionResult AssignDeliveryPerson(AssignDeliveryPerson req)
+        {
+            try
+            {
+                // Check if adminAccessService is initialized
+                if (adminAccessService == null)
+                {
+                    return StatusCode(500, "adminAccessService is not initialized");
+                }
+
+                // Attempt to delete the menu item
+                adminAccessService.AssignDeliveryPerson(req);
+
+                // Return success message
+                return Ok("Item deleted successfully");
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Handle invalid operation exception (e.g., item not found)
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Handle other unexpected exceptions
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+        }       
     }
 
 }

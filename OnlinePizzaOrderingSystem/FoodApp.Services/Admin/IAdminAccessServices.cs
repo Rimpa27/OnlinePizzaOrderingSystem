@@ -31,8 +31,8 @@ namespace FoodApp.Services
         Task<bool> AddUserAsync(AllUser allUser);
 
         //Task<bool> DeleteUserAsync(AdminDeleteUser deleteUser);
-
-        Task<bool> EditUserDetailsAsync(AccessOrder req);
+        Task<bool> EditUserDetailsAsync(EditUser req);
+        Task<bool> DeleteUserAsync(AdminDeleteUser adminDeleteUser);
 
         Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
 

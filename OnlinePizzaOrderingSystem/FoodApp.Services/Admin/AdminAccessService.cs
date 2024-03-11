@@ -26,7 +26,7 @@ namespace FoodApp.Services
         }
 
 
-        public List<Claim> SignIn(SignInRequest request)
+        public List<Claim> SignIn(SignInRequest request)//done
 
         {
 
@@ -50,54 +50,24 @@ namespace FoodApp.Services
 
         }
 
-        public List<User> GetAllUsers()
+        public List<User> GetAllUsers()//done
         {
             var users = context.Users.ToList();
             return users;
         }
-        public List<OrderSummary> GetAllOrders()
+        public List<OrderSummary> GetAllOrders()//done
         {
             var orders=context.OrderSummaries.ToList();
             return orders;
         }
-        public async Task<bool> AddOrderAsync(OrderSummary order)
+        public MenuItem AddMenuItem(AddingMenuItem addingMenuItem)//done
         {
-            try
-            {
-                context.OrderSummaries.Add(order);
-                await context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // Handle exception, log error, etc.
-                throw new Exception("An error occurred while adding the order.", ex);
-            }
-        }
 
-        public void AddOrderSummary(OrderSummary orderSummary)
-        {
-            // Add an order summary to the log
-            context.OrderSummaries.Add(orderSummary);
-        }
-
-        public List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries)
-        {
-            // Retrieve order summaries associated with the given admin username
-            var adminOrderSummaries = new List<OrderSummary>();
-            foreach (var summary in OrderSummaries)
+            var newMenuItem = new MenuItem
             {
-                adminOrderSummaries.Add(summary);
-            }
-            return adminOrderSummaries;
-        }
-        public MenuItem AddMenuItem(AddingMenuItem addingMenuItem)
-        {
-            
-            var newMenuItem = new MenuItem { 
 
-            MenuItemId = addingMenuItem.MenuItemId,
-            MenuItemName = addingMenuItem.ItemName,
+                MenuItemId = addingMenuItem.MenuItemId,
+                MenuItemName = addingMenuItem.ItemName,
                 MenuItemDescription = addingMenuItem.ItemDescription,
                 Calories = addingMenuItem.Calories,
                 IsAvailable = addingMenuItem.IsAvailable,
@@ -118,23 +88,10 @@ namespace FoodApp.Services
             context.MenuItems.Add(newMenuItem);
             context.SaveChanges();
             return newMenuItem;
-            
-        }
-        public void DeleteMenuItem(DeleteMenuItem request)
-        {
-            var MenuItemToRemove = context.MenuItems.FirstOrDefault(p => p.MenuItemId == request.MenuItemId);
-            if (MenuItemToRemove == null)
-            {
-                throw new InvalidOperationException("Item not Found");
-            }
-            else
-            {
-                context.MenuItems.Remove(MenuItemToRemove);
-                context.SaveChanges();
-            }
+
         }
 
-        public async Task<bool> EditMenuItem(MenuItem menuItem)
+        public async Task<bool> EditMenuItem(MenuItem menuItem)//done
         {
             var existingMenuItem = await context.MenuItems.FindAsync(menuItem.MenuItemId);
 
@@ -156,26 +113,44 @@ namespace FoodApp.Services
 
             return true; // Item edited successfully
         }
-
-
-        public void AdminDeleteOrder(AdminDeleteOrder request)
+        public void DeleteMenuItem(DeleteMenuItem request)//done
         {
-            // Find the order to delete
-            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == request.OrderId);
-
-            if (order == null)
+            var MenuItemToRemove = context.MenuItems.FirstOrDefault(p => p.MenuItemId == request.MenuItemId);
+            if (MenuItemToRemove == null)
             {
-                throw new InvalidOperationException("Order Not Found");
+                throw new InvalidOperationException("Item not Found");
             }
             else
             {
-                context.OrderSummaries.Remove(order);
+                context.MenuItems.Remove(MenuItemToRemove);
                 context.SaveChanges();
             }
         }
 
-      
-        public async Task<bool> EditOrderAsync(OrderUpdateModel updateModel)
+        public async Task<bool> AddOrderAsync(OrderSummary order)//done
+        {
+            try
+            {
+                context.OrderSummaries.Add(order);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Handle exception, log error, etc.
+                throw new Exception("An error occurred while adding the order.", ex);
+            }
+        }
+        //===============================================================================
+        public void AddOrderSummary(OrderSummary orderSummary)//done
+        {
+            // Add an order summary to the log
+            context.OrderSummaries.Add(orderSummary);
+        }
+        //================================================================================
+
+       
+        public async Task<bool> EditOrderAsync(OrderUpdateModel updateModel)//done
         {
             try
             {
@@ -212,23 +187,126 @@ namespace FoodApp.Services
             }
         }
 
-        public void AssignDeliveryPerson(AssignDeliveryPerson req)
-        {
-            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == req.OrderId);
-            var deliveryPerson = context.DeliveryPersons.FirstOrDefault(dp => dp.UserID == req.DeliveryPersonId);
+       
+        
+        
 
-            if (order != null && deliveryPerson != null)
+       
+
+
+        public void AdminDeleteOrder(AdminDeleteOrder request)//done
+        {
+            // Find the order to delete
+            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == request.OrderId);
+
+            if (order == null)
             {
-                order.DeliveryPerson = deliveryPerson;
-                context.SaveChanges();
+                throw new InvalidOperationException("Order Not Found");
             }
             else
             {
-                throw new Exception("Order or delivery person not found.");
+                context.OrderSummaries.Remove(order);
+                context.SaveChanges();
+            }
+        }
+        public async Task<bool> AddUserAsync(AllUser allUser)//done
+        {
+            try
+            {
+                // Logic to save the user to the database based on RoleType
+                switch (allUser.RoleType)
+                {
+                    case RoleType.Admin:
+                        var admin = new Admin
+                        {
+                            Name = allUser.Name,
+                            Email = allUser.Email,
+                            Password = allUser.Password,
+                            RoleType = allUser.RoleType,
+                            ProfileImage = allUser.ProfileImage
+
+                        };
+                        context.Add(admin);
+                        break;
+
+                    case RoleType.Customer:
+                        var customer = new Customer
+                        {
+                            Name = allUser.Name,
+                            Email = allUser.Email,
+                            Password = allUser.Password,
+                            Address = allUser.Address,
+                            Phone = allUser.Phone,
+                            RoleType = allUser.RoleType,
+                            ProfileImage = allUser.ProfileImage
+
+
+                        };
+                        context.Add(customer);
+                        break;
+
+                    case RoleType.DeliveryPerson:
+                        var deliveryPerson = new DeliveryPerson
+                        {
+                            Name = allUser.Name,
+                            Email = allUser.Email,
+                            Password = allUser.Password,
+                            RoleType = allUser.RoleType,
+                            Phone = allUser.Phone,
+                            ProfileImage = allUser.ProfileImage
+
+                        };
+                        context.Add(deliveryPerson);
+                        break;
+
+                    default:
+                        return false; // Unsupported role type
+                }
+
+                await context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                // Log the exception or handle it as required
+                return false;
             }
         }
 
-        public void ConfirmOrder(int cartId)
+
+        public async Task<bool> EditUserDetailsAsync(EditUser req)//done
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.UserID == req.UserId);
+            if (user == null)
+            {
+                // User not found
+                return false;
+            }
+
+            // Update user details
+            user.Name = req.NewName;
+            user.Email = req.NewEmailAddress;
+
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteUserAsync(AdminDeleteUser adminDeleteUser)//done
+        {
+            var user = await context.Users.FirstOrDefaultAsync(u => u.UserID == adminDeleteUser.UserId);
+            if (user == null)
+            {
+                // User not found
+                return false;
+            }
+
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
+
+            return true;
+        }
+        public void ConfirmOrder(int cartId)//done
         {
             var cart = context.Carts.Include(c => c.Customers).Include(c => c.CartItemList).FirstOrDefault(c => c.CartId == cartId);
 
@@ -256,103 +334,36 @@ namespace FoodApp.Services
             }
         }
 
-        public async Task<bool> AddUserAsync(AllUser allUser)
+        public void AssignDeliveryPerson(AssignDeliveryPerson req)
         {
-            try
+            var order = context.OrderSummaries.FirstOrDefault(o => o.OrderId == req.OrderId);
+            var deliveryPerson = context.DeliveryPersons.FirstOrDefault(dp => dp.UserID == req.DeliveryPersonId);
+
+            if (order != null && deliveryPerson != null)
             {
-                // Logic to save the user to the database based on RoleType
-                switch (allUser.RoleType)
-                {
-                    case RoleType.Admin:
-                        var admin = new Admin
-                        {
-                            Name = allUser.Name,
-                            Email = allUser.Email,
-                            Password = allUser.Password,
-                            RoleType = allUser.RoleType,
-                            ProfileImage= allUser.ProfileImage
-                           
-                        };
-                        context.Add(admin);
-                        break;
-
-                    case RoleType.Customer:
-                        var customer = new Customer
-                        {
-                            Name = allUser.Name,
-                            Email = allUser.Email,
-                            Password = allUser.Password,
-                            Address = allUser.Address,
-                            Phone = allUser.Phone,
-                            RoleType = allUser.RoleType,
-                            ProfileImage= allUser.ProfileImage
-                         
-                            
-                        };
-                       context.Add(customer);
-                        break;
-
-                    case RoleType.DeliveryPerson:
-                        var deliveryPerson = new DeliveryPerson
-                        {
-                            Name = allUser.Name,
-                            Email = allUser.Email,
-                            Password = allUser.Password,
-                            RoleType = allUser.RoleType,
-                            Phone = allUser.Phone,
-                            ProfileImage= allUser.ProfileImage
-                            
-                        };
-                        context.Add(deliveryPerson);
-                        break;
-
-                    default:
-                        return false; // Unsupported role type
-                }
-
-                await context.SaveChangesAsync();
-                return true;
+                order.DeliveryPerson = deliveryPerson;
+                context.SaveChanges();
             }
-            catch (Exception)
+            else
             {
-                // Log the exception or handle it as required
-                return false;
+                throw new Exception("Order or delivery person not found.");
             }
         }
-        
 
-        public async Task<bool> EditUserDetailsAsync(AccessOrder req)
+        public List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries)
         {
-            var user = await context.Users.FirstOrDefaultAsync(u => u.UserID == req.UserId);
-            if (user == null)
+            // Retrieve order summaries associated with the given admin username
+            var adminOrderSummaries = new List<OrderSummary>();
+            foreach (var summary in OrderSummaries)
             {
-                // User not found
-                return false;
+                adminOrderSummaries.Add(summary);
             }
-
-            // Update user details
-            user.Name = req.NewName;
-            user.Email = req.NewEmailAddress;
-
-            await context.SaveChangesAsync();
-
-            return true;
+            return adminOrderSummaries;
         }
 
-        //public async Task<bool> DeleteUserAsync(AdminDeleteUser adminDeleteUser)
-        //{
-        //    var user = await context.Users.FirstOrDefault(u => u.UserID == adminDeleteUser.UserId);
-        //    if (user == null)
-        //    {
-        //        // User not found
-        //        return false;
-        //    }
 
-        //    context.Users.Remove(user);
-        //    await context.SaveChangesAsync();
 
-        //    return true;
-        //}
+
 
 
 
