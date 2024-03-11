@@ -1,15 +1,19 @@
-<div class="bg-orange-200 py-32 min-h-screen">
-    <div class="flex justify-center mb-4 pb-24">
-        <nav class="space-x-4 py-2 font-bold">
-          <a (click)="selectCategory('all')" [class.bg-white]="selectedCategory === 'all'" class="px-4 py-2 cursor-pointer">All</a>
-          <a (click)="selectCategory('pizza')" [class.bg-white]="selectedCategory === 'pizza'" class="px-4 py-2 cursor-pointer">Pizza</a>
-          <a (click)="selectCategory('dessert')" [class.bg-white]="selectedCategory === 'dessert'" class="px-4 py-2 cursor-pointer">Dessert</a>
-          <a (click)="selectCategory('sides')" [class.bg-white]="selectedCategory === 'sides'" class="px-4 py-2 cursor-pointer">Sides</a>
-          <a (click)="selectCategory('salad')" [class.bg-white]="selectedCategory === 'salad'" class="px-4 py-2 cursor-pointer">Salad</a>
-          <a (click)="selectCategory('beverages')" [class.bg-white]="selectedCategory === 'beverages'" class="px-4 py-2 cursor-pointer">Beverages</a>
-          <a (click)="selectCategory('pasta')" [class.bg-white]="selectedCategory === 'pasta'" class="px-4 py-2 cursor-pointer">Pasta</a>
+<div class="bg-slate-700 pt-24 pb-2">
+    <div class="flex justify-center mb-4 pb-2">
+        <nav class="space-x-4 py-2 font-bold text-white">
+          <a (click)="selectCategory('all')" [class.text-orange-600]="selectedCategory === 'all'" class="px-4 py-2 cursor-pointer">All</a>
+          <a (click)="selectCategory('pizza')" [class.text-orange-600]="selectedCategory === 'pizza'" class="px-4 py-2 cursor-pointer">Pizza</a>
+          <a (click)="selectCategory('dessert')" [class.text-orange-600]="selectedCategory === 'dessert'" class="px-4 py-2 cursor-pointer">Dessert</a>
+          <a (click)="selectCategory('sides')" [class.text-orange-600]="selectedCategory === 'sides'" class="px-4 py-2 cursor-pointer">Sides</a>
+          <a (click)="selectCategory('salad')" [class.text-orange-600]="selectedCategory === 'salad'" class="px-4 py-2 cursor-pointer">Salad</a>
+          <a (click)="selectCategory('beverages')" [class.text-orange-600]="selectedCategory === 'beverages'" class="px-4 py-2 cursor-pointer">Beverages</a>
+          <a (click)="selectCategory('pasta')" [class.text-orange-600]="selectedCategory === 'pasta'" class="px-4 py-2 cursor-pointer">Pasta</a>
         </nav>
       </div>
+</div>
+
+<div class="bg-white pt-5 min-h-screen">
+    
     <div class="container mx-auto px-4">  
         <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
 

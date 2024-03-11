@@ -6,18 +6,22 @@ import { CommonModule } from '@angular/common';
 import { SignUpComponent } from './src/app/sign-up/sign-up.component';
 import { LoginComponent } from './src/app/login/login.component';
 import { MenuComponent } from './src/app/menu/menu.component';
+import { CartComponent } from './src/app/cart/cart.component';
+import { RouterModule } from '@angular/router';
+import { CartService } from './src/app/services/cart.service';
 
  
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpComponent,LoginComponent,MenuComponent
+    SignUpComponent,LoginComponent,MenuComponent,CartComponent
   ],
   imports: [
     FormsModule ,
-    ReactiveFormsModule,CommonModule
+    ReactiveFormsModule,CommonModule,RouterModule
   ],
-  providers: [],
+  exports:[RouterModule],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

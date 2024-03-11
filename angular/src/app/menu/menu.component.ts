@@ -5,6 +5,7 @@ import { MenuitemDetailsComponent } from '../menuitem-details/menuitem-details.c
 import { CartItem } from '../interface/cart-item.interface';
 import { CartService } from '../services/cart.service';
 import { MenuItem } from '../interface/menu-item.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -207,11 +208,11 @@ export class MenuComponent {
   showPopup: boolean = false;
   selectedMenuItem: any;
   selectedToppings: { [key: string]: boolean } = {};
-  cartService: any;
+ 
   // selectedItem:any;
   // isPopupOpen: boolean = false;
 
-  constructor() {
+  constructor(private cartService:CartService, private router: Router) {
     this.filteredMenuItems = this.menuItem;
   }
 
@@ -234,10 +235,11 @@ export class MenuComponent {
     // console.log(this.selectedToppings);
     this.showPopup = false;
   }
-  addToCart(menuItem:MenuItem): void {
-    this.cartService.addItemToCart(menuItem);
-    console.log(this.menuItem);
+  addToCart(menuItem: any):void {
+    this.cartService.addToCart(menuItem);
+   // console.log(this.cartService.getCartItems());
+    this.router.navigate(['/cart']);
+    alert("Added to Cart");
   }
-
 
 }
