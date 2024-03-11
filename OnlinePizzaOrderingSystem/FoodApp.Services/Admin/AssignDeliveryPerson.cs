@@ -8,7 +8,7 @@ namespace FoodApp.Services
 {
     public class AssignDeliveryPerson
     {
-       public int orderId {  get; set; }
-        public int deliveryPersonId {  get; set; }
+       public int OrderId {  get; set; }
+        public int DeliveryPersonId {  get; set; }
     }
 }

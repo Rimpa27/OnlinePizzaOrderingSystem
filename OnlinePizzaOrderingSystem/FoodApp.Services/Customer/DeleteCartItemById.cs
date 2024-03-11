@@ -8,7 +8,7 @@ namespace FoodApp.Services
 {
     public class DeleteCartItemById
     {
-        public int cartItemId { get; set; }
-        public int cartId { get; set; }
+        public int CartItemId { get; set; }
+        public int CartId { get; set; }
     }
 }

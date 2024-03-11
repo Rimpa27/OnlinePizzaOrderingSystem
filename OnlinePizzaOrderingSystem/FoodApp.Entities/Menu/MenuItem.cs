@@ -28,14 +28,12 @@ namespace FoodApp.Entities
 
         [Required(ErrorMessage = "Calories are required")]
         [Range(0, 5000, ErrorMessage = "Calories must be between 0 and 5000")]
-        public int calories { get; set; }
+        public int Calories { get; set; }
 
         [Required(ErrorMessage = "Availability status is required")]
         public bool IsAvailable { get; set; } = false;
 
-        [Required(ErrorMessage = "Image is required")]
-        [DataType(DataType.Url)]
-        public string ImageUrl { get; set; }
+        
 
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]

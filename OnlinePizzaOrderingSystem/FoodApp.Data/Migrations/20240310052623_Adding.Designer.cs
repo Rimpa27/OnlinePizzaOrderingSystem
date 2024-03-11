@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodApp.Data.Migrations
 {
     [DbContext(typeof(PizzaOrderingAppContext))]
-    [Migration("20240308100154_Add")]
-    partial class Add
+    [Migration("20240310052623_Adding")]
+    partial class Adding
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,6 +195,12 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
 
+                    b.Property<decimal>("CartItemPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CartItemQuantity")
+                        .HasColumnType("int");
+
                     b.Property<int>("MenuItemId")
                         .HasColumnType("int");
 
@@ -247,7 +253,7 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<int>("CustomerUserID")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("DeliveryDetailsDeliveryId")
@@ -271,7 +277,7 @@ namespace FoodApp.Data.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("CustomerUserID");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("DeliveryDetailsDeliveryId");
 
@@ -413,7 +419,7 @@ namespace FoodApp.Data.Migrations
                 {
                     b.HasOne("FoodApp.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerUserID")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

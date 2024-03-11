@@ -9,7 +9,7 @@ namespace FoodApp.Entities
     public enum ToppingType
     {
        
-        Pepperoni,
+        Pepperoni=1,
         Mushrooms,
         Onions,
         Sausage,

@@ -2,6 +2,7 @@
 using System.Text;
 using FoodApp.Data;
 using FoodApp.Services;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -17,6 +18,7 @@ namespace OnlinePizzaOrderingwebApp
 
             builder.Services.AddScoped<IAdminAccessServices,AdminAccessService>();
             builder.Services.AddScoped<ICustomerAccessService, CustomerAccessService>();
+          
             // Add services to the container.
             builder.Services.AddDbContext<PizzaOrderingAppContext>
     (Options => Options.UseSqlServer
@@ -64,11 +66,14 @@ namespace OnlinePizzaOrderingwebApp
                     )
                 };
             });
-
+            builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 1024 * 1024 * 1024
+                );
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+           
+
 
             var app = builder.Build();
 
@@ -88,3 +93,4 @@ namespace OnlinePizzaOrderingwebApp
         }
     }
 }
+

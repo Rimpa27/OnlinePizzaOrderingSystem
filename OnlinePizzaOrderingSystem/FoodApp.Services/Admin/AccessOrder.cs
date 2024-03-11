@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace FoodApp.Services
 {
-    public class AccessOrder
+    public class EditUser
     {
-        public int userId { get; set; }
-        public string newName { get; set; }
-        public string newEmailAddress { get; set; }
+        public int UserId { get; set; }
+        public string NewName { get; set; }
+        public string NewEmailAddress { get; set; }
     }
 }

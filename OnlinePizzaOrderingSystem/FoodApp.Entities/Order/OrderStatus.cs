@@ -8,10 +8,9 @@ namespace FoodApp.Entities
 {
     public enum OrderStatus
     {
-        //Created = 1,
-        //PaymentPending,
-        //PaymentCompleted,
+        
         PaymentFailed =1,
+        Pending,
         ConfirmOrder,
         InProgress,
         OutForDelivery,

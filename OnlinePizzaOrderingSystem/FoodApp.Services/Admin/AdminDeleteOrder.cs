@@ -8,6 +8,6 @@ namespace FoodApp.Services
 {
     public class AdminDeleteOrder
     {
-        public int orderId { get; set; }
+        public int OrderId { get; set; }
     }
 }

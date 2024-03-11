@@ -24,13 +24,15 @@ namespace FoodApp.Services
         void DeleteMenuItem(DeleteMenuItem request);
 
         Task<bool> EditMenuItem(MenuItem menuItem);
+        List<User> GetAllUsers();
+        List<OrderSummary> GetAllOrders();
 
         //Task AddUserAsync(User newUser);
         Task<bool> AddUserAsync(AllUser allUser);
 
         //Task<bool> DeleteUserAsync(AdminDeleteUser deleteUser);
-
-        Task<bool> EditUserDetailsAsync(AccessOrder req);
+        Task<bool> EditUserDetailsAsync(EditUser req);
+        Task<bool> DeleteUserAsync(AdminDeleteUser adminDeleteUser);
 
         Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
 

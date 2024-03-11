@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodApp.Data.Migrations
 {
     [DbContext(typeof(PizzaOrderingAppContext))]
-    [Migration("20240308092109_Added")]
-    partial class Added
+    [Migration("20240311055139_removed")]
+    partial class removed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,7 +79,7 @@ namespace FoodApp.Data.Migrations
                     b.Property<int>("CustomersUserID")
                         .HasColumnType("int");
 
-                    b.Property<int>("DeliveryDetailsDeliveryId")
+                    b.Property<int?>("DeliveryDetailsDeliveryId")
                         .HasColumnType("int");
 
                     b.HasKey("CartId");
@@ -147,10 +147,6 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuItemId"));
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
@@ -194,6 +190,12 @@ namespace FoodApp.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemId"));
+
+                    b.Property<decimal>("CartItemPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CartItemQuantity")
+                        .HasColumnType("int");
 
                     b.Property<int>("MenuItemId")
                         .HasColumnType("int");
@@ -247,7 +249,7 @@ namespace FoodApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<int>("CustomerUserID")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<int>("DeliveryDetailsDeliveryId")
@@ -271,7 +273,7 @@ namespace FoodApp.Data.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("CustomerUserID");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("DeliveryDetailsDeliveryId");
 
@@ -372,9 +374,7 @@ namespace FoodApp.Data.Migrations
 
                     b.HasOne("FoodApp.Entities.DeliveryDetails", "DeliveryDetails")
                         .WithMany()
-                        .HasForeignKey("DeliveryDetailsDeliveryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DeliveryDetailsDeliveryId");
 
                     b.Navigation("Customers");
 
@@ -415,7 +415,7 @@ namespace FoodApp.Data.Migrations
                 {
                     b.HasOne("FoodApp.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerUserID")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

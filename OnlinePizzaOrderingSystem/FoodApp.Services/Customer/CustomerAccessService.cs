@@ -107,48 +107,49 @@ using Microsoft.EntityFrameworkCore;
                
                         }
                     }
-        
 
 
-                    public OrderStatus GetOrderStatusByOrderID(int orderId)
-                    {
-                        var orderSummary = context.OrderSummaries.FirstOrDefault(o => o.OrderId == orderId);
 
-                        if (orderSummary != null)
-                        {
-                            return orderSummary.OrderStatus;
-                        }
-                        else
-                        {
-                            // If the order summary does not exist, throw a new exception
-                            throw new Exception($"Order with ID {orderId} not exist.");
-                        }
+        public OrderStatus GetOrderStatusByOrderID(int orderId)
+        {
+            var orderSummary = context.OrderSummaries.FirstOrDefault(o => o.OrderId == orderId);
 
-                    }
-                    public async Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request)//cdone
+            if (orderSummary != null)
+            {
+                return orderSummary.OrderStatus;
+            }
+            else
+            {
+                // If the order summary does not exist, throw a new exception
+                throw new Exception($"Order with ID {orderId} not exist.");
+            }
+
+        }
+
+        public async Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request)//cdone
                     {
                         try
                         {
-                            var cart = await context.Carts.Include(c => c.CartItemList).ThenInclude( d=> d.MenuItem).FirstOrDefaultAsync(c => c.CartId == request.cartId);
-                            var menuItem = await context.MenuItems.FindAsync(request.menuItemId);
+                            var cart = await context.Carts.Include(c => c.CartItemList).ThenInclude( d=> d.MenuItem).FirstOrDefaultAsync(c => c.CartId == request.CartId);
+                            var menuItem = await context.MenuItems.FindAsync(request.MenuItemId);
 
                             if (cart == null || menuItem == null)
                             {
                                 throw new Exception("Cart or MenuItem not found.");
                             }
 
-                            var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.MenuItem.MenuItemId == request.menuItemId);
+                            var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.MenuItem.MenuItemId == request.MenuItemId);
 
                             if (cartItem != null)
                             {
-                                cartItem.CartItemQuantity += request.quantity;
+                                cartItem.CartItemQuantity += request.Quantity;
                             }
                             else
                             {
                                 cart.CartItemList.Add(new CartItem
                                 {
-                                    CartItemQuantity = request.quantity,
-                                    CartItemPrice = menuItem.Price * request.quantity,
+                                    CartItemQuantity = request.Quantity,
+                                    CartItemPrice = menuItem.Price * request.Quantity,
                                     MenuItem = menuItem
                                 });
                             }
@@ -170,14 +171,14 @@ using Microsoft.EntityFrameworkCore;
             {
                 var cart = await context.Carts
                                 .Include(c => c.CartItemList)
-                                .FirstOrDefaultAsync(c => c.CartId == req.cartId);
+                                .FirstOrDefaultAsync(c => c.CartId == req.CartId);
 
                 if (cart == null)
                 {
                     throw new NotFoundException("Cart not found.");
                 }
 
-                var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.CartItemId == req.cartItemId);
+                var cartItem = cart.CartItemList.FirstOrDefault(ci => ci.CartItemId == req.CartItemId);
 
                 if (cartItem == null)
                 {
@@ -236,7 +237,7 @@ using Microsoft.EntityFrameworkCore;
         public void CustomizePizza(CustomizedPizza cp)
             {
                 var cartItem = context.CartItems
-                    .FirstOrDefault(ci => ci.CartItemId == cp.cartItemId);
+                    .FirstOrDefault(ci => ci.CartItemId == cp.CartItemId);
 
                 if (cartItem == null)
                 {
@@ -251,67 +252,43 @@ using Microsoft.EntityFrameworkCore;
             }
 
 
-        //public void CreateOrder(int cartId)
-        //{
-        //    // Get the cart with the specified ID
-        //    var cart = context.Carts
-        //        .FirstOrDefault(c => c.CartId == cartId);
+      
 
-        //    if (cart == null)
-        //    {
-        //        throw new ArgumentException("Cart not found.");
-        //    }
-
-        //    // Create a new order
-        //    var order = new OrderSummary
-        //    {
-        //        OrderId = cartId,
-
-
-        //        OrderDate = DateTime.Now // Assuming current date and time for the order date
-        //    };
-
-        //    // Add the order to the database
-        //    context.OrderSummaries.Add(order);
-        //    context.SaveChanges();
-        //}
-
-        public async Task CreateOrderForCustomerAsync(CreateOrderForCustomer req)
+        public async Task<OrderSummary> CreateOrderAsync(CreateOrderForCustomer req)
         {
-            try
+            var customer = await context.Customers.FindAsync(req.CustomerId);
+            var cart = await context.Carts.FindAsync(req.CartId);
+
+            if (customer == null)
+                throw new CustomerNotFoundException("Customer not found");
+
+            if (cart == null)
+                throw new CartNotFoundException("Cart not found");
+
+            var order = new OrderSummary
             {
-                // Get the customer with the specified ID
-                var customer = await context.Customers.FindAsync(req.customerId);
-                if (customer == null)
-                {
-                    throw new ArgumentException("Customer not found.");
-                }
+                OrderDate = DateTime.Now,
+                OrderStatus = OrderStatus.Pending,
+                OrderTotal = cart.TotalPrice,
+                Customer = customer,
+                //Cart = cart
+            };
 
-                // Get the cart with the specified ID
-                var cart = await context.Carts.FindAsync(req.cartId);
-                if (cart == null)
+            foreach (var cartItem in cart.CartItemList)
+            {
+                var orderItem = new OrderItem
                 {
-                    throw new ArgumentException("Cart not found.");
-                }
-
-                // Create a new order
-                var order = new OrderSummary
-                {
-                    CustomerId = req.customerId,
-                    CartId = req.cartId,
-                    OrderDate = DateTime.Now // Assuming current date and time for the order date
-                                             // You may want to add more properties to the order based on your requirements
+                    MenuItem = cartItem.MenuItem,
+                    CartItemPrice = cartItem.CartItemPrice,
+                    CartItemQuantity = cartItem.CartItemQuantity
                 };
+                order.OrderItems.Add(orderItem);
+            }
 
-                // Add the order to the database
-                context.OrderSummaries.Add(order);
-                await context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                // Log the exception, etc.
-                throw new Exception("An error occurred while creating the order.", ex);
-            }
+            context.OrderSummaries.Add(order);
+            await context.SaveChangesAsync();
+
+            return order;
         }
 
 
