@@ -1,0 +1,62 @@
+<!-- menu-item-popup.component.html -->
+<div class="fixed inset-0  overflow-y-auto flex justify-center items-center bg-gray-900 bg-opacity-50 pt-20">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-h-full overflow-y-auto">
+        
+      <div class="bg-gray-100 dark:bg-gray-800 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row -mx-4">
+                <div class="md:flex-1 px-4">
+                    <div class="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
+                        <img class="w-full h-full object-cover" [src]="menuItem.image" alt="{{ menuItem.name }}">
+                    </div>
+                </div>
+                <div class="md:flex-1 px-4">
+                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">{{ menuItem.name }}</h2>
+                    
+                    <div class="flex mb-4">
+                        <div class="mr-4">
+                            <span class="font-bold text-gray-700 dark:text-gray-300">Price: </span>
+                            <span class="text-gray-600 dark:text-gray-300">&#8377;{{ menuItem.price }}</span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <span class="px-2 py-1 rounded bg-green-200 text-green-800" *ngIf="menuItem.veg">Veg</span>
+                        <span class="px-2 py-1 rounded bg-red-200 text-red-800" *ngIf="!menuItem.veg">Non-Veg</span>
+                    </div>
+                    
+
+                    <div *ngIf="menuItem.toppings && menuItem.toppings.length > 0" class="mb-4">
+                        <h3 class="text-lg font-semibold mb-1 text-gray-300">Choose Toppings:</h3>
+                        <div *ngFor="let topping of menuItem.toppings">
+                          <input type="checkbox" id="{{ topping}}" name="{{topping}}" [(ngModel)]="topping.selected">
+                          <label for="{{topping}}" class="text-gray-300 px-1">{{topping}}</label><br>
+                        </div>
+                      </div>
+
+                    
+                    <div class="mb-4">
+                        <span class="font-bold text-gray-700 dark:text-gray-300 ">Description:</span>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">
+                            {{ menuItem.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:flex-1 px-4 mb-4">
+                <div class="flex -mx-2 mb-4">
+                    <div class="w-1/2 px-2">
+                        <button  class="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Add to Cart</button>
+                    </div>
+                    <div class="w-1/2 px-2">
+                        <button class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600" (click)="close.emit()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      
+      </div>
+  </div>
+  

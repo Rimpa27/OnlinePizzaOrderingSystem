@@ -1,0 +1,53 @@
+/* To style the overlay background */
+.inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  /* To center the popup vertically and horizontally */
+  .flex {
+    display: flex;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  /* To style the popup container */
+  .bg-white {
+    background-color: #fff;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .p-8 {
+    padding: 2rem;
+  }
+  
+  /* To limit the maximum height of the popup */
+  .max-h-full {
+    max-height: 100%;
+  }
+  
+  /* To enable scrolling within the popup */
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
+  
+  /* To ensure the popup stays on top of other content */
+  .z-50 {
+    z-index: 2000; /* Adjust as needed */
+  }
+  
