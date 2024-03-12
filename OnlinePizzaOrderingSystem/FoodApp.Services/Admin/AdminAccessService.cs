@@ -127,65 +127,83 @@ namespace FoodApp.Services
             }
         }
 
-        public async Task<bool> AddOrderAsync(OrderSummary order)//done
-        {
-            try
-            {
-                context.OrderSummaries.Add(order);
-                await context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // Handle exception, log error, etc.
-                throw new Exception("An error occurred while adding the order.", ex);
-            }
-        }
-        //===============================================================================
-        public void AddOrderSummary(OrderSummary orderSummary)//done
-        {
-            // Add an order summary to the log
-            context.OrderSummaries.Add(orderSummary);
-        }
-        //================================================================================
+        //public async Task<bool> AddOrderAsync(int cartId, int userId)
+        //{
+        //    try
+        //    {
+        //        var cart = await context.Carts
+        //            .Include(c => c.Users)
+        //            .Include(c => c.CartItemList)
+        //            .FirstOrDefaultAsync(c => c.CartId == cartId);
 
-       
-        public async Task<bool> EditOrderAsync(OrderUpdateModel updateModel)//done
-        {
-            try
-            {
-                var existingOrder = await context.OrderSummaries
-                    .Include(o => o.OrderItems)
-                    .FirstOrDefaultAsync(o => o.OrderId == updateModel.OrderId);
+        //        var user = await context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
 
-                if (existingOrder == null)
-                {
-                    throw new Exception("Order not found.");
-                }
+        //        if (cart == null || user == null)
+        //        {
+        //            // Cart or user not found
+        //            return false;
+        //        }
 
-                // Update order properties
-                existingOrder.OrderDate = updateModel.OrderDate;
-                existingOrder.OrderStatus = updateModel.OrderStatus;
-                existingOrder.OrderTotal = updateModel.OrderTotal;
+        //        var orderSummary = new OrderSummary
+        //        {
+        //            OrderDate = DateTime.Now,
+        //            OrderStatus = OrderStatus.Pending, //  OrderStatus is an enum
+        //            OrderTotal = cart.TotalPrice,
+        //            Customer = (Customer)user, //  Customer inherits from User
+        //            OrderItems = cart.CartItemList.Select(ci => new OrderItem
+        //            {
+        //                // Populate OrderItem properties based on the cart item details
+        //            }).ToList()
+        //        };
 
-                // Update related entities (e.g., customer, payment, order items)
+        //        context.OrderSummaries.Add(orderSummary);
+        //        await context.SaveChangesAsync();
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exception, log error, etc.
+        //        throw new Exception("An error occurred while adding the order.", ex);
+        //    }
+        //}
 
-                // Update customer
-                existingOrder.Customer = updateModel.Customer;
 
-                // Update payment
-                existingOrder.Payment = updateModel.Payment;
+        //public async Task<bool> EditOrderAsync(OrderUpdateModel updateModel)//done
+        //{
+        //    try
+        //    {
+        //        var existingOrder = await context.OrderSummaries
+        //            .Include(o => o.OrderItems)
+        //            .FirstOrDefaultAsync(o => o.OrderId == updateModel.OrderId);
 
-                // Save changes to the database
-                await context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                // Handle exception, log error, etc.
-                throw new Exception("An error occurred while editing the order.", ex);
-            }
-        }
+        //        if (existingOrder == null)
+        //        {
+        //            throw new Exception("Order not found.");
+        //        }
+
+        //        // Update order properties
+        //        existingOrder.OrderDate = updateModel.OrderDate;
+        //        existingOrder.OrderStatus = updateModel.OrderStatus;
+        //        existingOrder.OrderTotal = updateModel.OrderTotal;
+
+        //        // Update related entities (e.g., customer, payment, order items)
+
+        //        // Update customer
+        //        existingOrder.Customer = updateModel.Customer;
+
+        //        // Update payment
+        //        existingOrder.Payment = updateModel.Payment;
+
+        //        // Save changes to the database
+        //        await context.SaveChangesAsync();
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle exception, log error, etc.
+        //        throw new Exception("An error occurred while editing the order.", ex);
+        //    }
+        //}
 
        
         
@@ -306,26 +324,15 @@ namespace FoodApp.Services
 
             return true;
         }
-        public void ConfirmOrder(int cartId)//done
+        public void ConfirmOrder(int orderid)//done
         {
-            var cart = context.Carts.Include(c => c.Customers).Include(c => c.CartItemList).FirstOrDefault(c => c.CartId == cartId);
+            var order = context.OrderSummaries.FirstOrDefault(c => c.OrderId == orderid);
 
-            if (cart != null)
+            if (order != null)
             {
-                var orderSummary = new OrderSummary
-                {
-                    // Populate OrderSummary properties based on the cart and customer details
-                    OrderDate = DateTime.Now,
-                    OrderStatus = OrderStatus.ConfirmOrder, // Assuming OrderStatus is an enum with Confirmed, Failed, etc.
-                    OrderTotal = cart.TotalPrice,
-                    Customer = cart.Customers,
-                    OrderItems = cart.CartItemList.Select(ci => new OrderItem
-                    {
-                        // Populate OrderItem properties based on the cart item details
-                    }).ToList()
-                };
+                order.OrderStatus = OrderStatus.ConfirmOrder;
 
-                context.OrderSummaries.Add(orderSummary);
+                context.OrderSummaries.Update(order);
                 context.SaveChanges();
             }
             else

@@ -15,7 +15,7 @@ namespace FoodApp.Services
         Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request);
 
         Task<DeliveryDetails?> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req);
-        void CustomizePizza(CustomizedPizza cp);
+        //void CustomizePizza(CustomizedPizza cp);
 
         /// <summary>
         /// Signup Request for a new user
