@@ -17,6 +17,6 @@ namespace FoodApp.Services
 
         public long Phone {  get; set; }
 
-       public Address City {  get; set; }   
+      // public Address City {  get; set; }   
     }
 }

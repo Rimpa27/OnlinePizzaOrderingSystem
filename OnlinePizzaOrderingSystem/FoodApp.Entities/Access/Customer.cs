@@ -16,7 +16,7 @@ namespace FoodApp.Entities
 
         [Required(ErrorMessage = "Address is required")]
         [MaxLength(200, ErrorMessage = "address cannot be longer than 200 characters")]
-        public Address Address { get; set; }
+        public Address? Address { get; set; }
 
         [Required]
         [RegularExpression("^[0-9]{10}$")]
