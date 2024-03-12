@@ -23,7 +23,7 @@ namespace FoodApp.Entities
         public DateTime OrderDate { get; set; }
 
         [Required(ErrorMessage = "Order status is required")]
-        [StringLength(50, ErrorMessage = "Order status must be less than 50 characters")]
+        [StringLength(50, ErrorMessage  = "Order status must be less than 50 characters")]
         public OrderStatus OrderStatus { get; set; }
 
         [Required(ErrorMessage = "Order total is required")]
@@ -34,12 +34,12 @@ namespace FoodApp.Entities
         [JsonIgnore]
         public Customer Customer { get; set; }
 
-        public OrderPayment Payment { get; set; }
+        public OrderPayment? Payment { get; set; }
 
-        public List<OrderItem> OrderItems { get; set; }
-        public DeliveryDetails DeliveryDetails { get; set; }
+        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public DeliveryDetails? DeliveryDetails { get; set; }
         public int? DeliveryPersonId { get; set; }
-        public DeliveryPerson DeliveryPerson { get; set; }
+        public DeliveryPerson? DeliveryPerson { get; set; }
         
 
 

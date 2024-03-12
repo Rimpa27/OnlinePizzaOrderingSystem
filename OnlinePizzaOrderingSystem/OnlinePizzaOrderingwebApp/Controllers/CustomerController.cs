@@ -6,6 +6,7 @@ using System.Security.Claims;
 using OnlinePizzaOrderingwebApp.Services;
 using Microsoft.EntityFrameworkCore;
 using FoodApp.Entities;
+using Azure.Core;
 
 namespace OnlinePizzaOrderingwebApp.Controllers
 {
@@ -46,9 +47,7 @@ namespace OnlinePizzaOrderingwebApp.Controllers
         [HttpPost("CustomerLogin")]
 
         public IActionResult Post(SignInRequest request)
-
         {
-
             try
 
             {
@@ -70,8 +69,55 @@ namespace OnlinePizzaOrderingwebApp.Controllers
             }
 
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateOrderAsync(CreateOrderForCustomer req)
+        {
+            try
+            {
+                var order = await _customerAccessServices.CreateOrderAsync(req);
+                return Ok(order);
+            }
+            catch (CustomerNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (CartNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        //[HttpPost("CustomizePizza")]
+        //public async IActionResult CustomizePizza(CustomizedPizza cp)
+        //{
+        //    try
+        //    {
+        //        // Call the service method to customize the pizza
+        //        // Assuming CustomizePizza is a method in your service class
+        //        var result = _customerAccessServices.CustomizePizza(cp);
+        //        if (result)
+        //        {
+        //            return Ok("MenuItem added to cart successfully.");
+        //        }
+        //        else
+        //        {
+        //            return BadRequest("Failed to add MenuItem to cart.");
+        //        }
 
-
+        //    }
+        //    catch (ArgumentException ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception
+        //        return StatusCode(500, "An error occurred while customizing the pizza");
+        //    }
+        //}
 
 
         [HttpPost("AddMenuItemToCart")]
@@ -166,27 +212,7 @@ namespace OnlinePizzaOrderingwebApp.Controllers
         //}
 
 
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateOrderAsync(CreateOrderForCustomer req)
-        {
-            try
-            {
-                var order = await _customerAccessServices.CreateOrderAsync(req);
-                return Ok(order);
-            }
-            catch (CustomerNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (CartNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
+
         [HttpGet("OrderStatus/{orderId}")]
         public ActionResult<OrderStatus> GetOrderStatusByOrderId(int orderId)
         {
@@ -202,5 +228,8 @@ namespace OnlinePizzaOrderingwebApp.Controllers
         }
 
     }
+
+
+
 }
 

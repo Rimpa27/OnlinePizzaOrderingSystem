@@ -34,13 +34,13 @@ namespace FoodApp.Services
         Task<bool> EditUserDetailsAsync(EditUser req);
         Task<bool> DeleteUserAsync(AdminDeleteUser adminDeleteUser);
 
-        Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
+        //Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
 
         List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries);
  
         void AdminDeleteOrder(AdminDeleteOrder request);
 
-        Task<bool> AddOrderAsync(OrderSummary order);
+       // Task<bool> AddOrderAsync(OrderSummary order);
 
         void ConfirmOrder(int cartId);
 

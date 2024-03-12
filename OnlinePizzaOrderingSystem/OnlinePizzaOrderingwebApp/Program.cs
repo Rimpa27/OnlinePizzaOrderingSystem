@@ -16,9 +16,9 @@ namespace OnlinePizzaOrderingwebApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddScoped<IAdminAccessServices,AdminAccessService>();
+            builder.Services.AddScoped<IAdminAccessServices, AdminAccessService>();
             builder.Services.AddScoped<ICustomerAccessService, CustomerAccessService>();
-          
+
             // Add services to the container.
             builder.Services.AddDbContext<PizzaOrderingAppContext>
     (Options => Options.UseSqlServer
@@ -72,10 +72,19 @@ namespace OnlinePizzaOrderingwebApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-           
+
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .AllowAnyHeader());
+            });
 
 
             var app = builder.Build();
+            app.UseCors();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -85,7 +94,7 @@ namespace OnlinePizzaOrderingwebApp
             }
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
 
             app.MapControllers();
 
