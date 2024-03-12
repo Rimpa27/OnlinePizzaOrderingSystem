@@ -1,5 +1,65 @@
-<section class="pt-20" style="background-color: #9A616D; ">
-    <div class="container py-5 h-100">
+<section class="py-10" style="background-color: #9A616D;">
+  <div class="container py-10 h-auto">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="../../assets/login1.jpg" alt="login form" class="" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <span class="h1 fw-bold mb-0">Welcome to CheesyClicks!</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Login to your account</h5>
+
+                  <div class="form-group">
+                    <label class="form-label" for="Email">Email address</label>
+                    <input type="email" id="Email" formControlName="Email" placeholder="Email"
+                      class="appearance-none block w-full bg-[#f6e4e8] text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" />
+                    <div *ngIf="loginForm.get('Email')?.invalid && loginForm.get('Email')?.touched">
+                      <div *ngIf="loginForm.get('Email')?.errors?.['required']" class="text-red-500">Email is required</div>
+                      <div *ngIf="loginForm.get('Email')?.errors?.['email']" class="text-red-500">Invalid Email!</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="Password">Password</label>
+                    <input type="password" id="Password" formControlName="Password" placeholder="Password"
+                      class="appearance-none block w-full bg-[#f6e4e8] text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" />
+                    <div *ngIf="loginForm.get('Password')?.invalid && loginForm.get('Password')?.touched">
+                      <div *ngIf="loginForm.get('Password')?.errors?.['pattern']" class="text-red-500">
+                        Password must have Uppercase, lowercase, numbers and symbols</div>
+                      <div *ngIf="loginForm.get('Password')?.errors?.['required']" class="text-red-500">Password is required</div>
+                      <div *ngIf="loginForm.get('Password')?.errors?.['minlength']" class="text-red-500">Password must be at least 8 characters long.</div>
+                    </div>
+                  </div>
+
+                  <div class="pt-1 mb-4">
+                    <button type="submit" class="bg-gray-800 btn-lg btn-block text-white">Login</button>
+                  </div>
+
+                  <a class="small text-muted" href="#!">Forgot password?</a>
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/signup"
+                      style="color: #393f81;">Register here</a></p>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="py-20" style="background-color: #9A616D; ">
+    <div class="container py-10 h-auto ">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
           <div class="card" style="border-radius: 1rem;">
@@ -18,68 +78,66 @@
                       <span class="h1 fw-bold mb-0">Welcome to CheesyClicks!</span>
                     </div>
   
-                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Login to your account</h5>
   
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="email">Email address</label>
+                        <label class="form-label" for="Email">Email address</label>
                         <input
-                        type="email"
-                        id="email"
+                        type="Email"
+                        id="Email"
                         formControlName="email"
                         placeholder="Email"
                         class="appearance-none block w-full bg-[#f6e4e8] text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       />
                       <span
                         *ngIf="
-                          loginForm.get('email')?.invalid &&
-                          loginForm.get('email')?.touched
+                          loginForm.get('Email')?.invalid &&
+                          loginForm.get('Email')?.touched
                         "
                       >
                         <span
-                          *ngIf="loginForm.get('email')?.errors?.['required']"
+                          *ngIf="loginForm.get('Email')?.errors?.['required']"
                           class="text-red-500"
                           >Email is required</span
                         >
                         <span
-                          *ngIf="loginForm.get('email')?.errors?.['email']"
+                          *ngIf="loginForm.get('Email')?.errors?.['email']"
                           class="text-red-500"
                           >Invalid Email!</span
                         >
-                      </span>
-                     
-                      
+                      </span> 
                     </div>
   
                     <div class="form-outline mb-4">
-                        <label class="form-label" for="password">Password</label>
+                        <label class="form-label" for="Password">Password</label>
                         <input
-                        type="password"
-                        type="password"
-                        id="password"
-                        formControlName="password"
+                        type="Password"
+                        type="Password"
+                        id="Password"
+                        formControlName="Password"
                         placeholder="Password"
                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$"
                         class="appearance-none block w-full bg-[#f6e4e8] text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       />
                       <span
                         *ngIf="
-                          loginForm.get('password')?.invalid &&
-                          loginForm.get('password')?.touched
+                          loginForm.get('Password')?.invalid &&
+                          loginForm.get('Password')?.touched
                         "
                       >
                         <span
-                          *ngIf="loginForm.get('password')?.errors?.['pattern']"
+                          *ngIf="loginForm.get('Password')?.errors?.['pattern']"
                           class="text-red-500"
                         >
                           Password must have Uppercase, lowercase, numbers and symbols
                         </span>
                         <span
-                          *ngIf="loginForm.get('password')?.errors?.['required']"
+                          *ngIf="loginForm.get('Password')?.errors?.['required']"
                           class="text-red-500"
                           >Password is required</span
                         >
                         <span
-                          *ngIf="loginForm.get('password')?.errors?.['minlength']"
+                          *ngIf="loginForm.get('Password')?.errors?.['minlength']"
                           class="text-red-500"
                           >at least 8 characters long.</span
                         >
@@ -99,7 +157,6 @@
                         style="color: #393f81;">Register here</a></p>
                     
                   </form>
-  
                 </div>
               </div>
             </div>
@@ -107,4 +164,28 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
+<!-- 
+  <div class="login-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="Email">Email<font color="red"><b>*</b></font>:</label>
+        <input id="Email" type="Email" formControlName="Email" placeholder="Enter your email">
+        <div *ngIf="loginForm.get('Email')?.invalid && (loginForm.get('Email')?.dirty || loginForm.get('Email')?.touched)" class="error">
+          <div *ngIf="loginForm.get('Email')?.errors?.['required']">Email is required</div>
+          <div *ngIf="loginForm.get('Email')?.errors?.['Email']">Invalid email format</div>
+        </div>
+      </div>
+   
+      <div class="form-group">
+        <label for="Password">Password<font color="red"><b>*</b></font>:</label>
+        <input id="Password" type="Password" formControlName="Password" placeholder="Enter your password">
+        <div *ngIf="loginForm.get('Password')?.invalid && (loginForm.get('Password')?.dirty || loginForm.get('Password')?.touched)" class="error">
+          <div *ngIf="loginForm.get('Password')?.errors?.['required']">Password is required</div>
+        </div>
+      </div>
+   
+      <button type="submit">Login</button>
+    </form>
+  </div> -->

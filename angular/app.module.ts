@@ -9,6 +9,7 @@ import { MenuComponent } from './src/app/menu/menu.component';
 import { CartComponent } from './src/app/cart/cart.component';
 import { RouterModule } from '@angular/router';
 import { CartService } from './src/app/services/cart.service';
+import { HttpClientModule } from '@angular/common/http';
 
  
 @NgModule({
@@ -18,7 +19,7 @@ import { CartService } from './src/app/services/cart.service';
   ],
   imports: [
     FormsModule ,
-    ReactiveFormsModule,CommonModule,RouterModule
+    ReactiveFormsModule,CommonModule,RouterModule,HttpClientModule
   ],
   exports:[RouterModule],
   providers: [CartService],

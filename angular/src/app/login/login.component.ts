@@ -1,38 +1,43 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule,  } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
+import {  FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule, RouterOutlet,  } from '@angular/router';
+import { MenuComponent } from '../menu/menu.component';
+import { UserService } from '../services/user.service';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,CommonModule,ReactiveFormsModule],
+  imports: [FormsModule,CommonModule,RouterOutlet,MenuComponent,ReactiveFormsModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  constructor(private router: Router, private formBuilder:FormBuilder) { }
+export class LoginComponent  {
+  loginForm: FormGroup ;
+  constructor(private router: Router, private userService: UserService) {
+    this.loginForm = new FormGroup({
+      'Email': new FormControl('', [
+        Validators.required, 
+        Validators.email]),
+    'Password': new FormControl('',[ 
+      Validators.required
+    ])
+    });
+}
  
-  ngOnInit(): void {
-      this.loginForm = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      })
-  }
- 
-  // navigateDashboard() {
-  //   this.router.navigate(['/dashboard']); // Replace 'destination' with the route you want to navigate to
-  // }
-  onSubmit(): void {
+
+  onSubmit(){
     if (this.loginForm.valid) {
-      // Process signup logic here
-      console.log('Login form submitted:', this.loginForm.value);
+      console.log(this.loginForm.value);
+      this.userService.login(this.loginForm.value);
+ 
+     
      
     } else {
-      // Mark all form fields as touched to display validation errors
-      this.loginForm.markAllAsTouched();
+      // If form is invalid, do not proceed with submission
+      alert("Form is invalid. Please fill in all required fields.");
     }
   }
  
