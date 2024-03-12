@@ -90,34 +90,7 @@ namespace OnlinePizzaOrderingwebApp.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        //[HttpPost("CustomizePizza")]
-        //public async IActionResult CustomizePizza(CustomizedPizza cp)
-        //{
-        //    try
-        //    {
-        //        // Call the service method to customize the pizza
-        //        // Assuming CustomizePizza is a method in your service class
-        //        var result = _customerAccessServices.CustomizePizza(cp);
-        //        if (result)
-        //        {
-        //            return Ok("MenuItem added to cart successfully.");
-        //        }
-        //        else
-        //        {
-        //            return BadRequest("Failed to add MenuItem to cart.");
-        //        }
-
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log the exception
-        //        return StatusCode(500, "An error occurred while customizing the pizza");
-        //    }
-        //}
+        
 
 
         [HttpPost("AddMenuItemToCart")]
@@ -192,24 +165,7 @@ namespace OnlinePizzaOrderingwebApp.Controllers
             }
         }
 
-        //[HttpPost("create")]
-        //public async Task<IActionResult> CreateOrderForCustomerAsync(CreateOrderForCustomer req)
-        //{
-        //    try
-        //    {
-        //        await _customerAccessServices.CreateOrderForCustomerAsync(req);
-        //        return Ok("Order created successfully.");
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log the exception
-        //        return StatusCode(500, "An error occurred while processing the request.");
-        //    }
-        //}
+        
 
 
 

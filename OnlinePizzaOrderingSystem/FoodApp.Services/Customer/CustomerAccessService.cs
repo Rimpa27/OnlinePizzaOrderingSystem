@@ -38,8 +38,7 @@ namespace FoodApp.Services
             customer.Email = request.Email;
             customer.Password = request.Password;
             customer.Phone = request.Phone;
-            // customer.Address = new Address { request.City };
-            //customer.Address = request.City;
+            
             context.Customers.Add(customer);
 
             context.SaveChanges();
