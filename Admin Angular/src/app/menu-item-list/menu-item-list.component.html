@@ -1,0 +1,45 @@
+<!-- @if(employeeList && employeeList.length>0) -->
+
+    <div class="container">
+      <div class="sidebar">
+        <button (click)="toggleSidebar()" class="toggle-button"> <i class="fas fa-bars"></i> </button>
+        <app-sidebar *ngIf="sidebarOpen"></app-sidebar> 
+      </div>
+      <h1 class="form-header">Menu</h1>
+        <div align="right">
+          <button  routerLink="/addMenuItem" mat-raised-button color="primary">Add Item</button>
+        </div>
+        <div class="table-container"><table class="menu-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Food Type</th>
+                <th>Category</th>
+                <th>Calories</th>
+                <th>Preparation Time</th>
+                <th>IsAvailable</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let menuItem of menuItems">
+                <td>{{ menuItem.menuItemName }}</td>
+                <td>{{ menuItem.menuItemDescription }}</td>
+                <td>{{ menuItem.price }}</td>
+                <td>{{ menuItem.vegOrNonVeg}}</td>
+                <td>{{ menuItem.menuItemCategory }}</td>
+                <td>{{ menuItem.calories }}</td>
+                <td>{{ menuItem.preparationTime }}</td>
+                <td>{{ menuItem.isAvailable}}</td>
+                <td>
+                  <button *ngIf="menuItem.menuItemId !== undefined" (click)="editMenuItem(menuItem.menuItemId)" >Edit</button>
+                  <button *ngIf="menuItem.menuItemId !== undefined" (click)="deleteMenuItem(menuItem.menuItemId)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>        
+    </div>
+

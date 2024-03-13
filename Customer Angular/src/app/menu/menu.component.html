@@ -1,0 +1,99 @@
+<!-- <div class="bg-slate-700 pt-24 pb-2">
+    <div class="flex justify-center mb-4 pb-2">
+        <nav class="space-x-4 py-2 font-bold text-white">
+          <a (click)="selectCategory('all')" [class.text-orange-600]="selectedCategory === 'all'" class="px-4 py-2 cursor-pointer">All</a>
+          <a (click)="selectCategory('pizza')" [class.text-orange-600]="selectedCategory === 'pizza'" class="px-4 py-2 cursor-pointer">Pizza</a>
+          <a (click)="selectCategory('dessert')" [class.text-orange-600]="selectedCategory === 'dessert'" class="px-4 py-2 cursor-pointer">Dessert</a>
+          <a (click)="selectCategory('sides')" [class.text-orange-600]="selectedCategory === 'sides'" class="px-4 py-2 cursor-pointer">Sides</a>
+          <a (click)="selectCategory('salad')" [class.text-orange-600]="selectedCategory === 'salad'" class="px-4 py-2 cursor-pointer">Salad</a>
+          <a (click)="selectCategory('beverages')" [class.text-orange-600]="selectedCategory === 'beverages'" class="px-4 py-2 cursor-pointer">Beverages</a>
+          <a (click)="selectCategory('pasta')" [class.text-orange-600]="selectedCategory === 'pasta'" class="px-4 py-2 cursor-pointer">Pasta</a>
+        </nav>
+      </div>
+</div>
+
+<div class="bg-white pt-5 min-h-screen">
+    
+    <div class="container mx-auto px-4">  
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+
+            <div *ngFor="let pizza of filteredMenuItems" class="bg-white rounded-lg shadow-lg p-8 transition duration-1000 ease-in-out hover:scale-105">
+                <div class="relative overflow-hidden">
+                    <!-- <img class="object-cover w-full h-48" [src]="pizza.image" alt="{{ pizza.name }}"  > -->
+                    <!-- <div class="absolute inset-0 bg-black opacity-40"></div>
+                    <div class="absolute inset-0 flex items-end justify-start p-1">
+                        <span class=" text-green-800 bg-white" *ngIf="pizza.veg">
+                            <img src="../../assets/veg.png" style="height: 25px ; width: 25px;" alt="Veg">
+                        </span>
+                        <span class="text-red-800 bg-white" *ngIf="!pizza.veg">
+                            <img src="../../assets/nonveg.png" alt="Non Veg" style="height: 25px ; width: 25px;"  >
+                        </span>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button class="bg-white text-gray-900 py-2 px-6 rounded-full font-bold hover:bg-gray-300" (click)="openPopup(pizza)">View Item</button>
+                    
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mt-4">{{ pizza.name }}</h3>
+                <p class="text-gray-500 text-sm mt-2">{{ pizza.description}}</p>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-gray-900 font-bold text-lg">&#8377;{{pizza.price}}</span>
+                    <button (click)="addToCart(pizza)" class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800">Add to Cart</button>
+                </div>
+            </div>
+           
+        </div>
+
+    </div>
+</div> -->
+<!-- <app-menuitem-details *ngIf="isPopupOpen" [menuItem]="selectedItem"></app-menuitem-details> -->
+<!-- <app-menuitem-details *ngIf="showPopup" [menuItem]="selectedMenuItem " (close) ="closePopup()"></app-menuitem-details> --> 
+
+   
+<div class="bg-slate-700 pt-24 pb-2">
+    <div class="flex justify-center mb-4 pb-2">
+        <nav class="space-x-4 py-2 font-bold text-white">
+            <a (click)="selectCategory('all')" [class.text-orange-600]="selectedCategory === 'all'" class="px-4 py-2 cursor-pointer">All</a>
+            <a (click)="selectCategory('1')" [class.text-orange-600]="selectedCategory === '1'" class="px-4 py-2 cursor-pointer">Pizza</a>
+            <a (click)="selectCategory('2')" [class.text-orange-600]="selectedCategory === '2'" class="px-4 py-2 cursor-pointer">Pasta</a>
+            <a (click)="selectCategory('3')" [class.text-orange-600]="selectedCategory === 'sides'" class="px-4 py-2 cursor-pointer">Sides</a>
+            <a (click)="selectCategory('4')" [class.text-orange-600]="selectedCategory === '4'" class="px-4 py-2 cursor-pointer">Salad</a>
+            <a (click)="selectCategory('5')" [class.text-orange-600]="selectedCategory === '5'" class="px-4 py-2 cursor-pointer">Dessert</a>
+            <a (click)="selectCategory('6')" [class.text-orange-600]="selectedCategory === '6'" class="px-4 py-2 cursor-pointer">Beverages</a>
+           
+        </nav>
+    </div>
+</div>
+
+<div class="bg-white pt-5 min-h-screen">
+    <div class="container mx-auto px-4">  
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div *ngFor="let pizza of filteredMenuItems" class="bg-white rounded-lg shadow-lg p-8 transition duration-1000 ease-in-out hover:scale-105">
+                <div class="relative overflow-hidden h-48">
+                    <img [src]="pizza.productPhoto" class="object-cover" alt="photo">
+                    <div class="absolute inset-0 bg-black opacity-40"></div>
+                    <div class="absolute inset-0 flex items-end justify-start p-1">
+                        <span class="text-green-800 bg-white" *ngIf="pizza.vegOrNonVeg">
+                            <img src="../../assets/veg.png" style="height: 25px ; width: 25px;" alt="Veg">
+                        </span>
+                        <span class="text-red-800 bg-white" *ngIf="!pizza.vegOrNonVeg">
+                            <img src="../../assets/nonveg.png" alt="Non Veg" style="height: 25px ; width: 25px;"  >
+                        </span>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button class="bg-white text-gray-900 py-2 px-6 rounded-full font-bold hover:bg-gray-300" (click)="openPopup(pizza)">View Item</button>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mt-4">{{ pizza.itemName }}</h3>
+                <p class="text-gray-500 text-sm mt-2">{{ pizza.itemDescription}}</p>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-gray-900 font-bold text-lg">&#8377;{{pizza.price}}</span>
+                    
+                    <button (click)="addToCart(pizza)" class="bg-gray-900 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-menuitem-details *ngIf="showPopup" [menuItem]="selectedMenuItem" (close)="closePopup()"></app-menuitem-details>

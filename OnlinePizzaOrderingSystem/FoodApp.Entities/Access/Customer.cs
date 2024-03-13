@@ -22,7 +22,7 @@ namespace FoodApp.Entities
         [RegularExpression("^[0-9]{10}$")]
         public long Phone { get; set; }
         
-        public String? CartId { get; set; }
+        
        
 
        

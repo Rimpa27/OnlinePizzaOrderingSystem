@@ -1,0 +1,39 @@
+<div class="image-container">
+      <h1 class="form-header">Add User</h1>
+      <div class="container">
+      <form [formGroup]="UserForm" (ngSubmit)="onSubmit()" class="form-container">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" placeholder="Enter the Name">
+        <div *ngIf="UserForm?.get('name')?.invalid && UserForm?.get('name')?.touched">
+          <small  class="text-danger">Name is required.</small>
+        </div>
+      </div >
+      <div class="form-group"><label for="Email">Email</label>
+            <input type="email" id="email" formControlName="email" placeholder="Email">
+            <div *ngIf="UserForm.get('email')?.invalid && UserForm.get('email')?.touched" class="invalid-feedback">
+            <div *ngIf="UserForm.get('email')?.errors?.['required']">Email is required</div>
+            <div *ngIf="UserForm.get('email')?.errors?.['email']">Please enter a valid email registratio</div>
+            </div>
+      </div> 
+      <div class="form-group"><label for="password" placeholder="Password">Password:</label>
+        <input type="password" type="password"  id="password"  formControlName="password">
+            <div *ngIf="UserForm.get('password')?.errors?.['pattern']">
+              <small class="text-danger">Password must match the specified pattern.</small>
+            </div>
+      </div> 
+      <div><h2>Select Role</h2>
+        <select formControlName="roleType" (ngModel)="selectuser">
+        <option value="" disabled>Select a Role</option>
+        <option *ngFor="let roleType of roles" [value]="roleType">{{roleType}}</option></select>
+        <div *ngIf="UserForm.get('roleType')?.invalid && UserForm.get('roleType')?.touched">
+          <small class="text-danger">Please select a Role.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="photo">Upload Photo:</label><input type="file" formControlName="photo">
+      </div>
+      <button type="submit">Add User</button>
+    </form>
+  </div>
+  </div>

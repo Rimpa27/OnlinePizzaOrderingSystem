@@ -1,0 +1,115 @@
+<section class="pt-20 "
+  style="background-image: url(../../assets/s1.jpg); background-repeat: no-repeat; background-size:cover;">
+  <div class="container py-5 max-h-max">
+    <div class="row d-flex justify-content-center align-items-center h-100 ">
+      <div class="col col-xl-10">
+        <div class=" px-8 py-8" style="border-radius: 1rem; ">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="../../assets/logo.jpg" alt="login form" class="w-[400px]"
+                style=" border-radius: 50%; border:rgb(228, 228, 228); border-style: solid; border: 3;" />
+            </div>
+
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">border:rgb(132, 3, 3)
+                <form [formGroup]="UserForm" (ngSubmit)="onSubmit()" class="form w-full max-w-2xl ">
+                 
+                  <div class="flex flex-wrap -mx-3 mb-3 ">
+                    <div class="w-full md:w-1/2 px-3  md:mb-0">
+                      <input type="text" id="Name" formControlName="Name" placeholder="Name"
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-6 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name" />
+                      <span *ngIf="
+              UserForm.get('Name')?.invalid &&
+              UserForm.get('Name')?.touched
+            ">
+                        <span *ngIf="UserForm.get('Name')?.errors?.['required']" class="text-red-500">Username is
+                          required</span>
+                        <span style="color: red" *ngIf="UserForm.get('Name')?.errors?.['minlength']">at least 2
+                          characters long.</span>
+                      </span>
+                    </div>
+
+                    <div class="w-full md:w-1/2 px-3">
+                      <input type="email" id="Email" formControlName="Email" placeholder="Email"
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" />
+                      <span *ngIf="
+              UserForm.get('Email')?.invalid &&
+              UserForm.get('Email')?.touched
+            ">
+                        <span *ngIf="UserForm.get('Email')?.errors?.['required']" class="text-red-500">Email is
+                          required</span>
+                        <span *ngIf="UserForm.get('Email')?.errors?.['email']" class="text-red-500">Invalid
+                          Email!</span>
+                      </span>
+                    </div>
+                  </div>
+
+
+
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                      <input type="Password" id="Password" formControlName="Password" placeholder="Password"
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" />
+                      <span *ngIf="
+            UserForm.get('Password')?.invalid &&
+            UserForm.get('Password')?.touched
+          ">
+                        <!-- <span
+            *ngIf="UserForm.get('Password')?.errors?.['pattern']"
+            class="text-red-500"
+          >
+            Password must have Uppercase, lowercase, numbers and symbols
+          </span> -->
+                        <span *ngIf="UserForm.get('Password')?.errors?.['required']" class="text-red-500">Password is
+                          required</span>
+                        <span *ngIf="UserForm.get('Password')?.errors?.['minlength']" class="text-red-500">at least 5
+                          characters long.</span>
+                          <!-- <span *ngIf="UserForm.get('Password')?.errors?.['pattern']" class="text-red-500">Password must have uppercase, lowercase, number,and symbols</span> -->
+                      </span>
+                    </div>
+
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                      <input type="text" id="Phone" name="Phone" formControlName="Phone" placeholder="Phone Number"
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" />
+                      <div *ngIf="
+            UserForm.get('Phone')?.invalid && UserForm.get('Phone')?.touched
+          " class="text-red-500">
+                        <span *ngIf="UserForm.get('Phone')?.errors?.['required']" class="text-red-500">
+                          Phone is required.
+                        </span>
+                        <span
+            *ngIf="UserForm.get('Phone')?.errors?.['minlength']"
+            class="text-red-500"
+          >
+            Phone number must be at least 10 characters long.
+          </span>
+                        <span *ngIf="UserForm.get('Phone')?.errors?.['maxlength']">
+                          Phone number cannot be more than 10
+                        </span>
+                        <span *ngIf="UserForm.get('')?.errors?.['pattern']">
+                          Invalid phone number format.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-center pb-2">
+
+                    <button type="Submit"
+                      class="bg-blue-500 hover:bg-blue-700 text-white  w-3/4 font-bold py-2 px-4 rounded-full">
+                      SignUp
+                    </button>
+                  </div>
+                  <p class="mb-5 pb-lg-2" style="color: #fdfdfd; ">Already Registerd? <a href="/login"
+                      style="color: #fdfdfd;">login here</a></p>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
