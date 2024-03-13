@@ -44,29 +44,6 @@ namespace OnlinePizzaOrderingwebApp.Controllers
         }
 
 
-        //[HttpPost("SignUp")]
-        //public IActionResult SignUp([FromBody] SignUpRequest request)
-        //{
-        //    try
-        //    {
-        //        var customer = _customerAccessServices.SignUp(request);
-
-        //        // Return both customer object and cart ID in the response
-        //        return Ok(new { Customer = customer, CartId = customer.CartId });
-        //    }
-        //    catch (DuplicateEmailException ex)
-        //    {
-        //        return Conflict(ex.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log the exception, etc.
-        //        return StatusCode(500, $"An error occurred: {ex.Message}");
-        //    }
-        //}
-
-
-
         [HttpPost("CustomerLogin")]
 
         public IActionResult Post(SignInRequest request)
