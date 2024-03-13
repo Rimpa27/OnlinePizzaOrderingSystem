@@ -28,6 +28,7 @@ export class LoginComponent {
     this.httpservice.login(Email,Password).subscribe((result) => {
       console.log(result);
       localStorage.setItem('token', result.token);
+      alert("Login Successful")
       this.router.navigate(['/homepage'])
     });
 }

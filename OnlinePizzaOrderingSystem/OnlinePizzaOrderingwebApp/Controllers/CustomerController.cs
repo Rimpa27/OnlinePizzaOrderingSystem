@@ -7,6 +7,7 @@ using OnlinePizzaOrderingwebApp.Services;
 using Microsoft.EntityFrameworkCore;
 using FoodApp.Entities;
 using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlinePizzaOrderingwebApp.Controllers
 {
@@ -41,6 +42,28 @@ namespace OnlinePizzaOrderingwebApp.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
+
+        //[HttpPost("SignUp")]
+        //public IActionResult SignUp([FromBody] SignUpRequest request)
+        //{
+        //    try
+        //    {
+        //        var customer = _customerAccessServices.SignUp(request);
+
+        //        // Return both customer object and cart ID in the response
+        //        return Ok(new { Customer = customer, CartId = customer.CartId });
+        //    }
+        //    catch (DuplicateEmailException ex)
+        //    {
+        //        return Conflict(ex.Message);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception, etc.
+        //        return StatusCode(500, $"An error occurred: {ex.Message}");
+        //    }
+        //}
 
 
 
@@ -90,8 +113,9 @@ namespace OnlinePizzaOrderingwebApp.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        
 
+
+        [Authorize]
 
         [HttpPost("AddMenuItemToCart")]
         public async Task<IActionResult> AddMenuItemToCart(AddingMenuItemToCart request)
@@ -165,7 +189,13 @@ namespace OnlinePizzaOrderingwebApp.Controllers
             }
         }
 
-        
+        [HttpGet("ViewMenuItems")]
+        public ActionResult<IEnumerable<MenuItemDto>> GetMenuItems()
+        {
+            var menuItems = _customerAccessServices.GetMenuItems();
+            return Ok(menuItems);
+        }
+
 
 
 

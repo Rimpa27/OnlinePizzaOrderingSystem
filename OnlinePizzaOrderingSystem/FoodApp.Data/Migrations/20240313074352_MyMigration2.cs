@@ -5,7 +5,7 @@
 namespace FoodApp.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class addressremoved : Migration
+    public partial class MyMigration2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

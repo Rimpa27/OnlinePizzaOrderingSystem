@@ -60,11 +60,6 @@ namespace FoodApp.Services
             var orders=context.OrderSummaries.ToList();
             return orders;
         }
-        public List<MenuItem> GetAllMenuItem()//done
-        {
-            var menuitems = context.MenuItems.ToList();
-            return menuitems;
-        }
         public MenuItem AddMenuItem(AddingMenuItem addingMenuItem)//done
         {
 
@@ -87,7 +82,7 @@ namespace FoodApp.Services
             {
                 string fileName = Guid.NewGuid() + ".png";
                 containerClient.UploadBlob(fileName, addingMenuItem.Photo.OpenReadStream());
-                newMenuItem.ProductPhoto = "https://onlinepizaa.blob.core.windows.net/images/garlic_bread.png" + fileName;
+                newMenuItem.ProductPhoto = "https://onlinepizaa.blob.core.windows.net/images/" + fileName;
 
             }
             context.MenuItems.Add(newMenuItem);
@@ -95,6 +90,16 @@ namespace FoodApp.Services
             return newMenuItem;
 
         }
+
+            public List<MenuItem> GetAllMenuItem()
+
+                {
+
+                    var menuitems = context.MenuItems.ToList();
+
+                    return menuitems;
+
+                }
 
         public async Task<bool> EditMenuItem(MenuItem menuItem)//done
         {

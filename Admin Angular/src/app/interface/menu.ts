@@ -20,7 +20,7 @@ export interface Iorder{
 orderid :number;
 orderdate:string;
 orderstatus:string;
-ordertotal:number;
+ordertotal:string;
 paymenttype:string;
 orderitem:IorderItem[]
 }

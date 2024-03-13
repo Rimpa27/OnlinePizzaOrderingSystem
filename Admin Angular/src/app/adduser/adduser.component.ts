@@ -4,24 +4,22 @@ import { EmailValidator, FormBuilder, FormGroup, FormsModule, ReactiveFormsModul
 import {ActivatedRoute, Router} from '@angular/router';
 import { IUser } from '../interface/menu';
 import { HttpService } from '../http.service';
+import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-adduser',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,FormsModule],
+  imports: [ReactiveFormsModule,CommonModule,FormsModule,HttpClientModule],
   templateUrl: './adduser.component.html',
   styleUrl: './adduser.component.css'
 })
 export class AdduserComponent {
   UserForm:FormGroup;
   httpService = inject(HttpService);
-  roles: { name: string; value: number; }[] = [
-    { name: 'Admin', value: 1 },
-    { name: 'Customer', value: 2 },
-    { name: 'Delivery Person', value: 3 }
-  ];
+  roles: string[] = ['Admin', 'Customer', 'Delivery Person'];
   selectuser:string|undefined;
   userID!:number;
   isEdit!: false;
+selectedroletype:string | undefined
 
   constructor(private formBuilder: FormBuilder,private router: Router,private route:ActivatedRoute) {
     this.UserForm=this.formBuilder.group({
@@ -41,20 +39,10 @@ export class AdduserComponent {
       password:this.UserForm.value.password!,
       roleType:this.UserForm.value.roleType!
     };
-    if (this.isEdit) {
-      this.httpService
-        .editUser(this.userID,User)
-        .subscribe(() => {
-          console.log('success');
-          //this.toaster.success("Record updated sucessfully.");
-          this.router.navigateByUrl('user');
-        });
-    } else {
       this.httpService.AddUser(User).subscribe(() => {
         console.log('success');
-        //this.toaster.success("Record added sucessfully.");
+        alert("User Added Successfully")
         this.router.navigateByUrl('user');
       });
     }
-  }
 }

@@ -34,8 +34,8 @@
                 <td>{{ menuItem.preparationTime }}</td>
                 <td>{{ menuItem.isAvailable}}</td>
                 <td>
-                  <button *ngIf="menuItem.menuItemId !== undefined" (click)="editMenuItem(menuItem.menuItemId)" >Edit</button>
-                  <button *ngIf="menuItem.menuItemId !== undefined" (click)="deleteMenuItem(menuItem.menuItemId)">Delete</button>
+                  <!-- <button *ngIf="menuItem.menuItemId !== undefined" (click)="editMenuItem(menuItem.menuItemId)" >Edit</button> -->
+                  <button (click)="deleteMenuItem(menuItem)">Delete</button>
                 </td>
               </tr>
             </tbody>

@@ -4,19 +4,21 @@ import { CartItem } from '../interface/cart-item.interface';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MenuComponent } from '../menu/menu.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule,FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule,FormsModule,MenuComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit{
   cartItems:any[] = [];
-  totalPrice:number =0;
+  totalPrice:number = 0;
   
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router:Router) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -51,4 +53,9 @@ export class CartComponent implements OnInit{
 private saveCart(): void {
   localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
 }
+
+checkout(){
+  this.router.navigate(['/delivery_address']);
+}
+
 }

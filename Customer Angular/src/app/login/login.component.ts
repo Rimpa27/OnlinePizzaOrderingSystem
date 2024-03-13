@@ -32,7 +32,7 @@ export class LoginComponent  {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
       this.userService.login(this.loginForm.value);
- 
+      alert("login Successful");
      
      
     } else {

@@ -141,6 +141,7 @@ export class SignUpComponent {
           next: response => {
             console.log(response);
             this.router.navigate(['/login']);
+            alert('signup successful');
           },
           error: error => {
             console.error('Error occurred:', error);

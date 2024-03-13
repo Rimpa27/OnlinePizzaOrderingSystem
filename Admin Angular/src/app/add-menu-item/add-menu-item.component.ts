@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './add-menu-item.component.css'
 })
 
-export class AddMenuItemComponent implements OnInit {
+export class AddMenuItemComponent {
   menuItemForm: FormGroup; 
   categories: string[] = ['Pizza','Pasta','Sides','Salad', 'Dessert', 'Beverage']; 
   selectedCategory: string | undefined;
@@ -34,47 +34,36 @@ export class AddMenuItemComponent implements OnInit {
       IsAvailable:['',Validators.required]
     });
    }
-   updateFile(event:any){
-    console.log(event);
-      if(event.target.files.length > 0)
-      {
-         this.photo = event.target.files[0];
-         console.log("File Updatd");
-      }
-      else
-        console.log("No file was selected");
-  }
-  ngOnInit() { }
+   updateFile(event: any) {
+    if (event.target.files.length > 0) {
+      this.photo = event.target.files[0];
+      console.log("File Updated");
+    } else {
+      console.log("No file was selected");
+      this.photo = undefined; // Reset photo if not selected
+    }
+  };
   onSubmit() {
     // this.menuItemForm.markAllAsTouched();
       console.log('Form submitted!');
       console.log(this.menuItemForm.value);
-      const MenuItem:Imenu = {
-        menuItemName:this.menuItemForm.value.menuItemName,
-        menuItemDescription:this.menuItemForm.value.menuItemDescription,
-        price:this.menuItemForm.value.price,
-        vegOrNonVeg:this.menuItemForm.value.vegOrNonVeg,
-        menuItemCategory:this.menuItemForm.value.menuItemCategory,
-        calories:this.menuItemForm.value.calories,
-        isAvailable:this.menuItemForm.value.isAvailable,
-        preparationTime:this.menuItemForm.value.preparationTime
-      };
-      if (this.isEdit) {
-        this.httpservice
-          .EditMenuItem(this.MenuItemId,MenuItem)
-          .subscribe(() => {
-            console.log('success');
-          alert("Record updated sucessfully.");
-            this.router.navigateByUrl('menu');
-          });
-      }
-      else{
-        this.httpservice.AddMenuItem(MenuItem).subscribe(() => {
-          console.log('success');
-          alert("Record added sucessfully.");
+      var formData = new FormData();
+      formData.append("data", JSON.stringify(this.menuItemForm.value));
+      formData.append("Photo", this.photo);
+      this.httpservice.AddMenuItem(formData).subscribe(
+        (response) => {
+          // Handle successful response
+          console.log("MenuItem Added",response);
+          alert('MenuItem Added Sucessfully');
           this.router.navigateByUrl('menu');
+        },
+        (error) => {
+          // Handle error
+          console.log("Some error occurred",error);
+          // alert('Error assigning ticket:');
         });
-      }
-    }  
-}
+        alert('MenuItem Added Sucessfully');
+        this.router.navigateByUrl('menu');
+    }
+}  
 

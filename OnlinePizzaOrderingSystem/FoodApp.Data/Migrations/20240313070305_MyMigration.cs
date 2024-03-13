@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodApp.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Adding : Migration
+    public partial class MyMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,9 +51,8 @@ namespace FoodApp.Data.Migrations
                     MenuItemName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MenuItemDescription = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    calories = table.Column<int>(type: "int", nullable: false),
+                    Calories = table.Column<int>(type: "int", nullable: false),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PreparationTime = table.Column<int>(type: "int", nullable: false),
                     VegOrNonVeg = table.Column<int>(type: "int", nullable: false),
                     MenuItemCategory = table.Column<int>(type: "int", nullable: false),
@@ -93,6 +92,7 @@ namespace FoodApp.Data.Migrations
                     Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
                     AddressID = table.Column<int>(type: "int", nullable: true),
                     Customer_Phone = table.Column<long>(type: "bigint", nullable: true),
+                    CartId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
@@ -102,8 +102,7 @@ namespace FoodApp.Data.Migrations
                         name: "FK_Users_Addresses_AddressID",
                         column: x => x.AddressID,
                         principalTable: "Addresses",
-                        principalColumn: "AddressID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "AddressID");
                 });
 
             migrationBuilder.CreateTable(
@@ -141,8 +140,8 @@ namespace FoodApp.Data.Migrations
                     OrderStatus = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     OrderTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
-                    PaymentId = table.Column<int>(type: "int", nullable: false),
-                    DeliveryDetailsDeliveryId = table.Column<int>(type: "int", nullable: false),
+                    PaymentId = table.Column<int>(type: "int", nullable: true),
+                    DeliveryDetailsDeliveryId = table.Column<int>(type: "int", nullable: true),
                     DeliveryPersonId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -152,14 +151,12 @@ namespace FoodApp.Data.Migrations
                         name: "FK_OrderSummaries_DeliveryDetails_DeliveryDetailsDeliveryId",
                         column: x => x.DeliveryDetailsDeliveryId,
                         principalTable: "DeliveryDetails",
-                        principalColumn: "DeliveryId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "DeliveryId");
                     table.ForeignKey(
                         name: "FK_OrderSummaries_OrderPayments_PaymentId",
                         column: x => x.PaymentId,
                         principalTable: "OrderPayments",
-                        principalColumn: "PaymentId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PaymentId");
                     table.ForeignKey(
                         name: "FK_OrderSummaries_Users_CustomerId",
                         column: x => x.CustomerId,
@@ -207,11 +204,11 @@ namespace FoodApp.Data.Migrations
                 {
                     OrderItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MenuItemId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CartItemPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CartItemQuantity = table.Column<int>(type: "int", nullable: false),
+                    MenuItemId = table.Column<int>(type: "int", nullable: false),
                     OrderSummaryOrderId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

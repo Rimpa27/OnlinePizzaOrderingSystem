@@ -9,24 +9,24 @@ import { Iorder } from './interface/menu';
 export class OrderService {
 
   private orders: Iorder[] = [
-    { orderid :6768,
+    { orderid :1,
         orderdate:'12/03/2024',
         orderstatus:'Pending',
-        ordertotal:2000,
-        paymenttype:'UPI',
+        ordertotal:'400.00',
+        paymenttype:'UHFDY78914',
         orderitem:[
-            {name:'Pizza',quantity:2},
-            {name:'Pasta',quantity:3}]
+            {name:'Margherita',quantity:1},
+            {name:'7CheeseBrust',quantity:1}]
     },
     { 
-      orderid :6708,
-      orderdate:'12/03/2024',
+      orderid :2,
+      orderdate:'13/03/2024',
       orderstatus:'Pending',
-      ordertotal:600,
-      paymenttype:'UPI',
+      ordertotal:'250.00',
+      paymenttype:'HURGK79429',
       orderitem:[
-          {name:'Noodles',quantity:2},
-          {name:'Garlic Bread',quantity:3}]
+          {name:'Masala Pasta',quantity:1},
+          {name:'Margherita',quantity:1}]
     },
     // Add more sample orders as needed
   ];

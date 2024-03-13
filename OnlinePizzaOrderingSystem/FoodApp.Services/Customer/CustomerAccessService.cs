@@ -38,7 +38,7 @@ namespace FoodApp.Services
             customer.Email = request.Email;
             customer.Password = request.Password;
             customer.Phone = request.Phone;
-            
+
             context.Customers.Add(customer);
 
             context.SaveChanges();
@@ -47,6 +47,8 @@ namespace FoodApp.Services
 
 
         }
+
+
 
         public List<Claim> SignIn(SignInRequest request)//cdone
 
@@ -91,7 +93,7 @@ namespace FoodApp.Services
                 OrderTotal = cart.TotalPrice,
                 Customer = customer,
                 OrderItems = new List<OrderItem>()
-                //Cart = cart
+                
             };
 
             foreach (var cartItem in cart.CartItemList)
@@ -111,22 +113,6 @@ namespace FoodApp.Services
             return order;
         }
 
-        //public void CustomizePizza(CustomizedPizza cp)
-        //{
-        //    var cartItem = context.CartItems
-        //        .FirstOrDefault(ci => ci.CartItemId == cp.CartItemId);
-
-        //    if (cartItem == null)
-        //    {
-        //        throw new ArgumentException("Cart item not found.");
-        //    }
-
-        //    // Add or update toppings for the pizza
-        //    cartItem.ToppingType = cp.Topping;
-
-        //    // Save changes to the database
-        //    context.SaveChanges();
-        //}
 
 
 
@@ -263,6 +249,32 @@ namespace FoodApp.Services
                 throw new Exception("No payment found for this order.");
 
             }
+        }
+
+
+        public IEnumerable<MenuItemDto> GetMenuItems()
+        {
+            // Fetch menu items from the database
+            var menuItems = context.MenuItems;
+
+            // You can map your entity objects to DTOs to send only required information
+            // For simplicity, let's assume MenuItemDto has the same properties as AddingMenuItem
+            // You can adjust it according to your requirements
+            var menuItemsDto = menuItems.Select(item => new MenuItemDto
+            {
+                MenuItemId = item.MenuItemId,
+                ItemName = item.MenuItemName,
+                ItemDescription = item.MenuItemDescription,
+                Calories = item.Calories,
+                IsAvailable = item.IsAvailable,
+                VegOrNonVeg = item.VegOrNonVeg,
+                Category = item.MenuItemCategory,
+                PreparationTime = item.PreparationTime,
+                Price = item.Price,
+                ProductPhoto = item.ProductPhoto,
+            });
+
+            return menuItemsDto;
         }
 
 

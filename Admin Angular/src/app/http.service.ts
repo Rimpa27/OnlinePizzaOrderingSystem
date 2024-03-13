@@ -1,15 +1,17 @@
-import { HttpClient} from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {Injectable } from '@angular/core';
+import {Observable, throwError } from 'rxjs';
 import { Imenu, IUser } from './interface/menu';
-
+import {Router } from '@angular/router';
+import {catchError} from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
   apiUrl = 'http://localhost:5217';
-  constructor(private http: HttpClient){}
+  private token:any;
+  constructor(private http: HttpClient,private router:Router){}
   login(email: string, password: string) {
     return this.http.post<{ token: string }>(this.apiUrl + '/api/Admin/Login', {
       email: email,
@@ -19,9 +21,6 @@ export class HttpService {
   getAllMenuItem() {
     console.log('getAllMenuItem', localStorage.getItem('token'));
     return this.http.get<Imenu[]>(this.apiUrl + '/api/Admin/AllMenuItems');
-  }
-  AddMenuItem(MenuItem: Imenu) {
-    return this.http.post(this.apiUrl + '/api/Admin/AddMenuItem', MenuItem);
   }
   EditMenuItem(menuItemId: number, MenuItem: Imenu) {
     return this.http.put<Imenu>(
@@ -51,6 +50,30 @@ export class HttpService {
       User
     );
   }
+  AddMenuItem(formData: FormData): Observable<any> {
+ 
+    const url = this.apiUrl+'/api/Admin/AddMenuItem';
+      const accessToken = localStorage.getItem("accessToken");
+   
+      if (!accessToken) {
+        this.router.navigate(['/login']);
+       
+      }else{
+        const temp = JSON.parse(accessToken || "");
+        this.token = temp.token;
+      }
+   
+      // Set the authorization header with the access token
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`
+      });
+   
+      return this.http.post(url, formData, { headers }).pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(error); // Rethrow the error
+        })
+      );
+    }
 
 }
   

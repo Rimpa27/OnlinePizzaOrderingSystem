@@ -36,5 +36,6 @@ namespace FoodApp.Services
         /// <exception cref="AuthenticationException"></exception>
         List<Claim> SignIn(SignInRequest request);
 
+        IEnumerable<MenuItemDto> GetMenuItems();
     }
 }

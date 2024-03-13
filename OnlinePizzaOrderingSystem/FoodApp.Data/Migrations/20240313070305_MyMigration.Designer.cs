@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodApp.Data.Migrations
 {
     [DbContext(typeof(PizzaOrderingAppContext))]
-    [Migration("20240312102521_azuresqldb")]
-    partial class azuresqldb
+    [Migration("20240313070305_MyMigration")]
+    partial class MyMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -337,8 +337,11 @@ namespace FoodApp.Data.Migrations
                 {
                     b.HasBaseType("FoodApp.Entities.User");
 
-                    b.Property<int>("AddressID")
+                    b.Property<int?>("AddressID")
                         .HasColumnType("int");
+
+                    b.Property<string>("CartId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("Phone")
                         .HasColumnType("bigint");
@@ -444,9 +447,7 @@ namespace FoodApp.Data.Migrations
                 {
                     b.HasOne("FoodApp.Entities.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AddressID");
 
                     b.Navigation("Address");
                 });

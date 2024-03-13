@@ -34,6 +34,13 @@ export class CartService {
   //   localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   // }
 
+  // addToCart(product:any){
+  //   this.cartItems.push(product);
+  // }
+  // getItems(){
+  //   return this.cartItems;
+  // }
+
   removeFromCart(itemId: number) {
     this.cartItems = this.cartItems.filter(item => item.id !== itemId);
     this.saveCart();

@@ -22,14 +22,17 @@
               <small class="text-danger">Password must match the specified pattern.</small>
             </div>
       </div> 
-      <div><h2>Select Role</h2>
-        <select formControlName="roleType" (ngModel)="selectuser">
-        <option value="" disabled>Select a Role</option>
-        <option *ngFor="let roleType of roles" [value]="roleType">{{roleType}}</option></select>
+      <div>
+        <h2>Select Role</h2>
+        <select formControlName="roleType" (ngModel)="selectedroletype">
+          <option value="" disabled>Select a Role</option>
+          <option *ngFor="let roleType of roles" [value]="roleType">{{ roleType }}</option>
+        </select>
         <div *ngIf="UserForm.get('roleType')?.invalid && UserForm.get('roleType')?.touched">
           <small class="text-danger">Please select a Role.</small>
         </div>
       </div>
+      
       <div class="form-group">
         <label for="photo">Upload Photo:</label><input type="file" formControlName="photo">
       </div>

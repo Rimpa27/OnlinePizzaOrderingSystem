@@ -34,14 +34,7 @@ export class MenuItemListComponent implements OnInit {
   'IsAvailable',
   'PreparationTime'
   ];
-  // deleteMenuItem(menuItem: Imenu): void {
-  //   // Implement delete functionality here
-  //   console.log('Deleting:', menuItem);
-  //   const index = this.menuItems.indexOf(menuItem);
-  //   if (index !== -1) {
-  //     this.menuItems.splice(index, 1);
-  //   }
-  // }
+  //
   ngOnInit(){
     this.getMenuItemFromServer();
   }
@@ -55,12 +48,21 @@ export class MenuItemListComponent implements OnInit {
     console.log(menuItemId);
     this.router.navigateByUrl('AddMenuItem');
   }
-  deleteMenuItem(menuItemId:number) {
-    this.httpservice.deleteMenuItem(menuItemId).subscribe(() => {
-      console.log('deleted');
-      this.getMenuItemFromServer();
-      alert('Delete Sucessfully ')
-      //this.toastr.success('Record deleted sucessfully');
-    });
-  }
+  deleteMenuItem(menuItem:Imenu): void {
+      // Implement delete functionality here
+      console.log('Deleting:', menuItem);
+      const index = this.menuItems.indexOf(menuItem);
+      if (index !== -1) {
+        this.menuItems.splice(index, 1);
+      }
+    }
+  // deleteMenuItem(menuItemId:number) {
+  //   this.httpservice.deleteMenuItem(menuItemId).subscribe(() => {
+  //     console.log('deleted');
+  //     this.getMenuItemFromServer();
+  //     alert('Delete Sucessfully ')
+  //     //this.toastr.success('Record deleted sucessfully');
+  //   });
+  // }
+  
 }

@@ -23,6 +23,7 @@ export class UserComponent implements OnInit {
   {
     this.sidebarOpen = !this.sidebarOpen;  
   }
+  
   displayedColumns: string[] = [
     'UserID',
     'Name',

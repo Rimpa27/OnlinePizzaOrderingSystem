@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using FoodApp.Entities;
 
@@ -21,9 +20,8 @@ namespace FoodApp.Entities
         [Required]
         [RegularExpression("^[0-9]{10}$")]
         public long Phone { get; set; }
-        
-        
-       
+
+
 
        
        
