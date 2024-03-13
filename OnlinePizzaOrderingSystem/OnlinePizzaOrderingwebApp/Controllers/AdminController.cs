@@ -68,7 +68,13 @@ public IActionResult Post(SignInRequest request)
             List<OrderSummary> orders = adminAccessService.GetAllOrders();
             return Ok(orders);
         }
-        
+        [HttpGet("AllMenuItems")]
+        public IActionResult GetAllMenuItem()
+        {
+            List<MenuItem> menuitems = adminAccessService.GetAllMenuItem();
+            return Ok(menuitems);
+        }
+
         [HttpPost("AddMenuItem")]  //Done
         public IActionResult Post()
         {

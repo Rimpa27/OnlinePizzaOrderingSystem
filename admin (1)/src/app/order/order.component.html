@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="sidebar">
+    <button (click)="toggleSidebar()" class="toggle-button"> <i class="fas fa-bars"></i> </button>
+    <app-sidebar *ngIf="sidebarOpen"></app-sidebar> 
+  </div>
+    <h1 class="form-header">Order</h1>
+      <!-- <div align="right">
+        <button  routerLink="/addMenuItem" mat-raised-button color="primary">Add Item</button>
+      </div> -->
+      <div class="table-container"><table class="menu-table">
+          <thead>
+            <tr>
+              <th>Order Id</th>
+              <th>Order Date</th>
+              <th>Order Status</th>
+              <th>Order Item</th> 
+              <th>Payment Type</th>
+              <th>Total price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td>{{order.orderid}}</td>
+              <td>{{order.orderdate}}</td>
+              <td>{{order.orderstatus}}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let item of order.orderitem">{{item.name }} ({{item.quantity}})</li>
+                </ul>
+              </td>
+              <td>{{order.paymenttype}}</td>
+              <td>{{order.ordertotal}}</td>
+              <td>
+                <button (click)="confirmOrder(order.orderid)" >Confirm</button>
+                <button (click)="declineOrder(order.orderid)">Decline</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>        
+  </div>
+
+

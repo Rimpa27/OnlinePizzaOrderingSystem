@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="sidebar">
+    <button (click)="toggleSidebar()" class="toggle-button"> <i class="fas fa-bars"></i> </button>
+    <app-sidebar *ngIf="sidebarOpen"></app-sidebar> 
+  </div>
+    <h1 class="form-header">Users List</h1>
+      <div align="right">
+        <button  routerLink="/addUser" mat-raised-button color="primary">Add User</button>
+      </div>
+      <div class="table-container">
+        <table class="user-table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>E-mail</th>
+              <th>Password</th>
+              <th>Phone</th>
+              <th>Line 1</th>
+              <th>Line 2</th>
+              <th>City</th>
+              <th>Pincode</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of Users">
+              <td>{{ user.username }}</td>
+              <td>{{ user.email}}</td>
+              <td>{{ user.password }}</td>
+              <td>{{ user.phone}}</td>
+              <td>{{ user.line1}}</td>
+              <td>{{ user.line2 }}</td>
+              <td>{{ user.city}}</td>
+              <td>{{user.pincode}}</td>
+              <td>
+                <button (click)="editUser(user)" >Edit</button>
+                <button (click)="deleteUser(user)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>        
+  </div>
+

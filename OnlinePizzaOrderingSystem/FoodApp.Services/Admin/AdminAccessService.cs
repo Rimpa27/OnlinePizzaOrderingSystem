@@ -60,6 +60,11 @@ namespace FoodApp.Services
             var orders=context.OrderSummaries.ToList();
             return orders;
         }
+        public List<MenuItem> GetAllMenuItem()//done
+        {
+            var menuitems = context.MenuItems.ToList();
+            return menuitems;
+        }
         public MenuItem AddMenuItem(AddingMenuItem addingMenuItem)//done
         {
 

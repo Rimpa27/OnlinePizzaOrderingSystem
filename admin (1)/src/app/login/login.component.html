@@ -1,0 +1,30 @@
+<div class="container">
+    <h1 class="form-header">Login</h1>
+    <div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+            <label for="Email">Email<font color="red"><b>*</b></font></label>
+              <input type="Email" id="Email" formControlName="Email"placeholder="Email">
+              <div *ngIf="loginForm.get('Email')?.invalid && loginForm.get('Email')?.touched" class="invalid-feedback">
+                <div *ngIf="loginForm.get('Email')?.errors?.['required']">Email is required</div>
+                <div *ngIf="loginForm.get('Email')?.errors?.['Email']">Please enter a valid Email address</div>
+              </div>
+      </div>
+      <div class="form-group">
+        <label for="Password">Password<font color="red"><b>*</b></font></label>
+        <input id="Password" type="Password" formControlName="Password" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$">
+        <div *ngIf="loginForm.get('Password')?.invalid && (loginForm.get('Password')?.dirty || loginForm.get('Password')?.touched)" class="error">
+          <div *ngIf="loginForm.get('Password')?.errors?.['required']">Password is required</div>
+          <div *ngIf="loginForm.get('password')?.errors?.['pattern']"class="text-red-500">
+            Password must have Uppercase, lowercase, numbers and symbols
+          </div>
+        </div>
+      </div>
+    <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+  </div>
+  
+  
+
+  

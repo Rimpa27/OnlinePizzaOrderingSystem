@@ -26,7 +26,7 @@ namespace FoodApp.Services
         Task<bool> EditMenuItem(MenuItem menuItem);
         List<User> GetAllUsers();
         List<OrderSummary> GetAllOrders();
-
+        List<MenuItem> GetAllMenuItem();
         //Task AddUserAsync(User newUser);
         Task<bool> AddUserAsync(AllUser allUser);
 
