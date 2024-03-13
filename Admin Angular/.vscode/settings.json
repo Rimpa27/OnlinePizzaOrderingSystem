@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/438c9c8e-ce40-4b25-ad83-ba64acf16a73/resourceGroups/OnlinePizzaOrdering/providers/Microsoft.Web/sites/PizzaWebAppGroup3",
+    "appService.deploySubpath": "."
+}
