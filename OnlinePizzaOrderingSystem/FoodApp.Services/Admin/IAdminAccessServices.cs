@@ -30,19 +30,11 @@ namespace FoodApp.Services
         List<MenuItem> GetAllMenuItem();
 
         Task<bool> AddUserAsync(AllUser allUser);
-
-        //Task<bool> DeleteUserAsync(AdminDeleteUser deleteUser);
         Task<bool> EditUserDetailsAsync(EditUser req);
         Task<bool> DeleteUserAsync(AdminDeleteUser adminDeleteUser);
-
-        //Task<bool> EditOrderAsync(OrderUpdateModel updateModel);
-
         List<OrderSummary> GetOrdersForAdmin(List<OrderSummary> OrderSummaries);
  
         void AdminDeleteOrder(AdminDeleteOrder request);
-
-       // Task<bool> AddOrderAsync(OrderSummary order);
-
         void ConfirmOrder(int cartId);
 
         void AssignDeliveryPerson(AssignDeliveryPerson req);

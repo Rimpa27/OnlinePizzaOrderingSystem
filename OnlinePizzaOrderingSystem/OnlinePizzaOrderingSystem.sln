@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{AF04B49C-E1D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JWTtokenGenerator", "JWTtokenGenerator", "{B1714FDB-A1E4-4BE6-A643-20B87A570B68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizaaUserSignUpFunc", "PizaaUserSignUpFunc\PizaaUserSignUpFunc.csproj", "{ECA4C0C6-F4F4-4DBC-927E-09A122A7CB8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{C974E5E4-9913-45D3-9D9E-01D9CE20BB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C974E5E4-9913-45D3-9D9E-01D9CE20BB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C974E5E4-9913-45D3-9D9E-01D9CE20BB71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA4C0C6-F4F4-4DBC-927E-09A122A7CB8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA4C0C6-F4F4-4DBC-927E-09A122A7CB8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA4C0C6-F4F4-4DBC-927E-09A122A7CB8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA4C0C6-F4F4-4DBC-927E-09A122A7CB8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{E0C41027-E085-498E-9890-7683ED61363C} = {A91EB17A-414B-4359-9762-A774FDAC581D}
 		{C974E5E4-9913-45D3-9D9E-01D9CE20BB71} = {A91EB17A-414B-4359-9762-A774FDAC581D}
 		{B1714FDB-A1E4-4BE6-A643-20B87A570B68} = {AF04B49C-E1D0-4198-A5C5-9F94B1F84A31}
+		{ECA4C0C6-F4F4-4DBC-927E-09A122A7CB8D} = {AF04B49C-E1D0-4198-A5C5-9F94B1F84A31}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {67A716B6-15C9-4FB4-8013-0951F3636FA1}

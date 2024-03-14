@@ -6,15 +6,7 @@ namespace FoodApp.Services
 {
     public interface ICustomerAccessService
     {
-        PaymentInfo GetPaymentInfoByOrderId(int orderId);
-
-        OrderStatus GetOrderStatusByOrderID(int orderID);
-
-
-        Task<bool> DeleteCartItemByIdAsync(DeleteCartItemById req);
-        Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request);
-
-        Task<DeliveryDetails?> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req);
+       
         //void CustomizePizza(CustomizedPizza cp);
 
         /// <summary>
@@ -37,5 +29,13 @@ namespace FoodApp.Services
         List<Claim> SignIn(SignInRequest request);
 
         IEnumerable<MenuItemDto> GetMenuItems();
+        Task<DeliveryDetails?> ChooseDeliveryDateAndTimeAsync(ChooseDeliveryDateAndTime req);
+        PaymentInfo GetPaymentInfoByOrderId(int orderId);
+
+        OrderStatus GetOrderStatusByOrderID(int orderID);
+
+
+        Task<bool> DeleteCartItemByIdAsync(DeleteCartItemById req);
+        Task<bool> AddMenuItemToCartAsync(AddingMenuItemToCart request);
     }
 }

@@ -60,6 +60,11 @@ namespace FoodApp.Services
             var orders=context.OrderSummaries.ToList();
             return orders;
         }
+        public List<MenuItem> GetAllMenuItem()//done
+        {
+            var menuitems = context.MenuItems.ToList();
+            return menuitems;
+        }
         public MenuItem AddMenuItem(AddingMenuItem addingMenuItem)//done
         {
 
@@ -91,17 +96,7 @@ namespace FoodApp.Services
 
         }
 
-            public List<MenuItem> GetAllMenuItem()
-
-                {
-
-                    var menuitems = context.MenuItems.ToList();
-
-                    return menuitems;
-
-                }
-
-        public async Task<bool> EditMenuItem(MenuItem menuItem)//done
+            public async Task<bool> EditMenuItem(MenuItem menuItem)//done
         {
             var existingMenuItem = await context.MenuItems.FindAsync(menuItem.MenuItemId);
 
@@ -137,89 +132,6 @@ namespace FoodApp.Services
             }
         }
 
-        //public async Task<bool> AddOrderAsync(int cartId, int userId)
-        //{
-        //    try
-        //    {
-        //        var cart = await context.Carts
-        //            .Include(c => c.Users)
-        //            .Include(c => c.CartItemList)
-        //            .FirstOrDefaultAsync(c => c.CartId == cartId);
-
-        //        var user = await context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
-
-        //        if (cart == null || user == null)
-        //        {
-        //            // Cart or user not found
-        //            return false;
-        //        }
-
-        //        var orderSummary = new OrderSummary
-        //        {
-        //            OrderDate = DateTime.Now,
-        //            OrderStatus = OrderStatus.Pending, //  OrderStatus is an enum
-        //            OrderTotal = cart.TotalPrice,
-        //            Customer = (Customer)user, //  Customer inherits from User
-        //            OrderItems = cart.CartItemList.Select(ci => new OrderItem
-        //            {
-        //                // Populate OrderItem properties based on the cart item details
-        //            }).ToList()
-        //        };
-
-        //        context.OrderSummaries.Add(orderSummary);
-        //        await context.SaveChangesAsync();
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle exception, log error, etc.
-        //        throw new Exception("An error occurred while adding the order.", ex);
-        //    }
-        //}
-
-
-        //public async Task<bool> EditOrderAsync(OrderUpdateModel updateModel)//done
-        //{
-        //    try
-        //    {
-        //        var existingOrder = await context.OrderSummaries
-        //            .Include(o => o.OrderItems)
-        //            .FirstOrDefaultAsync(o => o.OrderId == updateModel.OrderId);
-
-        //        if (existingOrder == null)
-        //        {
-        //            throw new Exception("Order not found.");
-        //        }
-
-        //        // Update order properties
-        //        existingOrder.OrderDate = updateModel.OrderDate;
-        //        existingOrder.OrderStatus = updateModel.OrderStatus;
-        //        existingOrder.OrderTotal = updateModel.OrderTotal;
-
-        //        // Update related entities (e.g., customer, payment, order items)
-
-        //        // Update customer
-        //        existingOrder.Customer = updateModel.Customer;
-
-        //        // Update payment
-        //        existingOrder.Payment = updateModel.Payment;
-
-        //        // Save changes to the database
-        //        await context.SaveChangesAsync();
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Handle exception, log error, etc.
-        //        throw new Exception("An error occurred while editing the order.", ex);
-        //    }
-        //}
-
-       
-        
-        
-
-       
 
 
         public void AdminDeleteOrder(AdminDeleteOrder request)//done

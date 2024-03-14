@@ -140,48 +140,7 @@ public IActionResult Post(SignInRequest request)
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
-        //[HttpPost("AddOrder")]
-        //public async Task<IActionResult> AddOrder(OrderSummary order)
-        //{
-        //    try
-        //    {
-        //        bool result = await adminAccessService.AddOrderAsync(order);
-        //        if (result)
-        //        {
-        //            return Ok("Order added successfully.");
-        //        }
-        //        else
-        //        {
-        //            return BadRequest("Failed to add order.");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log the exception
-        //        return StatusCode(500, "An error occurred while adding the order.");
-        //    }
-        //}
-        //[HttpPut("EditOrder")]
-        //public async Task<IActionResult> EditOrder(OrderUpdateModel updateModel)
-        //{
-        //    try
-        //    {
-        //        bool result = await adminAccessService.EditOrderAsync(updateModel);
-        //        if (result)
-        //        {
-        //            return Ok("Order added successfully.");
-        //        }
-        //        else
-        //        {
-        //            return BadRequest("Failed to add order.");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log the exception
-        //        return StatusCode(500, "An error occurred while adding the order.");
-        //    }
-        //}
+        
         [HttpDelete("AdminDeleteOrder")]
         public IActionResult AdminDeleteOrder(AdminDeleteOrder orderId)
         {
